@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Honeygain Club — Turn Idle Internet Into $20–$100+/Month (2026 Invite)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E1706;
+    --paper:#FFFCF4;
+    --paper-2:#FFF6DE;
+    --dark:#1D1710;
+    --dark-2:#2A2115;
+    --honey:#FFB800;
+    --honey-deep:#E2830A;
+    --coral:#FF5A36;
+    --green:#1F9D55;
+    --line:rgba(30,23,6,0.12);
+    --line-dark:rgba(255,255,255,0.12);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  .display{font-family:'Poppins',sans-serif; font-weight:800; letter-spacing:-0.02em; line-height:1.05;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+
+  /* ---------- urgency ticker ---------- */
+  .ticker{background:var(--dark); color:var(--paper); font-size:13.5px; font-weight:600; text-align:center; padding:9px 16px;}
+  .ticker span.hot{color:var(--honey);}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky; top:0; z-index:50; background:rgba(255,252,244,0.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:70px;}
+  .logo{display:flex; align-items:center; gap:9px; font-family:'Poppins',sans-serif; font-weight:800; font-size:18px;}
+  .logo .hex-ico{width:20px;height:18px; background:var(--honey); clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:15px 28px; border-radius:999px; font-weight:700; font-size:15.5px;
+    border:none; cursor:pointer; white-space:nowrap;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn.small{padding:10px 20px; font-size:14px;}
+  .btn.coral{background:var(--coral); color:#fff; box-shadow:0 10px 24px -8px rgba(255,90,54,0.55);}
+  .btn.coral:hover{transform:translateY(-2px); box-shadow:0 14px 30px -8px rgba(255,90,54,0.7);}
+  .btn.honey{background:var(--honey); color:var(--dark); box-shadow:0 10px 24px -8px rgba(255,184,0,0.5);}
+  .btn.honey:hover{transform:translateY(-2px); box-shadow:0 14px 30px -8px rgba(255,184,0,0.65);}
+  .btn.outline{background:transparent; border:1.5px solid var(--ink); color:var(--ink);}
+  .btn.outline.light{border-color:rgba(255,255,255,0.5); color:#fff;}
+  .pulse{animation:pulse 2.2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,54,0.45);}70%{box-shadow:0 0 0 14px rgba(255,90,54,0);}100%{box-shadow:0 0 0 0 rgba(255,90,54,0);}}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:64px 0 60px; background:radial-gradient(1200px 500px at 80% -10%, var(--paper-2), transparent);}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center;}
+  .badge-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .badge{display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid var(--line); padding:7px 13px; border-radius:999px; font-size:13px; font-weight:600;}
+  .badge .stars{color:var(--honey-deep); font-size:12px;}
+  .badge.partner{background:var(--dark); color:var(--paper); border:none;}
+
+  h1.display{font-size:clamp(34px,4.6vw,54px); max-width:620px;}
+  h1.display .accent{color:var(--honey-deep);}
+  .hero p.lede{font-size:18.5px; color:#4a4326; max-width:520px; margin:20px 0 28px;}
+  .cta-row{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .cta-sub{font-size:13px; color:#7a7350; margin-top:14px; display:flex; align-items:center; gap:6px;}
+  .cta-sub .dot-g{width:7px;height:7px;border-radius:50%;background:var(--green); display:inline-block;}
+
+  /* mockup frame for user's own screenshots */
+  .mock-phone{
+    position:relative; width:260px; margin:0 auto; background:var(--dark); border-radius:36px; padding:14px;
+    box-shadow:0 30px 60px -20px rgba(30,23,6,0.35);
+  }
+  .mock-phone .notch{position:absolute; top:14px; left:50%; transform:translateX(-50%); width:70px; height:16px; background:var(--dark); border-radius:0 0 12px 12px; z-index:2;}
+  .mock-screen{
+    background:linear-gradient(180deg, #FFF6DE, #FFE9AE);
+    border-radius:24px; height:400px; position:relative; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
+    border:2px dashed var(--honey-deep);
+  }
+  .mock-screen .ph-icon{width:44px;height:44px; border-radius:12px; background:var(--honey-deep); margin-bottom:14px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px;}
+  .mock-screen .ph-txt{font-size:13px; font-weight:700; color:var(--dark); max-width:180px;}
+  .mock-screen .ph-sub{font-size:11.5px; color:#8a6a2a; margin-top:6px;}
+  .shimmer{
+    position:absolute; inset:0;
+    background:linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%);
+    background-size:200% 100%;
+    animation:shimmer 2.6s infinite;
+  }
+  @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+  .float-tag{
+    position:absolute; background:#fff; border-radius:12px; padding:8px 12px; box-shadow:0 12px 24px -8px rgba(0,0,0,0.2);
+    font-size:12px; font-weight:700; display:flex; align-items:center; gap:6px;
+  }
+  .float-tag.t1{top:-14px; right:-30px; color:var(--green);}
+  .float-tag.t2{bottom:30px; left:-40px; color:var(--honey-deep);}
+  @media (max-width:640px){ .float-tag{display:none;} }
+
+  /* hero lifestyle photo backdrop, sits behind the phone mockup */
+  .hero-photo-frame{
+    position:relative; border-radius:32px; padding:60px 30px 40px;
+    /* Replace this gradient with: background-image:url('your-photo.jpg'); background-size:cover; background-position:center; */
+    background:linear-gradient(160deg, #FFE9AE 0%, #FFD27A 55%, #F6B94A 100%);
+    border:2px dashed var(--honey-deep);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 30px 70px -30px rgba(226,131,10,0.45);
+  }
+  .photo-label{
+    position:absolute; top:14px; left:14px; right:14px;
+    font-size:11px; font-weight:600; color:#7a5710; background:rgba(255,255,255,0.75);
+    padding:6px 10px; border-radius:8px; text-align:center; line-height:1.4;
+  }
+
+  /* ---------- floating cta ---------- */
+  .float-cta{
+    position:fixed; bottom:16px; left:50%; transform:translateX(-50%); z-index:60;
+    background:var(--dark); color:#fff; padding:11px 12px 11px 20px; border-radius:999px;
+    display:flex; align-items:center; gap:14px; box-shadow:0 14px 34px -8px rgba(0,0,0,0.4);
+    opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .float-cta.show{opacity:1; pointer-events:auto;}
+  .float-cta span{font-size:13.5px; font-weight:600;}
+
+  /* ---------- sections ---------- */
+  section{padding:74px 0;}
+  section.dark{background:var(--dark); color:#fff;}
+  .section-head{max-width:640px; margin-bottom:42px;}
+  .section-head .eyebrow{color:var(--honey-deep); font-weight:700; font-size:13.5px; margin-bottom:10px;}
+  section.dark .section-head .eyebrow{color:var(--honey);}
+  .section-head h2{font-size:clamp(27px,3.4vw,36px);}
+  .section-head p{color:#5c5636; font-size:16px; margin-top:12px;}
+  section.dark .section-head p{color:#c7c1ab;}
+
+  /* social proof strip */
+  .proof-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .proof-card{background:#fff; border:1px solid var(--line); border-radius:16px; padding:24px 20px; text-align:center;}
+  .proof-card .plat{font-weight:800; font-size:14px; letter-spacing:-0.01em; margin-bottom:8px; display:flex; align-items:center; justify-content:center; gap:6px;}
+  .proof-card .plat .swatch{width:16px;height:16px;border-radius:4px;}
+  .proof-card .num{font-family:'Poppins',sans-serif; font-weight:800; font-size:30px;}
+  .proof-card .lbl{font-size:12.5px; color:#6b6444; margin-top:4px;}
+  .proof-note{font-size:12px; color:#948c66; margin-top:16px; text-align:center;}
+
+  /* testimonial cards */
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:20px;}
+  .testi-card{background:#fff; border:1px solid var(--line); border-radius:16px; padding:24px; display:flex; flex-direction:column; gap:14px;}
+  .testi-top{display:flex; align-items:center; gap:10px;}
+  .logo-chip{width:28px; height:28px; border-radius:8px; color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .testi-source{font-size:12px; font-weight:700; color:#5c5636;}
+  .testi-source em{color:#a89f78; font-style:normal; font-weight:500;}
+  .testi-card .stars{color:var(--honey-deep); font-size:14px;}
+  .testi-card blockquote{font-size:15px; color:#2c2818;}
+  .testi-who{display:flex; align-items:center; gap:12px; margin-top:auto;}
+  .testi-who .avatar{width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff; flex-shrink:0;}
+  .testi-who .name{font-weight:700; font-size:13.5px;}
+  .testi-who .meta{font-size:12px; color:#8a8460;}
+
+  .testi-heading{font-family:'Poppins',sans-serif; font-weight:700; font-size:20px; margin-top:36px; margin-bottom:8px;}
+  .testi-subhead{font-size:13.5px; color:#6b6444; max-width:640px; margin-bottom:6px;}
+  .testi-src-link{font-size:12px; font-weight:700; color:var(--honey-deep); margin-top:4px; display:inline-block;}
+  .testi-src-link:hover{text-decoration:underline;}
+
+  .featured-testi{
+    margin-top:28px; background:#fff; border:1px solid var(--line); border-radius:18px;
+    padding:36px 40px; max-width:760px;
+  }
+  .featured-mark{font-family:'Poppins',sans-serif; font-size:56px; line-height:0.5; color:var(--honey); margin-bottom:12px;}
+  .featured-text{font-size:16.5px; color:#2c2818; font-style:italic; line-height:1.65;}
+  .featured-by{display:flex; align-items:center; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .featured-by .name{font-weight:700; font-size:14px;}
+  .featured-by .meta{font-size:12px; color:#8a8460;}
+  .featured-by .testi-src-link{margin-left:auto;}
+
+  /* dream / benefits */
+  .dream-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .dream-card{background:#2A2115; border-radius:18px; padding:28px 24px; border:1px solid var(--line-dark);}
+  .dream-card .ico{width:42px;height:42px; border-radius:12px; background:var(--honey); color:var(--dark); display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:16px;}
+  .dream-card h3{font-family:'Poppins',sans-serif; font-size:18px; margin-bottom:8px;}
+  .dream-card p{font-size:14.5px; color:#c7c1ab;}
+
+  /* screenshot gallery placeholders */
+  .shot-gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .shot-frame{
+    background:#fff; border:2px dashed var(--honey-deep); border-radius:16px; aspect-ratio:9/12;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
+    position:relative; overflow:hidden;
+  }
+  .shot-frame .ico{font-size:26px; margin-bottom:10px;}
+  .shot-frame .t{font-size:13.5px; font-weight:700;}
+  .shot-frame .s{font-size:11.5px; color:#8a8460; margin-top:4px;}
+
+  /* how it works */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .step{background:#fff; border:1px solid var(--line); border-radius:18px; padding:28px 24px; position:relative;}
+  .step .n{font-family:'Poppins',sans-serif; font-weight:800; font-size:14px; width:32px;height:32px; border-radius:50%; background:var(--dark); color:var(--honey); display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+  .step h3{font-family:'Poppins',sans-serif; font-size:18px; margin-bottom:8px;}
+  .step p{font-size:14.5px; color:#5c5636;}
+
+  /* club benefits / numbers */
+  .benefit-strip{background:var(--honey); border-radius:22px; padding:40px 36px; display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .benefit-strip .stat{color:var(--dark);}
+  .benefit-strip .stat .num{font-family:'Poppins',sans-serif; font-weight:800; font-size:32px;}
+  .benefit-strip .stat .lbl{font-size:13px; margin-top:4px; max-width:160px; opacity:.85;}
+  .benefit-strip .note{grid-column:1/-1; font-size:11.5px; color:#6b5406; margin-top:4px;}
+
+  /* faq */
+  .faq{display:flex; flex-direction:column; gap:14px; max-width:760px;}
+  .faq-item{background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 22px; cursor:pointer;}
+  .faq-item .q{display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:15.5px;}
+  .faq-item .q .plus{font-size:20px; color:var(--honey-deep); transition:transform .2s ease;}
+  .faq-item .a{font-size:14.5px; color:#5c5636; margin-top:0; max-height:0; overflow:hidden; transition:max-height .25s ease, margin-top .25s ease;}
+  .faq-item.open .a{margin-top:12px; max-height:200px;}
+  .faq-item.open .q .plus{transform:rotate(45deg);}
+
+  /* final cta */
+  .final-cta{background:linear-gradient(135deg, var(--dark), #33270f); border-radius:26px; padding:64px 44px; text-align:center; position:relative; overflow:hidden;}
+  .final-cta h2{font-family:'Poppins',sans-serif; font-size:clamp(28px,4vw,40px); color:#fff; max-width:600px; margin:0 auto 14px;}
+  .final-cta p{color:#d8d2ba; max-width:480px; margin:0 auto 28px; font-size:16px;}
+
+  footer{padding:36px 0 56px; border-top:1px solid var(--line);}
+  footer .wrap{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;}
+  footer .fine{font-size:12px; color:#948c66; max-width:560px; line-height:1.6;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .proof-strip, .dream-grid, .shot-gallery, .steps, .testi-grid{grid-template-columns:repeat(2,1fr);}
+    .benefit-strip{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    .proof-strip, .dream-grid, .shot-gallery, .steps, .benefit-strip, .testi-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">🔥 <span class="hot">New members are joining this week</span> — sign up through a Club invitation to get your $3 bonus credited instantly</div>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="hex-ico"></span> Honeygain Club</div>
+    <a href="https://join.honeygain.com/TRONL4B9BE" class="btn honey small">Get My Invitation</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge-row">
+        <span class="badge"><span class="stars">★★★★★</span> 4.4 avg · 11,000+ reviews</span>
+        <span class="badge partner">Independent Referral Partner</span>
+      </div>
+      <h1 class="display">Your internet is already on. <span class="accent">Start getting paid for it.</span></h1>
+      <p class="lede">Honeygain turns the bandwidth you're not using into real, recurring payouts — no freelancing, no selling, no schedule. Join the Honeygain Club through my invitation and your $3 signup bonus lands the moment you register.</p>
+      <div class="cta-row">
+        <a href="#join" class="btn coral pulse">Get My Invitation →</a>
+        <a href="#proof" class="btn outline">See real payouts</a>
+      </div>
+      <p class="cta-sub"><span class="dot-g"></span> 100% free to join · takes about 2 minutes · cancel anytime, keep everything you've earned</p>
+    </div>
+
+    <div>
+      <div class="hero-photo-frame">
+       <div class="photo-label"><img src="assets/hero.jpg"></div>
+        <div class="mock-phone">
+          <div class="notch"></div>
+          <div class="mock-screen">
+            <img src="./assets/payout2.jpg" />
+          </div>
+          <div class="float-tag t1">✅ Payout confirmed</div>
+          <div class="float-tag t2">💰 Balance growing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">SOCIAL PROOF</div>
+      <h2>Not just my word for it</h2>
+      <p>Honeygain has thousands of independent reviews across the web. Here's the honest, public track record.</p>
+    </div>
+    <div class="proof-strip">
+      <div class="proof-card">
+        <div class="plat"><span class="swatch" style="background:#00b67a;"></span>Trustpilot</div>
+        <div class="num" data-count="4.4">0</div>
+        <div class="lbl">average rating from 11,000+ reviews</div>
+      </div>
+      <div class="proof-card">
+        <div class="plat"><span class="swatch" style="background:#ff4500;"></span>Reddit</div>
+        <div class="num" data-count="0">Active</div>
+        <div class="lbl">threads discussing real payouts &amp; setup tips</div>
+      </div>
+      <div class="proof-card">
+        <div class="plat"><span class="swatch" style="background:#1877F2;"></span>Facebook</div>
+        <div class="num" data-count="0">10k+</div>
+        <div class="lbl">members in public Honeygain earner groups</div>
+      </div>
+      <div class="proof-card">
+        <div class="plat"><span class="swatch" style="background:var(--honey-deep);"></span>Since</div>
+        <div class="num" data-count="0">2018</div>
+        <div class="lbl">years running as a bandwidth-sharing platform</div>
+      </div>
+    </div>
+    <p class="proof-note">Ratings reflect Honeygain's public Trustpilot page as of 2026. Common themes across reviews: easy setup, real (if slow) payouts, and referrals as the fastest way to grow earnings. Individual results vary — replace the badges above with live screenshots whenever you have them.</p>
+
+    <h3 class="testi-heading">What other people say about the platform</h3>
+    <p class="testi-subhead">Honeygain is the product here — these are independent reviews of Honeygain itself, reused with attribution to their original source. No ownership over these reviews is claimed; full credit stays with the original reviewer and platform.</p>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="logo-chip" style="background:#00b67a;">★</span>
+          <span class="testi-source">Trustpilot review <em>(logo placeholder)</em></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"Experience with Honeygain is great. Legit !!! Payment is always on time."</blockquote>
+        <div class="testi-who">
+          <div class="avatar" style="background:var(--honey-deep);">SM</div>
+          <div class="who"><div class="name">Shreesh M.</div><div class="meta">Verified Trustpilot review · India, 2025</div></div>
+        </div>
+        <a class="testi-src-link" href="https://www.trustpilot.com/review/honeygain.com" target="_blank" rel="noopener">Source: Trustpilot ↗</a>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="logo-chip" style="background:#00b67a;">★</span>
+          <span class="testi-source">Trustpilot review <em>(logo placeholder)</em></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"Easy to set up and use. Pays out as promised, trust."</blockquote>
+        <div class="testi-who">
+          <div class="avatar" style="background:var(--green);">B</div>
+          <div class="who"><div class="name">Bernard</div><div class="meta">Verified Trustpilot review · Ireland, 2024</div></div>
+        </div>
+        <a class="testi-src-link" href="https://www.trustpilot.com/review/honeygain.com" target="_blank" rel="noopener">Source: Trustpilot ↗</a>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="logo-chip" style="background:#ff4500;">r/</span>
+          <span class="testi-source">Reddit thread <em>(logo placeholder)</em></span>
+        </div>
+        <div class="stars">★★★★☆</div>
+        <blockquote>Reported earning around $12.75 in a month running Honeygain on 8 devices at once, sharing about 42.5 GB total.</blockquote>
+        <div class="testi-who">
+          <div class="avatar" style="background:var(--dark);">r/</div>
+          <div class="who"><div class="name">r/beermoneyuk member</div><div class="meta">Reddit · earnings self-report, shared publicly</div></div>
+        </div>
+        <a class="testi-src-link" href="https://www.reddit.com/r/beermoneyuk/" target="_blank" rel="noopener">Source: r/beermoneyuk ↗</a>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="logo-chip" style="background:#00b67a;">★</span>
+          <span class="testi-source">Trustpilot review <em>(logo placeholder)</em></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"I earn real money by Honeygain platform."</blockquote>
+        <div class="testi-who">
+          <div class="avatar" style="background:var(--honey-deep);">RK</div>
+          <div class="who"><div class="name">Ravi Kewat</div><div class="meta">Verified Trustpilot review · India</div></div>
+        </div>
+        <a class="testi-src-link" href="https://ca.trustpilot.com/review/honeygain.com?page=3" target="_blank" rel="noopener">Source: Trustpilot ↗</a>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="logo-chip" style="background:#00b67a;">★</span>
+          <span class="testi-source">Trustpilot review <em>(logo placeholder)</em></span>
+        </div>
+        <div class="stars">★★★★☆</div>
+        <blockquote>"This app works well and trustworthy."</blockquote>
+        <div class="testi-who">
+          <div class="avatar" style="background:var(--green);">HS</div>
+          <div class="who"><div class="name">Hannes Steyn</div><div class="meta">Verified Trustpilot review</div></div>
+        </div>
+        <a class="testi-src-link" href="https://www.trustpilot.com/review/honeygain.com?page=8" target="_blank" rel="noopener">Source: Trustpilot ↗</a>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="logo-chip" style="background:#00b67a;">★</span>
+          <span class="testi-source">Trustpilot review <em>(logo placeholder)</em></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"I can say it is not fake, it actually pays you."</blockquote>
+        <div class="testi-who">
+          <div class="avatar" style="background:var(--dark);">TP</div>
+          <div class="who"><div class="name">Verified Trustpilot reviewer</div><div class="meta">Name not disclosed in public review</div></div>
+        </div>
+        <a class="testi-src-link" href="https://ca.trustpilot.com/review/honeygain.com?page=4" target="_blank" rel="noopener">Source: Trustpilot ↗</a>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-top">
+          <span class="logo-chip" style="background:#00b67a;">★</span>
+          <span class="testi-source">Trustpilot review <em>(logo placeholder)</em></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"Honeygain is legitimate and the payments are real — you can trust it."</blockquote>
+        <div class="testi-who">
+          <div class="avatar" style="background:var(--honey-deep);">TP</div>
+          <div class="who"><div class="name">Verified Trustpilot reviewer</div><div class="meta">Name not disclosed in public review</div></div>
+        </div>
+        <a class="testi-src-link" href="https://www.trustpilot.com/review/honeygain.com" target="_blank" rel="noopener">Source: Trustpilot ↗</a>
+      </div>
+    </div>
+    <p class="proof-note">Quotes are reproduced short and verbatim where the source review was brief enough to quote directly, and paraphrased only where no direct quote existed (the Reddit card). Every card links to its original public source. These reflect opinions of Honeygain the platform — not an endorsement of this specific referral link or page.</p>
+
+    <div class="featured-testi">
+      <div class="featured-mark">“</div>
+      <p class="featured-text">Took about four years of slowly gathering credits before requesting a first payout. Registering with Honeygain's payment processor, Tipalti, felt complicated at first — but the process worked, and the payment arrived as expected. Framed as proof that the platform is exactly what it claims to be: not a fast payout, but a genuinely real one.</p>
+      <div class="featured-by">
+        <span class="logo-chip" style="background:#00b67a;">★</span>
+        <div>
+          <div class="name">Verified Trustpilot reviewer</div>
+          <div class="meta">Name not disclosed in public review · paraphrased, not verbatim</div>
+        </div>
+        <a class="testi-src-link" href="https://ca.trustpilot.com/review/honeygain.com?page=3" target="_blank" rel="noopener">Source: Trustpilot ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">WHY PEOPLE JOIN</div>
+      <h2>This isn't a hustle. It's money you were already leaving on the table.</h2>
+      <p>You don't need a skill, a schedule, or spare time. You need Wi-Fi you already pay for.</p>
+    </div>
+    <div class="dream-grid">
+      <div class="dream-card">
+        <div class="ico">💤</div>
+        <h3>Earns while you sleep</h3>
+        <p>Install it once and it runs quietly in the background — on your phone, laptop, or that old device in a drawer.</p>
+      </div>
+      <div class="dream-card">
+        <div class="ico">💵</div>
+        <h3>Real side income</h3>
+        <p>Members use payouts to cover streaming subscriptions, phone bills, or just stack extra cash with zero active work.</p>
+      </div>
+      <div class="dream-card">
+        <div class="ico">🐝</div>
+        <h3>Grows with your network</h3>
+        <p>Every friend who joins through your own invitation adds a lifetime share of their earnings on top of yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">PROOF, NOT PROMISES</div>
+      <h2>What earning actually looks like</h2>
+      <p>Swap these frames for your own dashboard and payout screenshots — real proof converts better than any promise.</p>
+    </div>
+    <div class="shot-gallery">
+      <div class="shot-frame"><img src="assets/dashboard-desktop.jpg"></div>
+      <div class="shot-frame"><img src="assets/earning2.jpg"></div>
+      <div class="shot-frame"><img src="assets/payout2.jpg"></div>
+      <div class="shot-frame"><img src="assets/dashboard-mobile.jpg"></div>
+      <div class="shot-frame"><img src="assets/honeygain-app.jpg"></div>
+      <div class="shot-frame"><img src="assets/earning1.jpg"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">HOW IT WORKS</div>
+      <h2>From invitation to first payout</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Join the Club</h3>
+        <p>Tap "Get My Invitation," download Honeygain, and sign up — your $3 bonus applies automatically through the invite link.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Turn it on</h3>
+        <p>Enable sharing on any device connected to Wi-Fi. It runs silently — no access to your files, browsing, or messages.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Cash out</h3>
+        <p>Credits build automatically. Withdraw via PayPal or JumpTask once you hit the payout minimum — no manual steps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">CLUB BENEFITS</div>
+      <h2>What you get for joining through this invitation</h2>
+    </div>
+    <div class="benefit-strip">
+      <div class="stat"><div class="num">$3</div><div class="lbl">credited instantly on signup through the invite link</div></div>
+      <div class="stat"><div class="num">$0</div><div class="lbl">cost to join, ever — free forever, cancel anytime</div></div>
+      <div class="stat"><div class="num">10%</div><div class="lbl">lifetime share when you invite your own friends later</div></div>
+      <div class="stat"><div class="num">~2 min</div><div class="lbl">from clicking the button to your account running</div></div>
+      <div class="note">Terms reflect Honeygain's published referral program as of 2026. Earnings depend on device, location, and network demand and are not guaranteed.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">BEFORE YOU JOIN</div>
+      <h2>Straight answers, no spin</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="q">Is Honeygain actually legit, or is this a scam?<span class="plus">+</span></div>
+        <div class="a">Honeygain has operated publicly since 2018 and holds a 4.4-star average across 11,000+ Trustpilot reviews. Most negative reviews are about how slow early earnings feel, not about payouts failing to arrive.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Am I sharing my personal files or browsing data?<span class="plus">+</span></div>
+        <div class="a">No. Honeygain shares idle internet bandwidth only — it doesn't access your files, messages, passwords, or browsing history.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">How much can I realistically earn?<span class="plus">+</span></div>
+        <div class="a">It varies by device, location, and network demand — most people treat it as a small background side income rather than a primary earner. Referrals are the fastest way to increase it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Why join through your invitation instead of directly?<span class="plus">+</span></div>
+        <div class="a">Signing up through a Club invitation applies your $3 bonus automatically — there's no downside, and it costs you nothing extra.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Who are you — are you Honeygain?<span class="plus">+</span></div>
+        <div class="a">No. This is an independent referral page. We're a Honeygain user sharing an invitation link, not Honeygain the company. All product details belong to Honeygain.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Stop letting your bandwidth sit idle.</h2>
+      <p>Grab your invitation, claim your $3 bonus, and let Honeygain start working in the background today.</p>
+      <a href="https://join.honeygain.com/TRONL4B9BE" class="btn coral pulse">Get My Invitation →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="font-size:15px;"><span class="hex-ico" style="width:15px;height:13px;"></span> Honeygain Club</div>
+    <p class="fine">This is an independent referral page and is not affiliated with, endorsed by, or operated by Honeygain Inc. All trademarks and product names belong to their respective owners. Earnings shown are illustrative or user-reported and are not guaranteed — actual results vary by device, location, and network demand. Review Honeygain's official terms before installing.</p>
+  </div>
+</footer>
+
+<div class="float-cta" id="floatCta">
+  <span>Your $3 bonus is waiting</span>
+  <a href="https://join.honeygain.com/TRONL4B9BE" class="btn coral small">Get Invitation →</a>
+</div>
+
+<script>
+  // floating CTA after hero
+  const floatCta = document.getElementById('floatCta');
+  const hero = document.querySelector('header.hero');
+  window.addEventListener('scroll', () => {
+    floatCta.classList.toggle('show', hero.getBoundingClientRect().bottom < 0);
+  });
+
+  // count-up animation for numeric stats
+  const counters = document.querySelectorAll('.num[data-count]');
+  const animateCount = (el) => {
+    const raw = el.getAttribute('data-count');
+    const target = parseFloat(raw);
+    if (isNaN(target) || target === 0) return; // skip non-numeric labels (Active, 10k+, 2018 stay static)
+    let cur = 0;
+    const isDecimal = raw.includes('.');
+    const step = () => {
+      cur += target / 40;
+      if (cur >= target) { el.textContent = isDecimal ? target.toFixed(1) : Math.round(target); return; }
+      el.textContent = isDecimal ? cur.toFixed(1) : Math.round(cur);
+      requestAnimationFrame(step);
+    };
+    step();
+  };
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); obs.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  counters.forEach(c => obs.observe(c));
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+</script>
+
+</body>
+</html>
