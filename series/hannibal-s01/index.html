@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hannibal S01  - Episodes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:Arial,Helvetica,sans-serif; }
+  body { background:#0f172a; color:#f8fafc; }
+  a { color:inherit; }
+
+  /* ---- Nav bar ---- */
+  .site-nav {
+    background:#111827;
+    border-bottom:1px solid #1e293b;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .site-nav-inner {
+    max-width:1200px;
+    margin:0 auto;
+    padding:14px 24px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .site-brand {
+    font-size:1.3rem;
+    font-weight:bold;
+    color:#38bdf8;
+    text-decoration:none;
+    margin-right:auto;
+    white-space:nowrap;
+  }
+  .site-nav-links {
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    list-style:none;
+  }
+  .site-nav-links a {
+    text-decoration:none;
+    font-size:.92rem;
+    color:#cbd5e1;
+    padding:6px 2px;
+    border-bottom:2px solid transparent;
+  }
+  .site-nav-links a:hover { color:#38bdf8; border-color:#38bdf8; }
+
+  .nav-search-icon {
+    text-decoration:none;
+    font-size:1.1rem;
+    color:#cbd5e1;
+    order:1;
+  }
+  .nav-search-icon:hover { color:#38bdf8; }
+
+  .nav-toggle {
+    display:none;
+    background:none;
+    border:none;
+    color:#f8fafc;
+    font-size:1.5rem;
+    cursor:pointer;
+    line-height:1;
+    padding:2px 4px;
+    order:2;
+  }
+
+  @media (max-width:800px){
+    .nav-toggle { display:block; }
+    .site-nav-inner { flex-wrap:wrap; }
+    .site-nav-links {
+      display:none;
+      flex-direction:column;
+      gap:2px;
+      width:100%;
+      order:3;
+      padding-top:10px;
+    }
+    .site-nav-links.open { display:flex; }
+    .site-nav-links a { display:block; padding:10px 4px; }
+  }
+
+  /* ---- Two-column layout: main content + ad sidebar ---- */
+  .page-layout {
+    max-width:1200px;
+    margin:0 auto;
+    padding:30px 20px 10px;
+    display:flex;
+    gap:25px;
+    align-items:flex-start;
+  }
+  .page-main { flex:1; min-width:0; }
+  .page-sidebar {
+    width:300px;
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    position:sticky;
+    top:80px;
+  }
+  @media (max-width:900px){
+    .page-layout { flex-direction:column; }
+    .page-sidebar { width:100%; flex-direction:row; flex-wrap:wrap; position:static; }
+    .page-sidebar > * { flex:1; min-width:220px; }
+  }
+
+  /* ---- Ad slots ---- */
+  .sp-slot { margin:20px 0; }
+  .sp-slot.horizontal { text-align:center; }
+
+  /* ---- Section headings + movie grid (home / category / browse) ---- */
+  .section-heading {
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  .section-heading h2 { color:#38bdf8; font-size:1.4rem; }
+  .section-heading a { font-size:.85rem; color:#94a3b8; text-decoration:none; }
+  .section-heading a:hover { color:#38bdf8; }
+
+  .movie-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    gap:20px;
+    max-width:1200px;
+    margin:15px auto 40px;
+    padding:0 20px;
+  }
+  .movie-card {
+    background:#1e293b;
+    border-radius:12px;
+    overflow:hidden;
+    text-decoration:none;
+    display:block;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:.2s;
+  }
+  .movie-card { position:relative; }
+  .movie-card:hover { transform:translateY(-4px); }
+  .movie-card img { width:100%; aspect-ratio:2/3; object-fit:cover; display:block; }
+  .movie-card .info { padding:10px 12px; }
+  .movie-card .info h3 { font-size:.95rem; margin-bottom:4px; }
+  .movie-card .info p { font-size:.78rem; color:#94a3b8; }
+  .card-kind-badge {
+    position:absolute;
+    top:8px;
+    right:8px;
+    background:#2563eb;
+    color:#fff;
+    font-size:.68rem;
+    font-weight:bold;
+    padding:3px 8px;
+    border-radius:20px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+
+  /* ---- Homepage hero + search ---- */
+  .home-hero {
+    max-width:1200px;
+    margin:30px auto 0;
+    padding:20px 20px 10px;
+  }
+  .home-hero h1 { font-size:2.2rem; }
+  .home-hero p { color:#94a3b8; margin-top:6px; }
+
+  .search-box {
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+    max-width:560px;
+  }
+  .search-box input {
+    flex:1;
+    padding:14px 16px;
+    border-radius:8px;
+    border:1px solid #334155;
+    background:#1e293b;
+    color:#f8fafc;
+    font-size:1rem;
+  }
+  .search-box input:focus { outline:2px solid #38bdf8; }
+  .search-box button {
+    padding:14px 24px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:#fff;
+    font-weight:bold;
+    font-size:1rem;
+    cursor:pointer;
+  }
+  .search-box button:hover { background:#1d4ed8; }
+
+  /* ---- Category showcase (homepage + footer + all-categories page) ---- */
+  .categories-showcase { margin:35px 0; }
+  .category-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:16px;
+    max-width:1200px;
+    margin:15px auto 0;
+    padding:0 20px;
+  }
+  .category-card {
+    position:relative;
+    display:block;
+    aspect-ratio:16/9;
+    border-radius:12px;
+    overflow:hidden;
+    background-color:#1e293b;
+    background-size:cover;
+    background-position:center;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:.2s;
+  }
+  .category-card:hover { transform:translateY(-3px); }
+  .category-card-overlay {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(15,23,42,.15) 0%, rgba(15,23,42,.9) 100%);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:12px 14px;
+  }
+  .category-card-overlay h3 { font-size:1.05rem; color:#fff; }
+  .category-card-overlay p { font-size:.78rem; color:#cbd5e1; margin-top:2px; }
+
+  /* ---- Episode list (series page) ---- */
+  .episode-list { display:flex; flex-direction:column; gap:8px; margin:10px 0 25px; }
+  .episode-row {
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:#111827;
+    border-radius:8px;
+    padding:12px 16px;
+    text-decoration:none;
+    transition:.15s;
+  }
+  .episode-row:hover { background:#1e293b; }
+  .episode-row .ep-num { color:#38bdf8; font-weight:bold; font-size:.85rem; min-width:52px; }
+  .episode-row .ep-title { flex:1; color:#f8fafc; font-size:.95rem; }
+  .episode-row .ep-go { color:#94a3b8; font-size:.8rem; white-space:nowrap; }
+  .season-heading { color:#38bdf8; margin:22px 0 8px; font-size:1.1rem; }
+
+  /* ---- Breadcrumb back-link (episode pages) ---- */
+  .back-link { color:#38bdf8; text-decoration:none; font-size:.85rem; }
+  .back-link:hover { text-decoration:underline; }
+
+  /* ---- Pagination ---- */
+  .pagination {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    max-width:1200px;
+    margin:20px auto 50px;
+    padding:0 20px;
+  }
+  .pagination a, .pagination span {
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:6px;
+    font-size:.85rem;
+    text-decoration:none;
+  }
+  .pagination a { background:#1e293b; color:#cbd5e1; }
+  .pagination a:hover { background:#334155; }
+  .pagination .current { background:#2563eb; color:#fff; font-weight:bold; }
+  .pagination .disabled { color:#475569; }
+
+  /* ---- Footer ---- */
+  .site-footer {
+    background:#111827;
+    border-top:1px solid #1e293b;
+    margin-top:40px;
+    padding:30px 24px;
+    color:#94a3b8;
+    font-size:.85rem;
+  }
+  .site-footer-inner {
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .site-footer-links {
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    list-style:none;
+  }
+  .site-footer-links a { text-decoration:none; color:#94a3b8; }
+  .site-footer-links a:hover { color:#38bdf8; }
+</style>
+<!-- Paste analytics / meta tags / site verification / fonts here -->
+   <link rel="icon" type="image/png" href="/assets/logo.png">
+
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LR0HHWKX8"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+  gtag('config', 'G-8LR0HHWKX8');
+  </script>
+        <script>(function(s){s.dataset.zone='11388209',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+   <meta name="59032a486b3f1f0ba68653ac3733c24e470a84f6" content="59032a486b3f1f0ba68653ac3733c24e470a84f6" />
+    <meta name='admaven-placement' content=BrHwErHa4>
+     <script>(function(s){s.dataset.zone='11388226',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+      
+       <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+  <meta name="description" content="Watch and download the latest movies.">
+
+
+<style>
+  .movie-movie-post {
+    background:#1e293b;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+  }
+  .movie-banner img { width:100%; display:block; }
+  .movie-content { padding:30px; }
+  .movie-content h1.movie-title { font-size:2.2rem; margin-bottom:10px; }
+  .movie-meta { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; }
+  .movie-meta span { background:#334155; padding:8px 15px; border-radius:30px; font-size:.9rem; }
+  .movie-content h2 { margin:25px 0 12px; color:#38bdf8; }
+  .movie-content p { line-height:1.8; color:#dbeafe; }
+  .movie-content ul { margin-left:20px; line-height:2; color:#dbeafe; }
+  .movie-content ul a { color:#38bdf8; text-decoration:none; }
+  .movie-content ul a:hover { text-decoration:underline; }
+  .movie-rating { margin-top:25px; display:flex; align-items:center; gap:10px; }
+  .movie-stars { color:gold; font-size:24px; }
+  @media(max-width:700px){
+    .movie-content{ padding:20px; }
+    .movie-content h1.movie-title{ font-size:1.7rem; }
+  }
+</style>
+  
+</head>
+<body class="has-anchor-ad">
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="/index.html">Ada movies</a>
+
+    <a class="nav-search-icon" href="/search/index.html" aria-label="Search" title="Search">&#128269;</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+
+    <ul class="site-nav-links" id="navLinks">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/browse/index.html">Movies</a></li>
+      
+      <li><a href="/series/index.html">Series</a></li>
+      
+      
+      <li><a href="/categories/tv-series/index.html">tv-series</a></li>
+      
+      <li><a href="/categories/kdrama/index.html">kdrama</a></li>
+      
+      <li><a href="/categories/drama/index.html">Drama</a></li>
+      
+      <li><a href="/categories/comedy/index.html">Comedy</a></li>
+      
+      <li><a href="/categories/crime/index.html">Crime</a></li>
+      
+      <li><a href="/categories/action/index.html">Action</a></li>
+      
+      <li><a href="/categories/index.html">All Categories</a></li>
+      
+      <li><a href="/about.html">About</a></li>
+      
+      <li><a href="/dmca.html">DMCA</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if (!toggle || !links) return;
+    toggle.addEventListener('click', function () {
+      var isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  })();
+</script>
+
+
+<div class="page-layout">
+  <div class="page-main">
+
+    <section class="movie-movie-post">
+
+      <div class="movie-banner">
+        <img src="/poster/series/hannibal-s01.webp" alt="Hannibal S01 ( )">
+      </div>
+
+      <div class="movie-content">
+
+        <h1 class="movie-title">Hannibal S01  <span style="font-size:1rem;color:#94a3b8;">&middot; Series</span></h1>
+
+        <div class="movie-meta">
+          <span>&#127916; crime,drama,tv-series</span>
+          <span>&#127760; Korean</span>
+          <span>&#11088; HD</span>
+          <span>&#128250; 13 episodes</span>
+        </div>
+
+        <h2>Synopsis</h2>
+        <p>Both a gift and a curse, Graham has the extraordinary ability to think like his prey—he sees what they see, feels what they feel. But while Graham is pursuing an especially troubling, cannibalistic murderer, Special Agent Jack Crawford teams him with a highly respected psychiatrist – a man with a taste for the criminal minded – Dr. Hannibal Lecter.
+</p>
+
+        <div class="sp-slot" style="min-height:90px;display:flex;align-items:center;justify-content:center;background:#111827;border:1px dashed #334155;border-radius:8px;">
+  <div id="sp-container"></div>
+</div>
+
+<script>
+  function loadAd() {
+    var isMobile = window.innerWidth < 728;
+    var config = isMobile
+      ? { key: 'a15f4c85a99b96ddbf10198507ead447', width: 300, height: 250 }
+      : { key: 'ab9049a7e46fcaa8dc9326d05d4be47f', width: 728, height: 90 };
+
+    var container = document.getElementById('sp-container');
+    container.innerHTML = '';
+
+    atOptions = {
+      key: config.key,
+      format: 'iframe',
+      height: config.height,
+      width: config.width,
+      params: {}
+    };
+
+    var script = document.createElement('script');
+    script.src = 'https://www.highperformanceformat.com/' + config.key + '/invoke.js';
+    container.appendChild(script);
+  }
+
+  loadAd();
+
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(loadAd, 300);
+  });
+</script>
+
+        <h2>Series Information</h2>
+        <ul>
+          <li><strong>Title:</strong> Hannibal S01</li>
+          <li><strong>Genre:</strong> crime,drama,tv-series</li>
+          <li>
+            <strong>Category:</strong>
+            <a href="/categories/crime/index.html">crime</a>, <a href="/categories/drama/index.html">drama</a>, <a href="/categories/tv-series/index.html">tv-series</a>
+          </li>
+          <li><strong>Language:</strong> Korean</li>
+          <li><strong>Quality:</strong> HD</li>
+        </ul>
+
+        <div class="movie-rating">
+          <div class="movie-stars">★★★★☆</div>
+          <div>4.0 / 5 Rating</div>
+        </div>
+        
+
+        
+
+        <h2>Episodes</h2>
+
+        
+          <h3 class="season-heading">Season 1</h3>
+          <div class="episode-list">
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e1/index.html">
+                <span class="ep-num">S1E1</span>
+                <span class="ep-title">Hannibal S01 Episode 1</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e2/index.html">
+                <span class="ep-num">S1E2</span>
+                <span class="ep-title">Hannibal S01 Episode 2</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e3/index.html">
+                <span class="ep-num">S1E3</span>
+                <span class="ep-title">Hannibal S01 Episode 3</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e4/index.html">
+                <span class="ep-num">S1E4</span>
+                <span class="ep-title">Hannibal S01 Episode 4</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e5/index.html">
+                <span class="ep-num">S1E5</span>
+                <span class="ep-title">Hannibal S01 Episode 5</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e6/index.html">
+                <span class="ep-num">S1E6</span>
+                <span class="ep-title">Hannibal S01 Episode 6</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e7/index.html">
+                <span class="ep-num">S1E7</span>
+                <span class="ep-title">Hannibal S01 Episode 7</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e8/index.html">
+                <span class="ep-num">S1E8</span>
+                <span class="ep-title">Hannibal S01 Episode 8</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e9/index.html">
+                <span class="ep-num">S1E9</span>
+                <span class="ep-title">Hannibal S01 Episode 9</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e10/index.html">
+                <span class="ep-num">S1E10</span>
+                <span class="ep-title">Hannibal S01 Episode 10</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e11/index.html">
+                <span class="ep-num">S1E11</span>
+                <span class="ep-title">Hannibal S01 Episode 11</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e12/index.html">
+                <span class="ep-num">S1E12</span>
+                <span class="ep-title">Hannibal S01 Episode 12</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+              <a class="episode-row" href="/series/hannibal-s01/s1e13/index.html">
+                <span class="ep-num">S1E13</span>
+                <span class="ep-title">Hannibal S01 Episode 13</span>
+                <span class="ep-go">Watch / Download &rarr;</span>
+              </a>
+            
+          </div>
+        
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <aside class="page-sidebar">
+    <div class="sp-slot vertical">
+    <div style="min-height:250px;display:flex;align-items:center;justify-content:center;
+                background:#111827;border:1px dashed #334155;border-radius:8px;
+                color:#64748b;font-size:13px;text-align:center;padding:10px;">
+                 
+
+                  <div>
+        <script type="text/javascript">
+        aclib.runBanner({
+            zoneId: '11836302',
+        });
+        </script>
+         </div>
+               </div>
+
+</div>
+
+    <div class="sp-slot vertical-bottom">
+    <div style="min-height:250px; display:flex;align-items:center;justify-content:center; background: #111827; border: 1px dashed #334155; border-radius:8px; color: #64748b;font-size:13px;text-align:center;padding:10px;">
+     
+        <script>
+  atOptions = {
+    'key' : 'a15f4c85a99b96ddbf10198507ead447',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/a15f4c85a99b96ddbf10198507ead447/invoke.js"></script>
+
+
+
+  
+</div>
+
+  </aside>
+</div>
+
+
+  
+<section class="categories-showcase">
+  
+  <div class="section-heading" style="padding:0 20px;">
+    <h2>Browse by Category</h2>
+    <a href="/categories/index.html">All Categories &rarr;</a>
+  </div>
+  
+
+  
+    <div class="category-grid">
+      
+        
+        <a class="category-card" href="/categories/action/index.html" style="background-image:url('/poster/movies/alpha-men-love-vengeance.jpg');">
+          <div class="category-card-overlay">
+            <h3>Action</h3>
+            <p>217 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/adult/index.html" style="background-image:url('/poster/movies/booking-2026-18.jpg');">
+          <div class="category-card-overlay">
+            <h3>Adult</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/adventure/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Adventure</h3>
+            <p>167 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/animation/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Animation</h3>
+            <p>93 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/anime/index.html" style="background-image:url('/poster/series/attack-on-titan-s04-part-3.jpg');">
+          <div class="category-card-overlay">
+            <h3>anime</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/biography/index.html" style="background-image:url('/poster/series/brazil-70-the-third-star.webp');">
+          <div class="category-card-overlay">
+            <h3>biography</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/bl/index.html" style="background-image:url('/poster/series/boys-be-brave-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>bl</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/cdrama/index.html" style="background-image:url('/poster/series/american-born-chinese-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>cdrama</h3>
+            <p>6 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/coemdy/index.html" style="background-image:url('/poster/series/hal-harper-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>coemdy</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comdey/index.html" style="background-image:url('/poster/series/absolute-value-of-romance-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>comdey</h3>
+            <p>7 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comedy/index.html" style="background-image:url('/poster/movies/72-hours.jpg');">
+          <div class="category-card-overlay">
+            <h3>Comedy</h3>
+            <p>321 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comedy-drama/index.html" style="background-image:url('/poster/series/crap-happens.webp');">
+          <div class="category-card-overlay">
+            <h3>comedy drama</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/crime/index.html" style="background-image:url('/poster/movies/a-family-of-bastards.jpg');">
+          <div class="category-card-overlay">
+            <h3>Crime</h3>
+            <p>251 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/documentary/index.html" style="background-image:url('/poster/movies/shipwrecked-nightmare-at-sea.jpg');">
+          <div class="category-card-overlay">
+            <h3>Documentary</h3>
+            <p>23 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/drama/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
+          <div class="category-card-overlay">
+            <h3>Drama</h3>
+            <p>748 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/family/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+          <div class="category-card-overlay">
+            <h3>Family</h3>
+            <p>49 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fanatsy/index.html" style="background-image:url('/poster/series/adventure-time-side-quests.webp');">
+          <div class="category-card-overlay">
+            <h3>fanatsy</h3>
+            <p>7 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fantasy/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Fantasy</h3>
+            <p>166 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fi/index.html" style="background-image:url('/poster/series/alice-in-borderland-s02.jpg');">
+          <div class="category-card-overlay">
+            <h3>fi</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/history/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
+          <div class="category-card-overlay">
+            <h3>History</h3>
+            <p>12 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/horror/index.html" style="background-image:url('/poster/movies/affection.jpg');">
+          <div class="category-card-overlay">
+            <h3>Horror</h3>
+            <p>39 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/jdrama/index.html" style="background-image:url('/poster/series/golden-kamuy-2-the-hunt-of-prisoners-in-hokkaido-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>jdrama</h3>
+            <p>8 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/kdrama/index.html" style="background-image:url('/poster/series/jumong.jpg');">
+          <div class="category-card-overlay">
+            <h3>kdrama</h3>
+            <p>748 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/kids/index.html" style="background-image:url('/poster/series/apple-of-my-eye.jpg');">
+          <div class="category-card-overlay">
+            <h3>kids</h3>
+            <p>8 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/music/index.html" style="background-image:url('/poster/movies/michael.jpg');">
+          <div class="category-card-overlay">
+            <h3>Music</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/mysterr/index.html" style="background-image:url('/poster/series/classroom-of-the-elite-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>mysterr</h3>
+            <p>4 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/mystery/index.html" style="background-image:url('/poster/movies/backrooms.jpg');">
+          <div class="category-card-overlay">
+            <h3>Mystery</h3>
+            <p>165 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/politics/index.html" style="background-image:url('/poster/series/a-spy-among-friends.jpg');">
+          <div class="category-card-overlay">
+            <h3>politics</h3>
+            <p>10 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/reality/index.html" style="background-image:url('/poster/series/a-list-to-playlist-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>reality</h3>
+            <p>44 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/romance/index.html" style="background-image:url('/poster/movies/booking-2026-18.jpg');">
+          <div class="category-card-overlay">
+            <h3>Romance</h3>
+            <p>11 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci/index.html" style="background-image:url('/poster/series/alice-in-borderland-s02.jpg');">
+          <div class="category-card-overlay">
+            <h3>sci</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci-fi/index.html" style="background-image:url('/poster/movies/affection.jpg');">
+          <div class="category-card-overlay">
+            <h3>Sci-Fi</h3>
+            <p>164 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci-fi-fantasy/index.html" style="background-image:url('/poster/series/invincible-s04.webp');">
+          <div class="category-card-overlay">
+            <h3>sci-fi & fantasy</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/soap/index.html" style="background-image:url('/poster/series/call-it-love-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>soap</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sport/index.html" style="background-image:url('/poster/series/a-beautiful-obsession.webp');">
+          <div class="category-card-overlay">
+            <h3>sport</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sports/index.html" style="background-image:url('/poster/series/all-american-s08.webp');">
+          <div class="category-card-overlay">
+            <h3>sports</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tdrama/index.html" style="background-image:url('/poster/series/coffee-melody.jpg');">
+          <div class="category-card-overlay">
+            <h3>tdrama</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/thriller/index.html" style="background-image:url('/poster/movies/black-box-flight-298.jpg');">
+          <div class="category-card-overlay">
+            <h3>Thriller</h3>
+            <p>63 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv/index.html" style="background-image:url('/poster/series/chicago-typewriter.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-movie/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+          <div class="category-card-overlay">
+            <h3>TV Movie</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-romance/index.html" style="background-image:url('/poster/series/chicago-typewriter.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv romance</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-series/index.html" style="background-image:url('/poster/series/jumong.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv-series</h3>
+            <p>1011 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/variety/index.html" style="background-image:url('/poster/series/korea-no-1-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>variety</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/variety-show/index.html" style="background-image:url('/poster/series/country-life-of-gen-z-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>variety-show</h3>
+            <p>22 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/war/index.html" style="background-image:url('/poster/movies/killhouse.jpg');">
+          <div class="category-card-overlay">
+            <h3>War</h3>
+            <p>20 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/western/index.html" style="background-image:url('/poster/movies/casa-grande.jpg');">
+          <div class="category-card-overlay">
+            <h3>Western</h3>
+            <p>5 titles</p>
+          </div>
+        </a>
+      
+    </div>
+  
+</section>
+
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>© 2026 Ada Movies. All rights reserved.</div>
+    <ul class="site-footer-links">
+      
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+      
+      <li><a href="/terms.html">Terms of Service</a></li>
+      
+      <li><a href="/dmca.html">DMCA</a></li>
+      
+    </ul>
+    <!-- Paste extra footer HTML (social icons, badges, etc.) here -->
+     
+<script type="text/javascript">
+aclib.runVideoSlider({
+    zoneId: '11836318',
+});
+</script>
+
+  </div>
+</footer>
+ 
+<style>
+
+  /* ---- Sticky/floating anchor ad (bottom of viewport, dismissible) ---- */
+  .anchor-ad {
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--bg-alt); border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px var(--shadow);
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    padding:10px 44px 10px 16px;
+    transform:translateY(0); transition:transform .25s ease;
+  }
+  .anchor-ad.collapsed { transform:translateY(100%); }
+  .anchor-ad-content { flex:1; display:flex; justify-content:center; overflow:hidden; }
+  .anchor-ad-close {
+    position:absolute; top:6px; right:8px; background:none; border:none;
+    color:var(--text-faint); font-size:1.1rem; cursor:pointer; line-height:1; padding:6px;
+  }
+  .anchor-ad-close:hover { color:var(--text); }
+  .anchor-ad-reopen {
+    position:fixed; right:16px; bottom:16px; z-index:100; background:var(--brand);
+    color:var(--brand-text-on); border:none; border-radius:24px; padding:10px 16px;
+    font-size:.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 16px var(--shadow);
+    display:none;
+  }
+  .anchor-ad-reopen.show { display:block; }
+  body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:70px; }
+  @media (max-width:600px){
+    .anchor-ad { padding:8px 36px 8px 10px; }
+    body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:60px; }
+  }
+
+  /* ---- Sticky/floating anchor ad (bottom of viewport, dismissible) ---- */
+  .anchor-ad {
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--bg-alt); border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px var(--shadow);
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    padding:10px 44px 10px 16px;
+    transform:translateY(0); transition:transform .25s ease;
+  }
+  .anchor-ad.collapsed { transform:translateY(100%); }
+  .anchor-ad-content { flex:1; display:flex; justify-content:center; overflow:hidden; }
+  .anchor-ad-close {
+    position:absolute; top:6px; right:8px; background:none; border:none;
+    color:var(--text-faint); font-size:1.1rem; cursor:pointer; line-height:1; padding:6px;
+  }
+  .anchor-ad-close:hover { color:var(--text); }
+  .anchor-ad-reopen {
+    position:fixed; right:16px; bottom:16px; z-index:100; background:var(--brand);
+    color:var(--brand-text-on); border:none; border-radius:24px; padding:10px 16px;
+    font-size:.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 16px var(--shadow);
+    display:none;
+  }
+  .anchor-ad-reopen.show { display:block; }
+  body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:70px; }
+  @media (max-width:600px){
+    .anchor-ad { padding:8px 36px 8px 10px; }
+    body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:60px; }
+  }
+
+</style>
+
+<div class="anchor-ad" id="anchorAd" style="background: #111827; border: 1px dashed #334155; justify-content:center; align-items:center !important;">
+
+  <button class="anchor-ad-close" type="button" onclick="xtbCloseAnchorAd()" aria-label="Dismiss ad">&times;</button>
+  <div class="anchor-ad-content">
+    <div class="ad-placeholder" style="min-height:60px;width:100%;max-width:728px;margin:0;">
+
+
+
+<div>
+    <script type="text/javascript">
+        aclib.runBanner({
+            zoneId: '11831162',
+        });
+    </script>
+</div>
+
+    </div>
+
+  </div>
+</div>
+<button class="anchor-ad-reopen" id="anchorAdReopen" type="button" onclick="xtbOpenAnchorAd()">Show ad &uarr;</button>
+
+<script>
+  (function () {
+    var KEY = 'xtb-anchor-ad-dismissed';
+    var bar = document.getElementById('anchorAd');
+    var reopenBtn = document.getElementById('anchorAdReopen');
+    if (!bar) return;
+
+    document.body.classList.add('has-anchor-ad');
+
+    var dismissed = false;
+    try { dismissed = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    if (dismissed) {
+      bar.classList.add('collapsed');
+      reopenBtn.classList.add('show');
+      document.body.classList.remove('has-anchor-ad');
+    }
+
+    window.xtbCloseAnchorAd = function () {
+      bar.classList.add('collapsed');
+      reopenBtn.classList.add('show');
+      document.body.classList.remove('has-anchor-ad');
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    };
+    window.xtbOpenAnchorAd = function () {
+      bar.classList.remove('collapsed');
+      reopenBtn.classList.remove('show');
+      document.body.classList.add('has-anchor-ad');
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
+    };
+  })();
+</script>
+
+ 
+<script src="https://pl30668848.effectivecpmnetwork.com/48/47/7b/48477be255355f192ad40da71d5e819f.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,3372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ada movies - Watch and download the latest movies</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:Arial,Helvetica,sans-serif; }
+  body { background:#0f172a; color:#f8fafc; }
+  a { color:inherit; }
+
+  /* ---- Nav bar ---- */
+  .site-nav {
+    background:#111827;
+    border-bottom:1px solid #1e293b;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .site-nav-inner {
+    max-width:1200px;
+    margin:0 auto;
+    padding:14px 24px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .site-brand {
+    font-size:1.3rem;
+    font-weight:bold;
+    color:#38bdf8;
+    text-decoration:none;
+    margin-right:auto;
+    white-space:nowrap;
+  }
+  .site-nav-links {
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    list-style:none;
+  }
+  .site-nav-links a {
+    text-decoration:none;
+    font-size:.92rem;
+    color:#cbd5e1;
+    padding:6px 2px;
+    border-bottom:2px solid transparent;
+  }
+  .site-nav-links a:hover { color:#38bdf8; border-color:#38bdf8; }
+
+  .nav-search-icon {
+    text-decoration:none;
+    font-size:1.1rem;
+    color:#cbd5e1;
+    order:1;
+  }
+  .nav-search-icon:hover { color:#38bdf8; }
+
+  .nav-toggle {
+    display:none;
+    background:none;
+    border:none;
+    color:#f8fafc;
+    font-size:1.5rem;
+    cursor:pointer;
+    line-height:1;
+    padding:2px 4px;
+    order:2;
+  }
+
+  @media (max-width:800px){
+    .nav-toggle { display:block; }
+    .site-nav-inner { flex-wrap:wrap; }
+    .site-nav-links {
+      display:none;
+      flex-direction:column;
+      gap:2px;
+      width:100%;
+      order:3;
+      padding-top:10px;
+    }
+    .site-nav-links.open { display:flex; }
+    .site-nav-links a { display:block; padding:10px 4px; }
+  }
+
+  /* ---- Two-column layout: main content + ad sidebar ---- */
+  .page-layout {
+    max-width:1200px;
+    margin:0 auto;
+    padding:30px 20px 10px;
+    display:flex;
+    gap:25px;
+    align-items:flex-start;
+  }
+  .page-main { flex:1; min-width:0; }
+  .page-sidebar {
+    width:300px;
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    position:sticky;
+    top:80px;
+  }
+  @media (max-width:900px){
+    .page-layout { flex-direction:column; }
+    .page-sidebar { width:100%; flex-direction:row; flex-wrap:wrap; position:static; }
+    .page-sidebar > * { flex:1; min-width:220px; }
+  }
+
+  /* ---- Ad slots ---- */
+  .sp-slot { margin:20px 0; }
+  .sp-slot.horizontal { text-align:center; }
+
+  /* ---- Section headings + movie grid (home / category / browse) ---- */
+  .section-heading {
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  .section-heading h2 { color:#38bdf8; font-size:1.4rem; }
+  .section-heading a { font-size:.85rem; color:#94a3b8; text-decoration:none; }
+  .section-heading a:hover { color:#38bdf8; }
+
+  .movie-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    gap:20px;
+    max-width:1200px;
+    margin:15px auto 40px;
+    padding:0 20px;
+  }
+  .movie-card {
+    background:#1e293b;
+    border-radius:12px;
+    overflow:hidden;
+    text-decoration:none;
+    display:block;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:.2s;
+  }
+  .movie-card { position:relative; }
+  .movie-card:hover { transform:translateY(-4px); }
+  .movie-card img { width:100%; aspect-ratio:2/3; object-fit:cover; display:block; }
+  .movie-card .info { padding:10px 12px; }
+  .movie-card .info h3 { font-size:.95rem; margin-bottom:4px; }
+  .movie-card .info p { font-size:.78rem; color:#94a3b8; }
+  .card-kind-badge {
+    position:absolute;
+    top:8px;
+    right:8px;
+    background:#2563eb;
+    color:#fff;
+    font-size:.68rem;
+    font-weight:bold;
+    padding:3px 8px;
+    border-radius:20px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+
+  /* ---- Homepage hero + search ---- */
+  .home-hero {
+    max-width:1200px;
+    margin:30px auto 0;
+    padding:20px 20px 10px;
+  }
+  .home-hero h1 { font-size:2.2rem; }
+  .home-hero p { color:#94a3b8; margin-top:6px; }
+
+  .search-box {
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+    max-width:560px;
+  }
+  .search-box input {
+    flex:1;
+    padding:14px 16px;
+    border-radius:8px;
+    border:1px solid #334155;
+    background:#1e293b;
+    color:#f8fafc;
+    font-size:1rem;
+  }
+  .search-box input:focus { outline:2px solid #38bdf8; }
+  .search-box button {
+    padding:14px 24px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:#fff;
+    font-weight:bold;
+    font-size:1rem;
+    cursor:pointer;
+  }
+  .search-box button:hover { background:#1d4ed8; }
+
+  /* ---- Category showcase (homepage + footer + all-categories page) ---- */
+  .categories-showcase { margin:35px 0; }
+  .category-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:16px;
+    max-width:1200px;
+    margin:15px auto 0;
+    padding:0 20px;
+  }
+  .category-card {
+    position:relative;
+    display:block;
+    aspect-ratio:16/9;
+    border-radius:12px;
+    overflow:hidden;
+    background-color:#1e293b;
+    background-size:cover;
+    background-position:center;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:.2s;
+  }
+  .category-card:hover { transform:translateY(-3px); }
+  .category-card-overlay {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(15,23,42,.15) 0%, rgba(15,23,42,.9) 100%);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:12px 14px;
+  }
+  .category-card-overlay h3 { font-size:1.05rem; color:#fff; }
+  .category-card-overlay p { font-size:.78rem; color:#cbd5e1; margin-top:2px; }
+
+  /* ---- Episode list (series page) ---- */
+  .episode-list { display:flex; flex-direction:column; gap:8px; margin:10px 0 25px; }
+  .episode-row {
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:#111827;
+    border-radius:8px;
+    padding:12px 16px;
+    text-decoration:none;
+    transition:.15s;
+  }
+  .episode-row:hover { background:#1e293b; }
+  .episode-row .ep-num { color:#38bdf8; font-weight:bold; font-size:.85rem; min-width:52px; }
+  .episode-row .ep-title { flex:1; color:#f8fafc; font-size:.95rem; }
+  .episode-row .ep-go { color:#94a3b8; font-size:.8rem; white-space:nowrap; }
+  .season-heading { color:#38bdf8; margin:22px 0 8px; font-size:1.1rem; }
+
+  /* ---- Breadcrumb back-link (episode pages) ---- */
+  .back-link { color:#38bdf8; text-decoration:none; font-size:.85rem; }
+  .back-link:hover { text-decoration:underline; }
+
+  /* ---- Pagination ---- */
+  .pagination {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    max-width:1200px;
+    margin:20px auto 50px;
+    padding:0 20px;
+  }
+  .pagination a, .pagination span {
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:6px;
+    font-size:.85rem;
+    text-decoration:none;
+  }
+  .pagination a { background:#1e293b; color:#cbd5e1; }
+  .pagination a:hover { background:#334155; }
+  .pagination .current { background:#2563eb; color:#fff; font-weight:bold; }
+  .pagination .disabled { color:#475569; }
+
+  /* ---- Footer ---- */
+  .site-footer {
+    background:#111827;
+    border-top:1px solid #1e293b;
+    margin-top:40px;
+    padding:30px 24px;
+    color:#94a3b8;
+    font-size:.85rem;
+  }
+  .site-footer-inner {
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .site-footer-links {
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    list-style:none;
+  }
+  .site-footer-links a { text-decoration:none; color:#94a3b8; }
+  .site-footer-links a:hover { color:#38bdf8; }
+</style>
+<!-- Paste analytics / meta tags / site verification / fonts here -->
+   <link rel="icon" type="image/png" href="/assets/logo.png">
+
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LR0HHWKX8"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+  gtag('config', 'G-8LR0HHWKX8');
+  </script>
+        <script>(function(s){s.dataset.zone='11388209',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+   <meta name="59032a486b3f1f0ba68653ac3733c24e470a84f6" content="59032a486b3f1f0ba68653ac3733c24e470a84f6" />
+    <meta name='admaven-placement' content=BrHwErHa4>
+     <script>(function(s){s.dataset.zone='11388226',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+      
+       <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+  <meta name="description" content="Watch and download the latest movies.">
+
+
+</head>
+<body class="has-anchor-ad">
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="/index.html">Ada movies</a>
+
+    <a class="nav-search-icon" href="/search/index.html" aria-label="Search" title="Search">&#128269;</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+
+    <ul class="site-nav-links" id="navLinks">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/browse/index.html">Movies</a></li>
+      
+      <li><a href="/series/index.html">Series</a></li>
+      
+      
+      <li><a href="/categories/tv-series/index.html">tv-series</a></li>
+      
+      <li><a href="/categories/kdrama/index.html">kdrama</a></li>
+      
+      <li><a href="/categories/drama/index.html">Drama</a></li>
+      
+      <li><a href="/categories/comedy/index.html">Comedy</a></li>
+      
+      <li><a href="/categories/crime/index.html">Crime</a></li>
+      
+      <li><a href="/categories/action/index.html">Action</a></li>
+      
+      <li><a href="/categories/index.html">All Categories</a></li>
+      
+      <li><a href="/about.html">About</a></li>
+      
+      <li><a href="/dmca.html">DMCA</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if (!toggle || !links) return;
+    toggle.addEventListener('click', function () {
+      var isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  })();
+</script>
+
+
+<header class="home-hero">
+  <div class="home-hero-inner">
+    <h1>Ada movies</h1>
+    <p>Watch and download the latest movies</p>
+    <form class="search-box" action="/search/index.html" method="get" role="search">
+  <input type="text" name="q" placeholder="Search movies &amp; series..." autocomplete="off" aria-label="Search">
+  <button type="submit">Search</button>
+</form>
+
+  </div>
+</header>
+
+<section class="featured-strip">
+  <div class="section-heading" style="padding:0 20px;">
+    <h2>Featured</h2>
+  </div>
+  <div class="movie-grid">
+    
+        <a class="movie-card" href="/movies/spades-2026/index.html">
+  <img src="/poster/movies/spades.jpg" alt="Spades">
+  
+  <div class="info">
+    <h3>Spades (2026)</h3>
+    <p>Action, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+        <a class="movie-card" href="/movies/housemaid-2026/index.html">
+  <img src="/poster/movies/housemaid.jpg" alt="Housemaid">
+  
+  <div class="info">
+    <h3>Housemaid (2026)</h3>
+    <p>Sci-Fi, Thriller, Horror &middot; HD</p>
+  </div>
+</a>
+
+    
+        <a class="movie-card" href="/series/agent-kim-reactivated-s01/index.html">
+  <img src="/poster/series/agent-kim-reactivated-s01.webp" alt="Agent Kim Reactivated S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Agent Kim Reactivated S01 </h3>
+    <p>kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+        <a class="movie-card" href="/movies/the-isolate-thief-2026/index.html">
+  <img src="/poster/movies/the-isolate-thief.jpg" alt="The Isolate Thief">
+  
+  <div class="info">
+    <h3>The Isolate Thief (2026)</h3>
+    <p>Western, Action, Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+</section>
+
+
+<!-- templates/home.html.erb, e.g. a "Featured" section before the category loop -->
+
+
+<section class="categories-showcase">
+  
+  <div class="section-heading" style="padding:0 20px;">
+    <h2>Browse by Category</h2>
+    <a href="/categories/index.html">All Categories &rarr;</a>
+  </div>
+  
+
+  
+    <div class="category-grid">
+      
+        
+        <a class="category-card" href="/categories/action/index.html" style="background-image:url('/poster/movies/alpha-men-love-vengeance.jpg');">
+          <div class="category-card-overlay">
+            <h3>Action</h3>
+            <p>217 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/adult/index.html" style="background-image:url('/poster/movies/booking-2026-18.jpg');">
+          <div class="category-card-overlay">
+            <h3>Adult</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/adventure/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Adventure</h3>
+            <p>167 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/animation/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Animation</h3>
+            <p>93 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/anime/index.html" style="background-image:url('/poster/series/attack-on-titan-s04-part-3.jpg');">
+          <div class="category-card-overlay">
+            <h3>anime</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/biography/index.html" style="background-image:url('/poster/series/brazil-70-the-third-star.webp');">
+          <div class="category-card-overlay">
+            <h3>biography</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/bl/index.html" style="background-image:url('/poster/series/boys-be-brave-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>bl</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/cdrama/index.html" style="background-image:url('/poster/series/american-born-chinese-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>cdrama</h3>
+            <p>6 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/coemdy/index.html" style="background-image:url('/poster/series/hal-harper-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>coemdy</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comdey/index.html" style="background-image:url('/poster/series/absolute-value-of-romance-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>comdey</h3>
+            <p>7 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comedy/index.html" style="background-image:url('/poster/movies/72-hours.jpg');">
+          <div class="category-card-overlay">
+            <h3>Comedy</h3>
+            <p>321 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comedy-drama/index.html" style="background-image:url('/poster/series/crap-happens.webp');">
+          <div class="category-card-overlay">
+            <h3>comedy drama</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/crime/index.html" style="background-image:url('/poster/movies/a-family-of-bastards.jpg');">
+          <div class="category-card-overlay">
+            <h3>Crime</h3>
+            <p>251 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/documentary/index.html" style="background-image:url('/poster/movies/shipwrecked-nightmare-at-sea.jpg');">
+          <div class="category-card-overlay">
+            <h3>Documentary</h3>
+            <p>23 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/drama/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
+          <div class="category-card-overlay">
+            <h3>Drama</h3>
+            <p>748 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/family/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+          <div class="category-card-overlay">
+            <h3>Family</h3>
+            <p>49 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fanatsy/index.html" style="background-image:url('/poster/series/adventure-time-side-quests.webp');">
+          <div class="category-card-overlay">
+            <h3>fanatsy</h3>
+            <p>7 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fantasy/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Fantasy</h3>
+            <p>166 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fi/index.html" style="background-image:url('/poster/series/alice-in-borderland-s02.jpg');">
+          <div class="category-card-overlay">
+            <h3>fi</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/history/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
+          <div class="category-card-overlay">
+            <h3>History</h3>
+            <p>12 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/horror/index.html" style="background-image:url('/poster/movies/affection.jpg');">
+          <div class="category-card-overlay">
+            <h3>Horror</h3>
+            <p>39 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/jdrama/index.html" style="background-image:url('/poster/series/golden-kamuy-2-the-hunt-of-prisoners-in-hokkaido-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>jdrama</h3>
+            <p>8 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/kdrama/index.html" style="background-image:url('/poster/series/jumong.jpg');">
+          <div class="category-card-overlay">
+            <h3>kdrama</h3>
+            <p>748 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/kids/index.html" style="background-image:url('/poster/series/apple-of-my-eye.jpg');">
+          <div class="category-card-overlay">
+            <h3>kids</h3>
+            <p>8 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/music/index.html" style="background-image:url('/poster/movies/michael.jpg');">
+          <div class="category-card-overlay">
+            <h3>Music</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/mysterr/index.html" style="background-image:url('/poster/series/classroom-of-the-elite-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>mysterr</h3>
+            <p>4 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/mystery/index.html" style="background-image:url('/poster/movies/backrooms.jpg');">
+          <div class="category-card-overlay">
+            <h3>Mystery</h3>
+            <p>165 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/politics/index.html" style="background-image:url('/poster/series/a-spy-among-friends.jpg');">
+          <div class="category-card-overlay">
+            <h3>politics</h3>
+            <p>10 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/reality/index.html" style="background-image:url('/poster/series/a-list-to-playlist-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>reality</h3>
+            <p>44 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/romance/index.html" style="background-image:url('/poster/movies/booking-2026-18.jpg');">
+          <div class="category-card-overlay">
+            <h3>Romance</h3>
+            <p>11 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci/index.html" style="background-image:url('/poster/series/alice-in-borderland-s02.jpg');">
+          <div class="category-card-overlay">
+            <h3>sci</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci-fi/index.html" style="background-image:url('/poster/movies/affection.jpg');">
+          <div class="category-card-overlay">
+            <h3>Sci-Fi</h3>
+            <p>164 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci-fi-fantasy/index.html" style="background-image:url('/poster/series/invincible-s04.webp');">
+          <div class="category-card-overlay">
+            <h3>sci-fi & fantasy</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/soap/index.html" style="background-image:url('/poster/series/call-it-love-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>soap</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sport/index.html" style="background-image:url('/poster/series/a-beautiful-obsession.webp');">
+          <div class="category-card-overlay">
+            <h3>sport</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sports/index.html" style="background-image:url('/poster/series/all-american-s08.webp');">
+          <div class="category-card-overlay">
+            <h3>sports</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tdrama/index.html" style="background-image:url('/poster/series/coffee-melody.jpg');">
+          <div class="category-card-overlay">
+            <h3>tdrama</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/thriller/index.html" style="background-image:url('/poster/movies/black-box-flight-298.jpg');">
+          <div class="category-card-overlay">
+            <h3>Thriller</h3>
+            <p>63 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv/index.html" style="background-image:url('/poster/series/chicago-typewriter.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-movie/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+          <div class="category-card-overlay">
+            <h3>TV Movie</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-romance/index.html" style="background-image:url('/poster/series/chicago-typewriter.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv romance</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-series/index.html" style="background-image:url('/poster/series/jumong.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv-series</h3>
+            <p>1011 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/variety/index.html" style="background-image:url('/poster/series/korea-no-1-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>variety</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/variety-show/index.html" style="background-image:url('/poster/series/country-life-of-gen-z-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>variety-show</h3>
+            <p>22 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/war/index.html" style="background-image:url('/poster/movies/killhouse.jpg');">
+          <div class="category-card-overlay">
+            <h3>War</h3>
+            <p>20 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/western/index.html" style="background-image:url('/poster/movies/casa-grande.jpg');">
+          <div class="category-card-overlay">
+            <h3>Western</h3>
+            <p>5 titles</p>
+          </div>
+        </a>
+      
+    </div>
+  
+</section>
+
+
+<div style="max-width:1200px;margin:0 auto 20px;padding:0 20px;">
+  <div class="sp-slot" style="min-height:90px;display:flex;align-items:center;justify-content:center;background:#111827;border:1px dashed #334155;border-radius:8px;">
+  <div id="sp-container"></div>
+</div>
+
+<script>
+  function loadAd() {
+    var isMobile = window.innerWidth < 728;
+    var config = isMobile
+      ? { key: 'a15f4c85a99b96ddbf10198507ead447', width: 300, height: 250 }
+      : { key: 'ab9049a7e46fcaa8dc9326d05d4be47f', width: 728, height: 90 };
+
+    var container = document.getElementById('sp-container');
+    container.innerHTML = '';
+
+    atOptions = {
+      key: config.key,
+      format: 'iframe',
+      height: config.height,
+      width: config.width,
+      params: {}
+    };
+
+    var script = document.createElement('script');
+    script.src = 'https://www.highperformanceformat.com/' + config.key + '/invoke.js';
+    container.appendChild(script);
+  }
+
+  loadAd();
+
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(loadAd, 300);
+  });
+</script>
+</div>
+
+
+
+
+  
+  <div class="section-heading">
+    <h2>Action</h2>
+    <a href="/categories/action/index.html">View all 217 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/alpha-men-love-vengeance-2026/index.html">
+  <img src="/poster/movies/alpha-men-love-vengeance.jpg" alt="Alpha: Men Love Vengeance">
+  
+  <div class="info">
+    <h3>Alpha: Men Love Vengeance (2026)</h3>
+    <p>Action, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/avatar-aang-the-last-airbender-2026/index.html">
+  <img src="/poster/movies/avatar-aang-the-last-airbender.jpg" alt="Avatar Aang: The Last Airbender">
+  
+  <div class="info">
+    <h3>Avatar Aang: The Last Airbender (2026)</h3>
+    <p>Animation, Action, Adventure, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/badland-rising-2026/index.html">
+  <img src="/poster/movies/badland-rising.jpg" alt="Badland Rising">
+  
+  <div class="info">
+    <h3>Badland Rising (2026)</h3>
+    <p>Action, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/balls-up-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/xwvJ3WzdJ1OCuDoY8LAxBUlQyig-683x1024.jpg" alt="Balls Up">
+  
+  <div class="info">
+    <h3>Balls Up (2026)</h3>
+    <p>Comedy, Action, Adventure &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/beast-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/7NrvUI3vnW8H3rD7ExKcTL7KRcQ-683x1024.jpg" alt="Beast">
+  
+  <div class="info">
+    <h3>Beast (2026)</h3>
+    <p>Action, Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/blades-of-the-guardians-wind-rises-in-the-desert-2026-2026/index.html">
+  <img src="/poster/movies/blades-of-the-guardians-wind-rises-in-the-desert-2026.jpg" alt="Blades of the Guardians: Wind Rises in the Desert (2026) ">
+  
+  <div class="info">
+    <h3>Blades of the Guardians: Wind Rises in the Desert (2026)  (2026)</h3>
+    <p>Action, Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Adult</h2>
+    <a href="/categories/adult/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/booking-2026-18-2026/index.html">
+  <img src="/poster/movies/booking-2026-18.jpg" alt="Booking (2026) [18+]">
+  
+  <div class="info">
+    <h3>Booking (2026) [18+] (2026)</h3>
+    <p>Adult, Drama, Romance &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Adventure</h2>
+    <a href="/categories/adventure/index.html">View all 167 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/avatar-aang-the-last-airbender-2026/index.html">
+  <img src="/poster/movies/avatar-aang-the-last-airbender.jpg" alt="Avatar Aang: The Last Airbender">
+  
+  <div class="info">
+    <h3>Avatar Aang: The Last Airbender (2026)</h3>
+    <p>Animation, Action, Adventure, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/balls-up-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/xwvJ3WzdJ1OCuDoY8LAxBUlQyig-683x1024.jpg" alt="Balls Up">
+  
+  <div class="info">
+    <h3>Balls Up (2026)</h3>
+    <p>Comedy, Action, Adventure &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/enola-holmes-3-2026/index.html">
+  <img src="/poster/movies/enola-holmes-3.jpg" alt="Enola Holmes 3">
+  
+  <div class="info">
+    <h3>Enola Holmes 3 (2026)</h3>
+    <p>Adventure, Crime, Mystery, Action &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/golden-kamuy-the-abashiri-prison-raid-2026/index.html">
+  <img src="/poster/movies/golden-kamuy-the-abashiri-prison-raid.jpg" alt="Golden Kamuy -The Abashiri Prison Raid-">
+  
+  <div class="info">
+    <h3>Golden Kamuy -The Abashiri Prison Raid- (2026)</h3>
+    <p>Action, Adventure, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/man-on-fire-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/04/9cZzmT8rhBXbZ1QFBPs3ggABYB3-683x1024.jpg" alt="Man on Fire">
+  
+  <div class="info">
+    <h3>Man on Fire (2026)</h3>
+    <p>Action, Adventure, Drama, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/mortal-kombat-ii-2026/index.html">
+  <img src="/poster/movies/mortal-kombat-ii.webp" alt="Mortal Kombat II">
+  
+  <div class="info">
+    <h3>Mortal Kombat II (2026)</h3>
+    <p>Action, Fantasy, Adventure &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Animation</h2>
+    <a href="/categories/animation/index.html">View all 93 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/avatar-aang-the-last-airbender-2026/index.html">
+  <img src="/poster/movies/avatar-aang-the-last-airbender.jpg" alt="Avatar Aang: The Last Airbender">
+  
+  <div class="info">
+    <h3>Avatar Aang: The Last Airbender (2026)</h3>
+    <p>Animation, Action, Adventure, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/evolution-2026/index.html">
+  <img src="/poster/movies/evolution.jpg" alt="Evolution">
+  
+  <div class="info">
+    <h3>Evolution (2026)</h3>
+    <p>Animation, Family, Comedy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/swapped-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/tHhxWxge06goXU6ZQH1hj7vK8Hd-683x1024.jpg" alt="Swapped">
+  
+  <div class="info">
+    <h3>Swapped (2026)</h3>
+    <p>Animation, Adventure, Comedy, Family, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-super-mario-galaxy-movie-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/eJGWx219ZcEMVQJhAgMiqo8tYY-683x1024.jpg" alt="The Super Mario Galaxy Movie">
+  
+  <div class="info">
+    <h3>The Super Mario Galaxy Movie (2026)</h3>
+    <p>Family, Comedy, Adventure, Fantasy, Animation &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/i-am-frankelda-2025/index.html">
+  <img src="/poster/movies/i-am-frankelda.jpg" alt="I Am Frankelda">
+  
+  <div class="info">
+    <h3>I Am Frankelda (2025)</h3>
+    <p>Animation, Family, Fantasy, Horror, Adventure &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-legend-of-hei-2-2025/index.html">
+  <img src="/poster/movies/the-legend-of-hei-2.jpg" alt="The Legend of Hei 2">
+  
+  <div class="info">
+    <h3>The Legend of Hei 2 (2025)</h3>
+    <p>Animation, Fantasy, Action, Adventure &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>anime</h2>
+    <a href="/categories/anime/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/attack-on-titan-s04-part-3/index.html">
+  <img src="/poster/series/attack-on-titan-s04-part-3.jpg" alt="Attack on Titan S04 Part 3">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Attack on Titan S04 Part 3 </h3>
+    <p>action, adventure, animation, anime, fantasy, sci-fi, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>biography</h2>
+    <a href="/categories/biography/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/brazil-70-the-third-star/index.html">
+  <img src="/poster/series/brazil-70-the-third-star.webp" alt="Brazil '70: The Third Star">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Brazil '70: The Third Star </h3>
+    <p>biography, drama, history, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>bl</h2>
+    <a href="/categories/bl/index.html">View all 2 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/boys-be-brave-s01/index.html">
+  <img src="/poster/series/boys-be-brave-s01.jpg" alt="Boys Be Brave S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Boys Be Brave S01 </h3>
+    <p>bl, drama, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/jazz-for-two-s01/index.html">
+  <img src="/poster/series/jazz-for-two-s01.jpg" alt="Jazz For Two S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Jazz For Two S01 </h3>
+    <p>bl, drama, kdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>cdrama</h2>
+    <a href="/categories/cdrama/index.html">View all 6 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/american-born-chinese-s01/index.html">
+  <img src="/poster/series/american-born-chinese-s01.jpg" alt="American Born Chinese S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>American Born Chinese S01 </h3>
+    <p>action, adventure, comedy, fantasy, sci-fi, cdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/copycat-killer-s01/index.html">
+  <img src="/poster/series/copycat-killer-s01.jpg" alt="Copycat Killer S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Copycat Killer S01 </h3>
+    <p>crime, drama, mystery, cdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/falling-into-your-smile-s01/index.html">
+  <img src="/poster/series/falling-into-your-smile-s01.jpg" alt="Falling Into Your Smile S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Falling Into Your Smile S01 </h3>
+    <p>comedy, drama, cdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/love-between-fairy-and-devil-s01/index.html">
+  <img src="/poster/series/love-between-fairy-and-devil-s01.jpg" alt="Love Between Fairy and Devil S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Love Between Fairy and Devil S01 </h3>
+    <p>drama, fantasy, sci-fi, cdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/my-marvellous-fable/index.html">
+  <img src="/poster/series/my-marvellous-fable.jpg" alt="My Marvellous Fable">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>My Marvellous Fable </h3>
+    <p>drama, cdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/my-sunshine/index.html">
+  <img src="/poster/series/my-sunshine.jpg" alt="My Sunshine">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>My Sunshine </h3>
+    <p>drama, cdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>coemdy</h2>
+    <a href="/categories/coemdy/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/hal-harper-s01/index.html">
+  <img src="/poster/series/hal-harper-s01.webp" alt="Hal & Harper S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Hal & Harper S01 </h3>
+    <p>coemdy, drama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>comdey</h2>
+    <a href="/categories/comdey/index.html">View all 7 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/absolute-value-of-romance-s01/index.html">
+  <img src="/poster/series/absolute-value-of-romance-s01.webp" alt="Absolute Value of Romance S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Absolute Value of Romance S01 </h3>
+    <p>comdey, drama, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/cabbage-your-life-s01/index.html">
+  <img src="/poster/series/cabbage-your-life-s01.webp" alt="Cabbage Your Life S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Cabbage Your Life S01 </h3>
+    <p>comdey, drama, family, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/hacks-s02/index.html">
+  <img src="/poster/series/hacks-s02.webp" alt="Hacks S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Hacks S02 </h3>
+    <p>comdey, drama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/hacks-s03/index.html">
+  <img src="/poster/series/hacks-s03.webp" alt="Hacks S03">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Hacks S03 </h3>
+    <p>comdey, drama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/hacks-s04/index.html">
+  <img src="/poster/series/hacks-s04.webp" alt="Hacks S04">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Hacks S04 </h3>
+    <p>comdey, drama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/hacks-s05/index.html">
+  <img src="/poster/series/hacks-s05.webp" alt="Hacks S05">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Hacks S05 </h3>
+    <p>comdey, drama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Comedy</h2>
+    <a href="/categories/comedy/index.html">View all 321 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/72-hours-2026/index.html">
+  <img src="/poster/movies/72-hours.jpg" alt="72 HOURS">
+  
+  <div class="info">
+    <h3>72 HOURS (2026)</h3>
+    <p>Comedy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/a-family-of-bastards-2026/index.html">
+  <img src="/poster/movies/a-family-of-bastards.jpg" alt="A Family of Bastards">
+  
+  <div class="info">
+    <h3>A Family of Bastards (2026)</h3>
+    <p>Comedy, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/balls-up-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/xwvJ3WzdJ1OCuDoY8LAxBUlQyig-683x1024.jpg" alt="Balls Up">
+  
+  <div class="info">
+    <h3>Balls Up (2026)</h3>
+    <p>Comedy, Action, Adventure &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/evolution-2026/index.html">
+  <img src="/poster/movies/evolution.jpg" alt="Evolution">
+  
+  <div class="info">
+    <h3>Evolution (2026)</h3>
+    <p>Animation, Family, Comedy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/husbands-in-action-2026/index.html">
+  <img src="/poster/movies/husbands-in-action.jpg" alt="Husbands in Action">
+  
+  <div class="info">
+    <h3>Husbands in Action (2026)</h3>
+    <p>Comedy, Action &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/mikael-hunter-of-two-realms-2026/index.html">
+  <img src="/poster/movies/mikael-hunter-of-two-realms.jpg" alt="Mikael: Hunter of Two Realms">
+  
+  <div class="info">
+    <h3>Mikael: Hunter of Two Realms (2026)</h3>
+    <p>Action, Comedy, Horror, Fantasy, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>comedy drama</h2>
+    <a href="/categories/comedy-drama/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/crap-happens/index.html">
+  <img src="/poster/series/crap-happens.webp" alt="Crap Happens">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Crap Happens </h3>
+    <p>comedy, comedy drama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Crime</h2>
+    <a href="/categories/crime/index.html">View all 251 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/a-family-of-bastards-2026/index.html">
+  <img src="/poster/movies/a-family-of-bastards.jpg" alt="A Family of Bastards">
+  
+  <div class="info">
+    <h3>A Family of Bastards (2026)</h3>
+    <p>Comedy, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/alpha-men-love-vengeance-2026/index.html">
+  <img src="/poster/movies/alpha-men-love-vengeance.jpg" alt="Alpha: Men Love Vengeance">
+  
+  <div class="info">
+    <h3>Alpha: Men Love Vengeance (2026)</h3>
+    <p>Action, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/badland-rising-2026/index.html">
+  <img src="/poster/movies/badland-rising.jpg" alt="Badland Rising">
+  
+  <div class="info">
+    <h3>Badland Rising (2026)</h3>
+    <p>Action, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/citizen-vigilante-2026/index.html">
+  <img src="/poster/movies/citizen-vigilante.webp" alt="Citizen Vigilante">
+  
+  <div class="info">
+    <h3>Citizen Vigilante (2026)</h3>
+    <p>Thriller, Action, Crime, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/colors-of-evil-black-2026/index.html">
+  <img src="/poster/movies/colors-of-evil-black.jpg" alt="Colors of Evil: Black">
+  
+  <div class="info">
+    <h3>Colors of Evil: Black (2026)</h3>
+    <p>Crime, Thriller, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/dhurandhar-the-revenge-2026/index.html">
+  <img src="/poster/movies/dhurandhar-the-revenge.jpg" alt="Dhurandhar: The Revenge">
+  
+  <div class="info">
+    <h3>Dhurandhar: The Revenge (2026)</h3>
+    <p>Action, Crime, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Documentary</h2>
+    <a href="/categories/documentary/index.html">View all 23 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/shipwrecked-nightmare-at-sea-2026/index.html">
+  <img src="/poster/movies/shipwrecked-nightmare-at-sea.jpg" alt="Shipwrecked: Nightmare at Sea">
+  
+  <div class="info">
+    <h3>Shipwrecked: Nightmare at Sea (2026)</h3>
+    <p>Documentary &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-crash-2026/index.html">
+  <img src="/poster/movies/the-crash.jpg" alt="The Crash">
+  
+  <div class="info">
+    <h3>The Crash (2026)</h3>
+    <p>Documentary, Crime &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-beautiful-obsession/index.html">
+  <img src="/poster/series/a-beautiful-obsession.webp" alt="A Beautiful Obsession">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Beautiful Obsession </h3>
+    <p>documentary, sport, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/abraham-lincoln-s01/index.html">
+  <img src="/poster/series/abraham-lincoln-s01.jpg" alt="Abraham Lincoln S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Abraham Lincoln S01 </h3>
+    <p>documentary, politics, war, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/african-queens-njinga/index.html">
+  <img src="/poster/series/african-queens-njinga.jpg" alt="African Queens: Njinga">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>African Queens: Njinga </h3>
+    <p>documentary, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/american-manhunt-osama-bin-laden-s01/index.html">
+  <img src="/poster/series/american-manhunt-osama-bin-laden-s01.webp" alt="American Manhunt: Osama bin Laden S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>American Manhunt: Osama bin Laden S01 </h3>
+    <p>documentary, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Drama</h2>
+    <a href="/categories/drama/index.html">View all 748 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/a-great-awakening-2026/index.html">
+  <img src="/poster/movies/a-great-awakening.jpg" alt="A Great Awakening">
+  
+  <div class="info">
+    <h3>A Great Awakening (2026)</h3>
+    <p>Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/a-werewolf-boy-2026/index.html">
+  <img src="/poster/movies/a-werewolf-boy.jpg" alt="A Werewolf Boy">
+  
+  <div class="info">
+    <h3>A Werewolf Boy (2026)</h3>
+    <p>Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/beast-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/7NrvUI3vnW8H3rD7ExKcTL7KRcQ-683x1024.jpg" alt="Beast">
+  
+  <div class="info">
+    <h3>Beast (2026)</h3>
+    <p>Action, Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/blades-of-the-guardians-wind-rises-in-the-desert-2026-2026/index.html">
+  <img src="/poster/movies/blades-of-the-guardians-wind-rises-in-the-desert-2026.jpg" alt="Blades of the Guardians: Wind Rises in the Desert (2026) ">
+  
+  <div class="info">
+    <h3>Blades of the Guardians: Wind Rises in the Desert (2026)  (2026)</h3>
+    <p>Action, Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/booking-2026-18-2026/index.html">
+  <img src="/poster/movies/booking-2026-18.jpg" alt="Booking (2026) [18+]">
+  
+  <div class="info">
+    <h3>Booking (2026) [18+] (2026)</h3>
+    <p>Adult, Drama, Romance &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/casa-grande-2026/index.html">
+  <img src="/poster/movies/casa-grande.jpg" alt="Casa Grande">
+  
+  <div class="info">
+    <h3>Casa Grande (2026)</h3>
+    <p>Drama, Western &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Family</h2>
+    <a href="/categories/family/index.html">View all 49 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/descendants-wicked-wonderland-2026/index.html">
+  <img src="/poster/movies/descendants-wicked-wonderland.jpg" alt="Descendants: Wicked Wonderland">
+  
+  <div class="info">
+    <h3>Descendants: Wicked Wonderland (2026)</h3>
+    <p>Fantasy, Family, TV Movie &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/evolution-2026/index.html">
+  <img src="/poster/movies/evolution.jpg" alt="Evolution">
+  
+  <div class="info">
+    <h3>Evolution (2026)</h3>
+    <p>Animation, Family, Comedy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/swapped-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/tHhxWxge06goXU6ZQH1hj7vK8Hd-683x1024.jpg" alt="Swapped">
+  
+  <div class="info">
+    <h3>Swapped (2026)</h3>
+    <p>Animation, Adventure, Comedy, Family, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-magic-faraway-tree-2026/index.html">
+  <img src="/poster/movies/the-magic-faraway-tree.jpg" alt="The Magic Faraway Tree">
+  
+  <div class="info">
+    <h3>The Magic Faraway Tree (2026)</h3>
+    <p>Adventure, Family, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-sheep-detectives-2026/index.html">
+  <img src="/poster/movies/the-sheep-detectives.jpg" alt="The Sheep Detectives">
+  
+  <div class="info">
+    <h3>The Sheep Detectives (2026)</h3>
+    <p>Comedy, Family, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-super-mario-galaxy-movie-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/eJGWx219ZcEMVQJhAgMiqo8tYY-683x1024.jpg" alt="The Super Mario Galaxy Movie">
+  
+  <div class="info">
+    <h3>The Super Mario Galaxy Movie (2026)</h3>
+    <p>Family, Comedy, Adventure, Fantasy, Animation &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>fanatsy</h2>
+    <a href="/categories/fanatsy/index.html">View all 7 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/adventure-time-side-quests/index.html">
+  <img src="/poster/series/adventure-time-side-quests.webp" alt="Adventure Time: Side Quests">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Adventure Time: Side Quests </h3>
+    <p>action, adventure, animation, fanatsy, sci-fi, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/castlevania-nocturne-s01/index.html">
+  <img src="/poster/series/castlevania-nocturne-s01.jpg" alt="Castlevania: Nocturne S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Castlevania: Nocturne S01 </h3>
+    <p>animation, drama, fanatsy, sci-fi, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/castlevania-nocturne-s02/index.html">
+  <img src="/poster/series/castlevania-nocturne-s02.jpg" alt="Castlevania: Nocturne S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Castlevania: Nocturne S02 </h3>
+    <p>animation, drama, fanatsy, sci-fi, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/doctor-sin/index.html">
+  <img src="/poster/series/doctor-sin.jpg" alt="Doctor Sin">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Doctor Sin </h3>
+    <p>drama, fanatsy, mystery, sci-fi, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/me-s01/index.html">
+  <img src="/poster/series/me-s01.jpg" alt="Me S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Me S01 </h3>
+    <p>family, fanatsy, sci-fi, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/my-royal-nemesis-s01/index.html">
+  <img src="/poster/series/my-royal-nemesis-s01.webp" alt="My Royal Nemesis S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>My Royal Nemesis S01 </h3>
+    <p>comedy, drama, fanatsy, sci-fi, kdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Fantasy</h2>
+    <a href="/categories/fantasy/index.html">View all 166 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/avatar-aang-the-last-airbender-2026/index.html">
+  <img src="/poster/movies/avatar-aang-the-last-airbender.jpg" alt="Avatar Aang: The Last Airbender">
+  
+  <div class="info">
+    <h3>Avatar Aang: The Last Airbender (2026)</h3>
+    <p>Animation, Action, Adventure, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/descendants-wicked-wonderland-2026/index.html">
+  <img src="/poster/movies/descendants-wicked-wonderland.jpg" alt="Descendants: Wicked Wonderland">
+  
+  <div class="info">
+    <h3>Descendants: Wicked Wonderland (2026)</h3>
+    <p>Fantasy, Family, TV Movie &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/karuppu-2026/index.html">
+  <img src="/poster/movies/karuppu.jpg" alt="Karuppu">
+  
+  <div class="info">
+    <h3>Karuppu (2026)</h3>
+    <p>Action, Fantasy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/masters-of-the-universe-2026/index.html">
+  <img src="/poster/movies/masters-of-the-universe.jpg" alt="Masters of the Universe">
+  
+  <div class="info">
+    <h3>Masters of the Universe (2026)</h3>
+    <p>Action, Fantasy, Sci-Fi &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/mavka-a-real-myth-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/04/3fCkTGO8g6d5HQvOx0CKhvRDROe-683x1024.jpg" alt="Mavka. A Real Myth">
+  
+  <div class="info">
+    <h3>Mavka. A Real Myth (2026)</h3>
+    <p>Romance, Fantasy, Drama, Horror &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/mikael-hunter-of-two-realms-2026/index.html">
+  <img src="/poster/movies/mikael-hunter-of-two-realms.jpg" alt="Mikael: Hunter of Two Realms">
+  
+  <div class="info">
+    <h3>Mikael: Hunter of Two Realms (2026)</h3>
+    <p>Action, Comedy, Horror, Fantasy, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>fi</h2>
+    <a href="/categories/fi/index.html">View all 2 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/alice-in-borderland-s02/index.html">
+  <img src="/poster/series/alice-in-borderland-s02.jpg" alt="Alice in Borderland S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Alice in Borderland S02 </h3>
+    <p>action, adventure, drama, fantasy, mystery, sci, fi, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/alice-in-borderland-s03/index.html">
+  <img src="/poster/series/alice-in-borderland-s03.webp" alt="Alice in Borderland S03">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Alice in Borderland S03 </h3>
+    <p>action, adventure, drama, fantasy, mystery, sci, fi, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>History</h2>
+    <a href="/categories/history/index.html">View all 12 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/a-great-awakening-2026/index.html">
+  <img src="/poster/movies/a-great-awakening.jpg" alt="A Great Awakening">
+  
+  <div class="info">
+    <h3>A Great Awakening (2026)</h3>
+    <p>Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/blades-of-the-guardians-wind-rises-in-the-desert-2026-2026/index.html">
+  <img src="/poster/movies/blades-of-the-guardians-wind-rises-in-the-desert-2026.jpg" alt="Blades of the Guardians: Wind Rises in the Desert (2026) ">
+  
+  <div class="info">
+    <h3>Blades of the Guardians: Wind Rises in the Desert (2026)  (2026)</h3>
+    <p>Action, Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/desert-warrior-2026/index.html">
+  <img src="/poster/movies/desert-warrior.jpg" alt="Desert Warrior">
+  
+  <div class="info">
+    <h3>Desert Warrior (2026)</h3>
+    <p>Action, Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/golden-kamuy-the-abashiri-prison-raid-2026/index.html">
+  <img src="/poster/movies/golden-kamuy-the-abashiri-prison-raid.jpg" alt="Golden Kamuy -The Abashiri Prison Raid-">
+  
+  <div class="info">
+    <h3>Golden Kamuy -The Abashiri Prison Raid- (2026)</h3>
+    <p>Action, Adventure, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/killhouse-2026/index.html">
+  <img src="/poster/movies/killhouse.jpg" alt="Killhouse">
+  
+  <div class="info">
+    <h3>Killhouse (2026)</h3>
+    <p>War, Action, Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/pressure-2026/index.html">
+  <img src="/poster/movies/pressure.jpg" alt="Pressure">
+  
+  <div class="info">
+    <h3>Pressure (2026)</h3>
+    <p>Thriller, History, War &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Horror</h2>
+    <a href="/categories/horror/index.html">View all 39 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/affection-2026/index.html">
+  <img src="/poster/movies/affection.jpg" alt="Affection">
+  
+  <div class="info">
+    <h3>Affection (2026)</h3>
+    <p>Horror, Sci-Fi &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/backrooms-2026/index.html">
+  <img src="/poster/movies/backrooms.jpg" alt="Backrooms">
+  
+  <div class="info">
+    <h3>Backrooms (2026)</h3>
+    <p>Horror, Mystery, Sci-Fi &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/black-box-flight-298-2026/index.html">
+  <img src="/poster/movies/black-box-flight-298.jpg" alt="Black Box (Flight 298)">
+  
+  <div class="info">
+    <h3>Black Box (Flight 298) (2026)</h3>
+    <p>Horror, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/chum-2026/index.html">
+  <img src="/poster/movies/chum.jpg" alt="Chum">
+  
+  <div class="info">
+    <h3>Chum (2026)</h3>
+    <p>Horror, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/colony-2026/index.html">
+  <img src="/poster/movies/colony.jpg" alt="Colony">
+  
+  <div class="info">
+    <h3>Colony (2026)</h3>
+    <p>Action, Thriller, Horror &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/danur-the-last-chapter-2026/index.html">
+  <img src="/poster/movies/danur-the-last-chapter.jpg" alt="Danur: The Last Chapter">
+  
+  <div class="info">
+    <h3>Danur: The Last Chapter (2026)</h3>
+    <p>Horror, Mystery, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>jdrama</h2>
+    <a href="/categories/jdrama/index.html">View all 8 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/golden-kamuy-2-the-hunt-of-prisoners-in-hokkaido-s01/index.html">
+  <img src="/poster/series/golden-kamuy-2-the-hunt-of-prisoners-in-hokkaido-s01.webp" alt="Golden Kamuy 2: The Hunt of Prisoners in Hokkaido- S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Golden Kamuy 2: The Hunt of Prisoners in Hokkaido- S01 </h3>
+    <p>action, adventure, comedy, jdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/human-vapor/index.html">
+  <img src="/poster/series/human-vapor.webp" alt="Human Vapor">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Human Vapor </h3>
+    <p>action, adventure, drama, jdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/last-samurai-standing-s01/index.html">
+  <img src="/poster/series/last-samurai-standing-s01.webp" alt="Last Samurai Standing S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Last Samurai Standing S01 </h3>
+    <p>action, adventure, drama, jdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/like-a-dragon-s01/index.html">
+  <img src="/poster/series/like-a-dragon-s01.jpg" alt="Like a Dragon S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Like a Dragon S01 </h3>
+    <p>action, adventure, crime, drama, jdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/miss-king-s01/index.html">
+  <img src="/poster/series/miss-king-s01.webp" alt="Miss King S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Miss King S01 </h3>
+    <p>drama, jdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/romantics-anonymous-s01/index.html">
+  <img src="/poster/series/romantics-anonymous-s01.webp" alt="Romantics Anonymous S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Romantics Anonymous S01 </h3>
+    <p>comedy, drama, jdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>kdrama</h2>
+    <a href="/categories/kdrama/index.html">View all 748 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/jumong-1998/index.html">
+  <img src="/poster/series/jumong.jpg" alt="Jumong">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Jumong (1998)</h3>
+    <p>kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-good-day-to-be-a-dog-s01/index.html">
+  <img src="/poster/series/a-good-day-to-be-a-dog-s01.jpg" alt="A Good Day to be a Dog S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Good Day to be a Dog S01 </h3>
+    <p>comedy, drama, fantasy, sci-fi, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-head-coach-s-turnover-s01/index.html">
+  <img src="/poster/series/a-head-coachs-turnover-s01.webp" alt="A Head Coach's Turnover S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Head Coach's Turnover S01 </h3>
+    <p>comedy, drama, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-hundred-memories-s01/index.html">
+  <img src="/poster/series/a-hundred-memories-s01.webp" alt="A Hundred Memories S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Hundred Memories S01 </h3>
+    <p>drama, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-killer-paradox-s01/index.html">
+  <img src="/poster/series/a-killer-paradox-s01.jpg" alt="A Killer Paradox S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Killer Paradox S01 </h3>
+    <p>comedy, crime, mystery, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-korean-odyssey-s01/index.html">
+  <img src="/poster/series/a-korean-odyssey-s01.jpg" alt="A Korean Odyssey S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Korean Odyssey S01 </h3>
+    <p>kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>kids</h2>
+    <a href="/categories/kids/index.html">View all 8 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/apple-of-my-eye/index.html">
+  <img src="/poster/series/apple-of-my-eye.jpg" alt="Apple of My Eye">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Apple of My Eye </h3>
+    <p>comedy, drama, family, kids, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/everybody-hates-chris-s01/index.html">
+  <img src="/poster/series/everybody-hates-chris-s01.jpg" alt="Everybody Hates Chris S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Everybody Hates Chris S01 </h3>
+    <p>comedy, family, kids, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/everybody-hates-chris-s02/index.html">
+  <img src="/poster/series/everybody-hates-chris-s02.jpg" alt="Everybody Hates Chris S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Everybody Hates Chris S02 </h3>
+    <p>comedy, family, kids, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/everybody-hates-chris-s03/index.html">
+  <img src="/poster/series/everybody-hates-chris-s03.jpg" alt="Everybody Hates Chris S03">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Everybody Hates Chris S03 </h3>
+    <p>comedy, family, kids, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/everybody-hates-chris-s04/index.html">
+  <img src="/poster/series/everybody-hates-chris-s04.jpg" alt="Everybody Hates Chris S04">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Everybody Hates Chris S04 </h3>
+    <p>comedy, family, kids, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/marvels-moon-girl-and-devil-dinosaur-s01/index.html">
+  <img src="/poster/series/marvels-moon-girl-and-devil-dinosaur-s01.jpg" alt="Marvels Moon Girl and Devil Dinosaur S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Marvels Moon Girl and Devil Dinosaur S01 </h3>
+    <p>animation, fantasy, kids, sci-fi, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Music</h2>
+    <a href="/categories/music/index.html">View all 3 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/michael-2026/index.html">
+  <img src="/poster/movies/michael.jpg" alt="Michael">
+  
+  <div class="info">
+    <h3>Michael (2026)</h3>
+    <p>Music, Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/mother-mary-2026/index.html">
+  <img src="/poster/movies/mother-mary.jpg" alt="Mother Mary">
+  
+  <div class="info">
+    <h3>Mother Mary (2026)</h3>
+    <p>Music, Drama, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/champion-s01/index.html">
+  <img src="/poster/series/champion-s01.jpg" alt="Champion S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Champion S01 </h3>
+    <p>drama, music, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>mysterr</h2>
+    <a href="/categories/mysterr/index.html">View all 4 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/classroom-of-the-elite-s01/index.html">
+  <img src="/poster/series/classroom-of-the-elite-s01.webp" alt="Classroom of the Elite S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Classroom of the Elite S01 </h3>
+    <p>animation, drama, mysterr, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/classroom-of-the-elite-s02/index.html">
+  <img src="/poster/series/classroom-of-the-elite-s02.webp" alt="Classroom of the Elite S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Classroom of the Elite S02 </h3>
+    <p>animation, drama, mysterr, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/classroom-of-the-elite-s03/index.html">
+  <img src="/poster/series/classroom-of-the-elite-s03.webp" alt="Classroom of the Elite S03">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Classroom of the Elite S03 </h3>
+    <p>animation, drama, mysterr, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/classroom-of-the-elite-s04/index.html">
+  <img src="/poster/series/classroom-of-the-elite-s04.webp" alt="Classroom of the Elite S04">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Classroom of the Elite S04 </h3>
+    <p>animation, drama, mysterr, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Mystery</h2>
+    <a href="/categories/mystery/index.html">View all 165 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/backrooms-2026/index.html">
+  <img src="/poster/movies/backrooms.jpg" alt="Backrooms">
+  
+  <div class="info">
+    <h3>Backrooms (2026)</h3>
+    <p>Horror, Mystery, Sci-Fi &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/citizen-vigilante-2026/index.html">
+  <img src="/poster/movies/citizen-vigilante.webp" alt="Citizen Vigilante">
+  
+  <div class="info">
+    <h3>Citizen Vigilante (2026)</h3>
+    <p>Thriller, Action, Crime, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/colors-of-evil-black-2026/index.html">
+  <img src="/poster/movies/colors-of-evil-black.jpg" alt="Colors of Evil: Black">
+  
+  <div class="info">
+    <h3>Colors of Evil: Black (2026)</h3>
+    <p>Crime, Thriller, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/danur-the-last-chapter-2026/index.html">
+  <img src="/poster/movies/danur-the-last-chapter.jpg" alt="Danur: The Last Chapter">
+  
+  <div class="info">
+    <h3>Danur: The Last Chapter (2026)</h3>
+    <p>Horror, Mystery, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/desire-2026/index.html">
+  <img src="/poster/movies/desire.jpg" alt="Desire">
+  
+  <div class="info">
+    <h3>Desire (2026)</h3>
+    <p>Mystery, Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/enola-holmes-3-2026/index.html">
+  <img src="/poster/movies/enola-holmes-3.jpg" alt="Enola Holmes 3">
+  
+  <div class="info">
+    <h3>Enola Holmes 3 (2026)</h3>
+    <p>Adventure, Crime, Mystery, Action &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>politics</h2>
+    <a href="/categories/politics/index.html">View all 10 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/a-spy-among-friends/index.html">
+  <img src="/poster/series/a-spy-among-friends.jpg" alt="A Spy Among Friends">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Spy Among Friends </h3>
+    <p>drama, politics, war, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/abraham-lincoln-s01/index.html">
+  <img src="/poster/series/abraham-lincoln-s01.jpg" alt="Abraham Lincoln S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Abraham Lincoln S01 </h3>
+    <p>documentary, politics, war, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/boots-s01/index.html">
+  <img src="/poster/series/boots-s01.webp" alt="Boots S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Boots S01 </h3>
+    <p>comedy, drama, politics, war, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/captivating-of-the-king-s01/index.html">
+  <img src="/poster/series/captivating-of-the-king-s01.jpg" alt="Captivating of the King S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Captivating of the King S01 </h3>
+    <p>drama, politics, war, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/for-all-man-kind-s04/index.html">
+  <img src="/poster/series/for-all-man-kind-s04.jpg" alt="For All Man Kind S04">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>For All Man Kind S04 </h3>
+    <p>drama, fantasy, politics, sci-fi, war, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/for-all-mankind-s05/index.html">
+  <img src="/poster/series/for-all-mankind-s05.webp" alt="For All ManKind S05">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>For All ManKind S05 </h3>
+    <p>drama, fantasy, politics, sci-fi, war, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>reality</h2>
+    <a href="/categories/reality/index.html">View all 44 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/a-list-to-playlist-s01/index.html">
+  <img src="/poster/series/a-list-to-playlist-s01.jpg" alt="A-List to Playlist S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A-List to Playlist S01 </h3>
+    <p>reality, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/agents-of-mystery-s01/index.html">
+  <img src="/poster/series/agents-of-mystery-s01.webp" alt="Agents of Mystery S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Agents of Mystery S01 </h3>
+    <p>reality, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/agents-of-mystery-s02/index.html">
+  <img src="/poster/series/agents-of-mystery-s02.webp" alt="Agents of Mystery S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Agents of Mystery S02 </h3>
+    <p>reality, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/american-gladiators-s1/index.html">
+  <img src="/poster/series/american-gladiators-s1.webp" alt="American Gladiators S1">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>American Gladiators S1 </h3>
+    <p>reality, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/are-you-sure-s01/index.html">
+  <img src="https://thenkiri.com/wp-content/uploads/2024/09/are-you-sure-korean-variety-show.jpg" alt="Are You Sure? S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Are You Sure? S01 </h3>
+    <p>reality, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/beast-games-s01/index.html">
+  <img src="/poster/series/beast-games-s01.jpg" alt="Beast Games S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Beast Games S01 </h3>
+    <p>reality, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Romance</h2>
+    <a href="/categories/romance/index.html">View all 11 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/booking-2026-18-2026/index.html">
+  <img src="/poster/movies/booking-2026-18.jpg" alt="Booking (2026) [18+]">
+  
+  <div class="info">
+    <h3>Booking (2026) [18+] (2026)</h3>
+    <p>Adult, Drama, Romance &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/mavka-a-real-myth-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/04/3fCkTGO8g6d5HQvOx0CKhvRDROe-683x1024.jpg" alt="Mavka. A Real Myth">
+  
+  <div class="info">
+    <h3>Mavka. A Real Myth (2026)</h3>
+    <p>Romance, Fantasy, Drama, Horror &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/my-dearest-assassin-2026/index.html">
+  <img src="/poster/movies/my-dearest-assassin.jpg" alt="My Dearest Assassin">
+  
+  <div class="info">
+    <h3>My Dearest Assassin (2026)</h3>
+    <p>Action, Drama, Romance &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/no-other-love-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/9SOZzoae9Z0qJDcw3dBed8MFZld-683x1024.jpg" alt="No Other Love">
+  
+  <div class="info">
+    <h3>No Other Love (2026)</h3>
+    <p>Crime, Drama, Romance &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/office-romance-2026/index.html">
+  <img src="/poster/movies/office-romance.jpg" alt="Office Romance">
+  
+  <div class="info">
+    <h3>Office Romance (2026)</h3>
+    <p>Romance, Comedy &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-drama-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/ikcNOWB6Qo1ER1H1BJL6Vf0W22s-683x1024.jpg" alt="The Drama">
+  
+  <div class="info">
+    <h3>The Drama (2026)</h3>
+    <p>Romance, Comedy, Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>sci</h2>
+    <a href="/categories/sci/index.html">View all 2 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/alice-in-borderland-s02/index.html">
+  <img src="/poster/series/alice-in-borderland-s02.jpg" alt="Alice in Borderland S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Alice in Borderland S02 </h3>
+    <p>action, adventure, drama, fantasy, mystery, sci, fi, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/alice-in-borderland-s03/index.html">
+  <img src="/poster/series/alice-in-borderland-s03.webp" alt="Alice in Borderland S03">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Alice in Borderland S03 </h3>
+    <p>action, adventure, drama, fantasy, mystery, sci, fi, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Sci-Fi</h2>
+    <a href="/categories/sci-fi/index.html">View all 164 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/affection-2026/index.html">
+  <img src="/poster/movies/affection.jpg" alt="Affection">
+  
+  <div class="info">
+    <h3>Affection (2026)</h3>
+    <p>Horror, Sci-Fi &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/backrooms-2026/index.html">
+  <img src="/poster/movies/backrooms.jpg" alt="Backrooms">
+  
+  <div class="info">
+    <h3>Backrooms (2026)</h3>
+    <p>Horror, Mystery, Sci-Fi &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/disclosure-day-2026/index.html">
+  <img src="/poster/movies/disclosure-day.jpg" alt="Disclosure Day">
+  
+  <div class="info">
+    <h3>Disclosure Day (2026)</h3>
+    <p>Sci-Fi, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/housemaid-2026/index.html">
+  <img src="/poster/movies/housemaid.jpg" alt="Housemaid">
+  
+  <div class="info">
+    <h3>Housemaid (2026)</h3>
+    <p>Sci-Fi, Thriller, Horror &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/masters-of-the-universe-2026/index.html">
+  <img src="/poster/movies/masters-of-the-universe.jpg" alt="Masters of the Universe">
+  
+  <div class="info">
+    <h3>Masters of the Universe (2026)</h3>
+    <p>Action, Fantasy, Sci-Fi &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/per-aspera-ad-astra-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/05/cuNGOSr0oSuBm0uAa28516Iw3Bw-722x1024.jpg" alt="Per Aspera Ad Astra">
+  
+  <div class="info">
+    <h3>Per Aspera Ad Astra (2026)</h3>
+    <p>Drama, Sci-Fi, Adventure &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>sci-fi & fantasy</h2>
+    <a href="/categories/sci-fi-fantasy/index.html">View all 3 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/invincible-s04/index.html">
+  <img src="/poster/series/invincible-s04.webp" alt="Invincible S04">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Invincible S04 </h3>
+    <p>action, adventure, animation, drama, sci-fi & fantasy, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/mating-season/index.html">
+  <img src="/poster/series/mating-season.webp" alt="Mating Season">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Mating Season </h3>
+    <p>comedy, drama, sci-fi & fantasy, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/my-brother-the-minotaur/index.html">
+  <img src="/poster/series/my-brother-the-minotaur.webp" alt="My Brother the Minotaur">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>My Brother the Minotaur </h3>
+    <p>animation, family, kids, sci-fi & fantasy, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>soap</h2>
+    <a href="/categories/soap/index.html">View all 2 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/call-it-love-s01/index.html">
+  <img src="/poster/series/call-it-love-s01.jpg" alt="Call It Love S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Call It Love S01 </h3>
+    <p>drama, soap, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/replay-the-moment-when-it-starts-again/index.html">
+  <img src="/poster/series/replay-the-moment-when-it-starts-again.jpg" alt="Replay: The Moment When It Starts Again">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Replay: The Moment When It Starts Again </h3>
+    <p>drama, soap, kdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>sport</h2>
+    <a href="/categories/sport/index.html">View all 2 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/a-beautiful-obsession/index.html">
+  <img src="/poster/series/a-beautiful-obsession.webp" alt="A Beautiful Obsession">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Beautiful Obsession </h3>
+    <p>documentary, sport, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/mourinho/index.html">
+  <img src="/poster/series/mourinho.webp" alt="MOURINHO">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>MOURINHO </h3>
+    <p>documentary, sport, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>sports</h2>
+    <a href="/categories/sports/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/all-american-s08/index.html">
+  <img src="/poster/series/all-american-s08.webp" alt="All American S08">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>All American S08 </h3>
+    <p>drama, sports, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>tdrama</h2>
+    <a href="/categories/tdrama/index.html">View all 3 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/coffee-melody/index.html">
+  <img src="/poster/series/coffee-melody.jpg" alt="Coffee Melody">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Coffee Melody </h3>
+    <p>tdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/kinnporsche-the-series/index.html">
+  <img src="/poster/series/kinnporsche-the-series.jpg" alt="KinnPorsche The Series">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>KinnPorsche The Series </h3>
+    <p>tdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/thai-cave-rescue/index.html">
+  <img src="/poster/series/thai-cave-rescue.jpg" alt="Thai Cave Rescue">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Thai Cave Rescue </h3>
+    <p>tdrama &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Thriller</h2>
+    <a href="/categories/thriller/index.html">View all 63 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/black-box-flight-298-2026/index.html">
+  <img src="/poster/movies/black-box-flight-298.jpg" alt="Black Box (Flight 298)">
+  
+  <div class="info">
+    <h3>Black Box (Flight 298) (2026)</h3>
+    <p>Horror, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/borderline-2026/index.html">
+  <img src="/poster/movies/borderline.webp" alt="Borderline">
+  
+  <div class="info">
+    <h3>Borderline (2026)</h3>
+    <p>Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/chum-2026/index.html">
+  <img src="/poster/movies/chum.jpg" alt="Chum">
+  
+  <div class="info">
+    <h3>Chum (2026)</h3>
+    <p>Horror, Thriller &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/citizen-vigilante-2026/index.html">
+  <img src="/poster/movies/citizen-vigilante.webp" alt="Citizen Vigilante">
+  
+  <div class="info">
+    <h3>Citizen Vigilante (2026)</h3>
+    <p>Thriller, Action, Crime, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/colony-2026/index.html">
+  <img src="/poster/movies/colony.jpg" alt="Colony">
+  
+  <div class="info">
+    <h3>Colony (2026)</h3>
+    <p>Action, Thriller, Horror &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/colors-of-evil-black-2026/index.html">
+  <img src="/poster/movies/colors-of-evil-black.jpg" alt="Colors of Evil: Black">
+  
+  <div class="info">
+    <h3>Colors of Evil: Black (2026)</h3>
+    <p>Crime, Thriller, Mystery &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>tv</h2>
+    <a href="/categories/tv/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/chicago-typewriter/index.html">
+  <img src="/poster/series/chicago-typewriter.jpg" alt="Chicago Typewriter">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Chicago Typewriter </h3>
+    <p>tv, tv romance, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>TV Movie</h2>
+    <a href="/categories/tv-movie/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/descendants-wicked-wonderland-2026/index.html">
+  <img src="/poster/movies/descendants-wicked-wonderland.jpg" alt="Descendants: Wicked Wonderland">
+  
+  <div class="info">
+    <h3>Descendants: Wicked Wonderland (2026)</h3>
+    <p>Fantasy, Family, TV Movie &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>tv romance</h2>
+    <a href="/categories/tv-romance/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/chicago-typewriter/index.html">
+  <img src="/poster/series/chicago-typewriter.jpg" alt="Chicago Typewriter">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Chicago Typewriter </h3>
+    <p>tv, tv romance, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>tv-series</h2>
+    <a href="/categories/tv-series/index.html">View all 1011 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/jumong-1998/index.html">
+  <img src="/poster/series/jumong.jpg" alt="Jumong">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Jumong (1998)</h3>
+    <p>kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-beautiful-obsession/index.html">
+  <img src="/poster/series/a-beautiful-obsession.webp" alt="A Beautiful Obsession">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Beautiful Obsession </h3>
+    <p>documentary, sport, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-gentleman-in-moscow-s01/index.html">
+  <img src="/poster/series/a-gentleman-in-moscow-s01.jpg" alt="A Gentleman in Moscow S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Gentleman in Moscow S01 </h3>
+    <p>drama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-good-day-to-be-a-dog-s01/index.html">
+  <img src="/poster/series/a-good-day-to-be-a-dog-s01.jpg" alt="A Good Day to be a Dog S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Good Day to be a Dog S01 </h3>
+    <p>comedy, drama, fantasy, sci-fi, kdrama, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-good-girl-s-guide-to-murder-s01/index.html">
+  <img src="/poster/series/a-good-girls-guide-to-murder-s01.jpg" alt="A Good Girl's Guide to Murder S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Good Girl's Guide to Murder S01 </h3>
+    <p>crime, mystery, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/a-good-girl-s-guide-to-murder-s02/index.html">
+  <img src="/poster/series/a-good-girls-guide-to-murder-s02.webp" alt="A Good Girl's Guide to Murder S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>A Good Girl's Guide to Murder S02 </h3>
+    <p>crime, mystery, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>variety</h2>
+    <a href="/categories/variety/index.html">View all 1 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/korea-no-1-s01/index.html">
+  <img src="/poster/series/korea-no-1-s01.jpg" alt="Korea No 1 S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Korea No 1 S01 </h3>
+    <p>variety, variety-show &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>variety-show</h2>
+    <a href="/categories/variety-show/index.html">View all 22 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/series/country-life-of-gen-z-s01/index.html">
+  <img src="/poster/series/country-life-of-gen-z-s01.jpg" alt="Country Life of Gen-Z S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Country Life of Gen-Z S01 </h3>
+    <p>reality, variety-show &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/eden-descendants-of-instinct-s02/index.html">
+  <img src="/poster/series/eden-descendants-of-instinct-s02.jpg" alt="Eden, Descendants of Instinct S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Eden, Descendants of Instinct S02 </h3>
+    <p>reality, variety-show &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/in-the-soop-friendcation-s01/index.html">
+  <img src="/poster/series/in-the-soop-friendcation-s01.jpg" alt="In The Soop: Friendcation S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>In The Soop: Friendcation S01 </h3>
+    <p>variety-show &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/iron-girls-s01/index.html">
+  <img src="/poster/series/iron-girls-s01.jpg" alt="Iron Girls S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Iron Girls S01 </h3>
+    <p>reality, variety-show &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/jinny-s-kitchen-s02/index.html">
+  <img src="/poster/series/jinnys-kitchen-s02.jpg" alt="Jinny's Kitchen S02">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Jinny's Kitchen S02 </h3>
+    <p>reality, variety-show &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/korea-no-1-s01/index.html">
+  <img src="/poster/series/korea-no-1-s01.jpg" alt="Korea No 1 S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Korea No 1 S01 </h3>
+    <p>variety, variety-show &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>War</h2>
+    <a href="/categories/war/index.html">View all 20 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/killhouse-2026/index.html">
+  <img src="/poster/movies/killhouse.jpg" alt="Killhouse">
+  
+  <div class="info">
+    <h3>Killhouse (2026)</h3>
+    <p>War, Action, Drama, History &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/lucky-strike-2026/index.html">
+  <img src="/poster/movies/lucky-strike.jpg" alt="Lucky Strike">
+  
+  <div class="info">
+    <h3>Lucky Strike (2026)</h3>
+    <p>Action, War &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/omukade-2026/index.html">
+  <img src="/poster/movies/omukade.jpg" alt="Omukade">
+  
+  <div class="info">
+    <h3>Omukade (2026)</h3>
+    <p>Horror, Thriller, War &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/pressure-2026/index.html">
+  <img src="/poster/movies/pressure.jpg" alt="Pressure">
+  
+  <div class="info">
+    <h3>Pressure (2026)</h3>
+    <p>Thriller, History, War &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/rise-of-the-conqueror-2026/index.html">
+  <img src="https://www.net9ja.com.ng/wp-content/uploads/2026/04/1207162.webp" alt="Rise of the Conqueror">
+  
+  <div class="info">
+    <h3>Rise of the Conqueror (2026)</h3>
+    <p>History, Action, Adventure, War &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/winter-battleground-2026/index.html">
+  <img src="/poster/movies/winter-battleground.jpg" alt="Winter: Battleground">
+  
+  <div class="info">
+    <h3>Winter: Battleground (2026)</h3>
+    <p>Sci-Fi, Action, Thriller, War &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+  
+  <div class="section-heading">
+    <h2>Western</h2>
+    <a href="/categories/western/index.html">View all 5 &rarr;</a>
+  </div>
+  <div class="movie-grid">
+    
+      <a class="movie-card" href="/movies/casa-grande-2026/index.html">
+  <img src="/poster/movies/casa-grande.jpg" alt="Casa Grande">
+  
+  <div class="info">
+    <h3>Casa Grande (2026)</h3>
+    <p>Drama, Western &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/movies/the-isolate-thief-2026/index.html">
+  <img src="/poster/movies/the-isolate-thief.jpg" alt="The Isolate Thief">
+  
+  <div class="info">
+    <h3>The Isolate Thief (2026)</h3>
+    <p>Western, Action, Drama &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/american-primeval-s01/index.html">
+  <img src="/poster/series/american-primeval-s01.jpg" alt="American Primeval S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>American Primeval S01 </h3>
+    <p>action, adventure, drama, western, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/little-house-on-the-prairie-s01/index.html">
+  <img src="/poster/series/little-house-on-the-prairie-s01.webp" alt="Little House on the Prairie S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Little House on the Prairie S01 </h3>
+    <p>drama, family, western, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+      <a class="movie-card" href="/series/marshal-s01/index.html">
+  <img src="/poster/series/marshal-s01.webp" alt="Marshal S01">
+  <span class="card-kind-badge">Series</span>
+  <div class="info">
+    <h3>Marshal S01 </h3>
+    <p>crime, drama, western, tv-series &middot; HD</p>
+  </div>
+</a>
+
+    
+  </div>
+
+
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>© 2026 Ada Movies. All rights reserved.</div>
+    <ul class="site-footer-links">
+      
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+      
+      <li><a href="/terms.html">Terms of Service</a></li>
+      
+      <li><a href="/dmca.html">DMCA</a></li>
+      
+    </ul>
+    <!-- Paste extra footer HTML (social icons, badges, etc.) here -->
+     
+<script type="text/javascript">
+aclib.runVideoSlider({
+    zoneId: '11836318',
+});
+</script>
+
+  </div>
+</footer>
+ 
+<style>
+
+  /* ---- Sticky/floating anchor ad (bottom of viewport, dismissible) ---- */
+  .anchor-ad {
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--bg-alt); border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px var(--shadow);
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    padding:10px 44px 10px 16px;
+    transform:translateY(0); transition:transform .25s ease;
+  }
+  .anchor-ad.collapsed { transform:translateY(100%); }
+  .anchor-ad-content { flex:1; display:flex; justify-content:center; overflow:hidden; }
+  .anchor-ad-close {
+    position:absolute; top:6px; right:8px; background:none; border:none;
+    color:var(--text-faint); font-size:1.1rem; cursor:pointer; line-height:1; padding:6px;
+  }
+  .anchor-ad-close:hover { color:var(--text); }
+  .anchor-ad-reopen {
+    position:fixed; right:16px; bottom:16px; z-index:100; background:var(--brand);
+    color:var(--brand-text-on); border:none; border-radius:24px; padding:10px 16px;
+    font-size:.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 16px var(--shadow);
+    display:none;
+  }
+  .anchor-ad-reopen.show { display:block; }
+  body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:70px; }
+  @media (max-width:600px){
+    .anchor-ad { padding:8px 36px 8px 10px; }
+    body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:60px; }
+  }
+
+  /* ---- Sticky/floating anchor ad (bottom of viewport, dismissible) ---- */
+  .anchor-ad {
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--bg-alt); border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px var(--shadow);
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    padding:10px 44px 10px 16px;
+    transform:translateY(0); transition:transform .25s ease;
+  }
+  .anchor-ad.collapsed { transform:translateY(100%); }
+  .anchor-ad-content { flex:1; display:flex; justify-content:center; overflow:hidden; }
+  .anchor-ad-close {
+    position:absolute; top:6px; right:8px; background:none; border:none;
+    color:var(--text-faint); font-size:1.1rem; cursor:pointer; line-height:1; padding:6px;
+  }
+  .anchor-ad-close:hover { color:var(--text); }
+  .anchor-ad-reopen {
+    position:fixed; right:16px; bottom:16px; z-index:100; background:var(--brand);
+    color:var(--brand-text-on); border:none; border-radius:24px; padding:10px 16px;
+    font-size:.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 16px var(--shadow);
+    display:none;
+  }
+  .anchor-ad-reopen.show { display:block; }
+  body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:70px; }
+  @media (max-width:600px){
+    .anchor-ad { padding:8px 36px 8px 10px; }
+    body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:60px; }
+  }
+
+</style>
+
+<div class="anchor-ad" id="anchorAd" style="background: #111827; border: 1px dashed #334155; justify-content:center; align-items:center !important;">
+
+  <button class="anchor-ad-close" type="button" onclick="xtbCloseAnchorAd()" aria-label="Dismiss ad">&times;</button>
+  <div class="anchor-ad-content">
+    <div class="ad-placeholder" style="min-height:60px;width:100%;max-width:728px;margin:0;">
+
+
+
+<div>
+    <script type="text/javascript">
+        aclib.runBanner({
+            zoneId: '11831162',
+        });
+    </script>
+</div>
+
+    </div>
+
+  </div>
+</div>
+<button class="anchor-ad-reopen" id="anchorAdReopen" type="button" onclick="xtbOpenAnchorAd()">Show ad &uarr;</button>
+
+<script>
+  (function () {
+    var KEY = 'xtb-anchor-ad-dismissed';
+    var bar = document.getElementById('anchorAd');
+    var reopenBtn = document.getElementById('anchorAdReopen');
+    if (!bar) return;
+
+    document.body.classList.add('has-anchor-ad');
+
+    var dismissed = false;
+    try { dismissed = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    if (dismissed) {
+      bar.classList.add('collapsed');
+      reopenBtn.classList.add('show');
+      document.body.classList.remove('has-anchor-ad');
+    }
+
+    window.xtbCloseAnchorAd = function () {
+      bar.classList.add('collapsed');
+      reopenBtn.classList.add('show');
+      document.body.classList.remove('has-anchor-ad');
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    };
+    window.xtbOpenAnchorAd = function () {
+      bar.classList.remove('collapsed');
+      reopenBtn.classList.remove('show');
+      document.body.classList.add('has-anchor-ad');
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
+    };
+  })();
+</script>
+
+ 
+<script src="https://pl30668848.effectivecpmnetwork.com/48/47/7b/48477be255355f192ad40da71d5e819f.js"></script>
+
+</body>
+</html>
