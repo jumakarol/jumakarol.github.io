@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hometown Cha-Cha-Cha S01 - S1E12 - Hometown Cha-Cha-Cha S01 Episode 12</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:Arial,Helvetica,sans-serif; }
+  body { background:#0f172a; color:#f8fafc; }
+  a { color:inherit; }
+
+  /* ---- Nav bar ---- */
+  .site-nav {
+    background:#111827;
+    border-bottom:1px solid #1e293b;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .site-nav-inner {
+    max-width:1200px;
+    margin:0 auto;
+    padding:14px 24px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .site-brand {
+    font-size:1.3rem;
+    font-weight:bold;
+    color:#38bdf8;
+    text-decoration:none;
+    margin-right:auto;
+    white-space:nowrap;
+  }
+  .site-nav-links {
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    list-style:none;
+  }
+  .site-nav-links a {
+    text-decoration:none;
+    font-size:.92rem;
+    color:#cbd5e1;
+    padding:6px 2px;
+    border-bottom:2px solid transparent;
+  }
+  .site-nav-links a:hover { color:#38bdf8; border-color:#38bdf8; }
+
+  .nav-search-icon {
+    text-decoration:none;
+    font-size:1.1rem;
+    color:#cbd5e1;
+    order:1;
+  }
+  .nav-search-icon:hover { color:#38bdf8; }
+
+  .nav-toggle {
+    display:none;
+    background:none;
+    border:none;
+    color:#f8fafc;
+    font-size:1.5rem;
+    cursor:pointer;
+    line-height:1;
+    padding:2px 4px;
+    order:2;
+  }
+
+  @media (max-width:800px){
+    .nav-toggle { display:block; }
+    .site-nav-inner { flex-wrap:wrap; }
+    .site-nav-links {
+      display:none;
+      flex-direction:column;
+      gap:2px;
+      width:100%;
+      order:3;
+      padding-top:10px;
+    }
+    .site-nav-links.open { display:flex; }
+    .site-nav-links a { display:block; padding:10px 4px; }
+  }
+
+  /* ---- Two-column layout: main content + ad sidebar ---- */
+  .page-layout {
+    max-width:1200px;
+    margin:0 auto;
+    padding:30px 20px 10px;
+    display:flex;
+    gap:25px;
+    align-items:flex-start;
+  }
+  .page-main { flex:1; min-width:0; }
+  .page-sidebar {
+    width:300px;
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    position:sticky;
+    top:80px;
+  }
+  @media (max-width:900px){
+    .page-layout { flex-direction:column; }
+    .page-sidebar { width:100%; flex-direction:row; flex-wrap:wrap; position:static; }
+    .page-sidebar > * { flex:1; min-width:220px; }
+  }
+
+  /* ---- Ad slots ---- */
+  .sp-slot { margin:20px 0; }
+  .sp-slot.horizontal { text-align:center; }
+
+  /* ---- Section headings + movie grid (home / category / browse) ---- */
+  .section-heading {
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  .section-heading h2 { color:#38bdf8; font-size:1.4rem; }
+  .section-heading a { font-size:.85rem; color:#94a3b8; text-decoration:none; }
+  .section-heading a:hover { color:#38bdf8; }
+
+  .movie-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    gap:20px;
+    max-width:1200px;
+    margin:15px auto 40px;
+    padding:0 20px;
+  }
+  .movie-card {
+    background:#1e293b;
+    border-radius:12px;
+    overflow:hidden;
+    text-decoration:none;
+    display:block;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:.2s;
+  }
+  .movie-card { position:relative; }
+  .movie-card:hover { transform:translateY(-4px); }
+  .movie-card img { width:100%; aspect-ratio:2/3; object-fit:cover; display:block; }
+  .movie-card .info { padding:10px 12px; }
+  .movie-card .info h3 { font-size:.95rem; margin-bottom:4px; }
+  .movie-card .info p { font-size:.78rem; color:#94a3b8; }
+  .card-kind-badge {
+    position:absolute;
+    top:8px;
+    right:8px;
+    background:#2563eb;
+    color:#fff;
+    font-size:.68rem;
+    font-weight:bold;
+    padding:3px 8px;
+    border-radius:20px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+
+  /* ---- Homepage hero + search ---- */
+  .home-hero {
+    max-width:1200px;
+    margin:30px auto 0;
+    padding:20px 20px 10px;
+  }
+  .home-hero h1 { font-size:2.2rem; }
+  .home-hero p { color:#94a3b8; margin-top:6px; }
+
+  .search-box {
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+    max-width:560px;
+  }
+  .search-box input {
+    flex:1;
+    padding:14px 16px;
+    border-radius:8px;
+    border:1px solid #334155;
+    background:#1e293b;
+    color:#f8fafc;
+    font-size:1rem;
+  }
+  .search-box input:focus { outline:2px solid #38bdf8; }
+  .search-box button {
+    padding:14px 24px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:#fff;
+    font-weight:bold;
+    font-size:1rem;
+    cursor:pointer;
+  }
+  .search-box button:hover { background:#1d4ed8; }
+
+  /* ---- Category showcase (homepage + footer + all-categories page) ---- */
+  .categories-showcase { margin:35px 0; }
+  .category-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:16px;
+    max-width:1200px;
+    margin:15px auto 0;
+    padding:0 20px;
+  }
+  .category-card {
+    position:relative;
+    display:block;
+    aspect-ratio:16/9;
+    border-radius:12px;
+    overflow:hidden;
+    background-color:#1e293b;
+    background-size:cover;
+    background-position:center;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:.2s;
+  }
+  .category-card:hover { transform:translateY(-3px); }
+  .category-card-overlay {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(15,23,42,.15) 0%, rgba(15,23,42,.9) 100%);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:12px 14px;
+  }
+  .category-card-overlay h3 { font-size:1.05rem; color:#fff; }
+  .category-card-overlay p { font-size:.78rem; color:#cbd5e1; margin-top:2px; }
+
+  /* ---- Episode list (series page) ---- */
+  .episode-list { display:flex; flex-direction:column; gap:8px; margin:10px 0 25px; }
+  .episode-row {
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:#111827;
+    border-radius:8px;
+    padding:12px 16px;
+    text-decoration:none;
+    transition:.15s;
+  }
+  .episode-row:hover { background:#1e293b; }
+  .episode-row .ep-num { color:#38bdf8; font-weight:bold; font-size:.85rem; min-width:52px; }
+  .episode-row .ep-title { flex:1; color:#f8fafc; font-size:.95rem; }
+  .episode-row .ep-go { color:#94a3b8; font-size:.8rem; white-space:nowrap; }
+  .season-heading { color:#38bdf8; margin:22px 0 8px; font-size:1.1rem; }
+
+  /* ---- Breadcrumb back-link (episode pages) ---- */
+  .back-link { color:#38bdf8; text-decoration:none; font-size:.85rem; }
+  .back-link:hover { text-decoration:underline; }
+
+  /* ---- Pagination ---- */
+  .pagination {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    max-width:1200px;
+    margin:20px auto 50px;
+    padding:0 20px;
+  }
+  .pagination a, .pagination span {
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:6px;
+    font-size:.85rem;
+    text-decoration:none;
+  }
+  .pagination a { background:#1e293b; color:#cbd5e1; }
+  .pagination a:hover { background:#334155; }
+  .pagination .current { background:#2563eb; color:#fff; font-weight:bold; }
+  .pagination .disabled { color:#475569; }
+
+  /* ---- Footer ---- */
+  .site-footer {
+    background:#111827;
+    border-top:1px solid #1e293b;
+    margin-top:40px;
+    padding:30px 24px;
+    color:#94a3b8;
+    font-size:.85rem;
+  }
+  .site-footer-inner {
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .site-footer-links {
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    list-style:none;
+  }
+  .site-footer-links a { text-decoration:none; color:#94a3b8; }
+  .site-footer-links a:hover { color:#38bdf8; }
+</style>
+<!-- Paste analytics / meta tags / site verification / fonts here -->
+   <link rel="icon" type="image/png" href="/assets/logo.png">
+
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LR0HHWKX8"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+  gtag('config', 'G-8LR0HHWKX8');
+  </script>
+        <script>(function(s){s.dataset.zone='11388209',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+   <meta name="59032a486b3f1f0ba68653ac3733c24e470a84f6" content="59032a486b3f1f0ba68653ac3733c24e470a84f6" />
+    <meta name='admaven-placement' content=BrHwErHa4>
+     <script>(function(s){s.dataset.zone='11388226',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+      
+       <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+  <meta name="description" content="Watch and download the latest movies.">
+
+
+ 
+<style>
+  .movie-container{
+    background:#1e293b;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+  }
+  .movie-header{ background:#111827; padding:25px; }
+  .movie-header h1{ font-size:32px; margin-bottom:10px; }
+  .movie-content{ padding:25px; }
+  .movie-poster{ width:100%; border-radius:8px; margin-bottom:25px; }
+  .movie-info{ display:grid; grid-template-columns:160px 1fr; gap:10px; margin:25px 0; }
+  .movie-info strong{ color:#38bdf8; }
+  .movie-info a{ color:#38bdf8; text-decoration:none; }
+  .movie-info a:hover{ text-decoration:underline; }
+  .movie-download-box{ background:#111827; padding:20px; border-radius:10px; margin-top:30px; }
+  .movie-download-box h2{ margin-bottom:15px; }
+  .movie-btns{ display:flex; gap:15px; flex-wrap:wrap; margin-top:20px; }
+  .movie-btn{ text-decoration:none; padding:15px 28px; border-radius:8px; font-weight:bold; transition:.3s; }
+  .movie-download{ background:#16a34a; color:#fff; }
+  .movie-subs{background: #111867; color:#fff;}
+  .movie-watch{ background:#2563eb; color:#fff; }
+  .movie-btn:hover{ transform:translateY(-3px); }
+  .movie-player{ margin-top:35px; }
+  .ad-video-wrap{ position:relative; width:100%; background:#000; border-radius:10px; overflow:hidden; }
+  #adContainer{ position:absolute; inset:0; z-index:5; pointer-events:none; }
+  .demo-badge{ display:none; align-items:center; gap:8px; margin-top:10px; font-size:12px; color:#facc15; }
+  .demo-badge .dot{ width:8px; height:8px; border-radius:50%; background:#facc15; }
+  video{ width:100%; border-radius:10px; background:#000; }
+  .movie-notice{ margin-top:15px; color:#cbd5e1; font-size:14px; }
+  .dd-hid{ display:none; }
+  #counterValue{ display:inline-block; color:#38bdf8; font-weight:bold; }
+  #counterValue.pulse{ animation:countPulse .5s ease; }
+  @keyframes countPulse{ 0%{ transform:scale(1.4); color:#4ade80; } 100%{ transform:scale(1); color:#38bdf8; } }
+  .progress-wrap{ width:100%; height:10px; background:#0f172a; border-radius:6px; overflow:hidden; margin-top:15px; }
+  .progress-bar{ height:100%; width:0%; background:linear-gradient(90deg,#16a34a,#38bdf8); transition:width 1s linear; }
+  #finalLinkWrap{ margin-top:20px; }
+  #downloadStatus{ margin-top:12px; font-size:13px; color:#94a3b8; }
+  @media(max-width:700px){
+    .movie-info{ grid-template-columns:1fr; }
+    .movie-btns{ flex-direction:column; }
+    .movie-btn{ text-align:center; }
+  }
+</style>
+ 
+</head>
+<body class="has-anchor-ad">
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="/index.html">Ada movies</a>
+
+    <a class="nav-search-icon" href="/search/index.html" aria-label="Search" title="Search">&#128269;</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+
+    <ul class="site-nav-links" id="navLinks">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/browse/index.html">Movies</a></li>
+      
+      <li><a href="/series/index.html">Series</a></li>
+      
+      
+      <li><a href="/categories/tv-series/index.html">tv-series</a></li>
+      
+      <li><a href="/categories/drama/index.html">Drama</a></li>
+      
+      <li><a href="/categories/kdrama/index.html">kdrama</a></li>
+      
+      <li><a href="/categories/comedy/index.html">Comedy</a></li>
+      
+      <li><a href="/categories/crime/index.html">Crime</a></li>
+      
+      <li><a href="/categories/action/index.html">Action</a></li>
+      
+      <li><a href="/categories/index.html">All Categories</a></li>
+      
+      <li><a href="/about.html">About</a></li>
+      
+      <li><a href="/dmca.html">DMCA</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if (!toggle || !links) return;
+    toggle.addEventListener('click', function () {
+      var isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  })();
+</script>
+
+
+<div class="page-layout">
+  <div class="page-main">
+
+    <div class="movie-container">
+
+      
+      <div style="padding:14px 25px 0;">
+        <a class="back-link" href="/series/hometown-cha-cha-cha-s01/index.html">&larr; Back to Hometown Cha-Cha-Cha S01</a>
+      </div>
+      
+
+      <div class="movie-header">
+        <h1>Hometown Cha-Cha-Cha S01 Episode 12 </h1>
+        <p>kdrama | Korean | HD</p>
+      </div>
+
+      <div class="movie-content">
+
+        <img src="/poster/series/hometown-cha-cha-cha-s01.jpg" class="movie-poster" alt="Hometown Cha-Cha-Cha S01 Episode 12 Poster">
+
+        <h2>Story</h2>
+
+        <p>
+          Hometown Cha-Cha-Cha S01 — Season 1, Episode 12: Hometown Cha-Cha-Cha S01 Episode 12.
+        </p>
+
+        <div class="sp-slot" style="min-height:90px;display:flex;align-items:center;justify-content:center;background:#111827;border:1px dashed #334155;border-radius:8px;">
+  <div id="sp-container"></div>
+</div>
+
+<script>
+  function loadAd() {
+    var isMobile = window.innerWidth < 728;
+    var config = isMobile
+      ? { key: 'a15f4c85a99b96ddbf10198507ead447', width: 300, height: 250 }
+      : { key: 'ab9049a7e46fcaa8dc9326d05d4be47f', width: 728, height: 90 };
+
+    var container = document.getElementById('sp-container');
+    container.innerHTML = '';
+
+    atOptions = {
+      key: config.key,
+      format: 'iframe',
+      height: config.height,
+      width: config.width,
+      params: {}
+    };
+
+    var script = document.createElement('script');
+    script.src = 'https://www.highperformanceformat.com/' + config.key + '/invoke.js';
+    container.appendChild(script);
+  }
+
+  loadAd();
+
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(loadAd, 300);
+  });
+</script>
+
+        <div class="movie-info">
+
+          <strong>Title</strong>
+          <span>Hometown Cha-Cha-Cha S01 Episode 12</span>
+
+          <strong>Release</strong>
+          <span> </span>
+
+          <strong>Genre</strong>
+          <span>kdrama</span>
+
+          <strong>Category</strong>
+          <span>
+            <a href="/categories/kdrama/index.html">kdrama</a>
+          </span>
+
+          <strong>Language</strong>
+          <span>Korean</span>
+
+          <strong>Runtime</strong>
+          <span>Varies by episode</span>
+
+          <strong>Quality</strong>
+          <span>HD</span>
+
+          <strong>File Size</strong>
+          <span>150 MB per episode</span>
+
+          <strong>Format</strong>
+          <span>MKV</span>
+
+        </div>
+
+        
+
+        <div class="movie-download-box">
+
+          <h2>Download</h2>
+
+          <p><strong>Quality:</strong> HD</p>
+          <p><strong>Size:</strong> 150 MB per episode</p>
+          <p><strong>Format:</strong> MKV</p>
+
+          <div class="movie-btns">
+
+            <a href="#" id="movie-download" class="movie-btn movie-download">
+              &#11015; Download Movie
+            </a>
+
+            
+            <a href="#" id="vidSubs" class="movie-btn movie-subs" target="_blank">&#11015; Download Subtitle</a>
+
+          </div>
+
+        </div>
+         <div class="sp-slot horizontal">
+   <div style="min-height:90px; display:flex;align-items:center;justify-content:center; background: #111827;border:1px dashed #334155;border-radius:8px; color:#64748b;font-size:13px;">
+
+
+            
+          <script async="async" data-cfasync="false" src="https://pl30668849.effectivecpmnetwork.com/55c5328f06be761e66d2c9f2993e5c36/invoke.js"></script>
+          <div id="container-55c5328f06be761e66d2c9f2993e5c36"></div>
+      </div>
+
+</div>
+
+
+
+        <div class="movie-download-box dd-hid" id="dd-hid">
+          <h2 id="counterHeading">Generating link in <span id="counterValue">20</span> seconds</h2>
+
+          <div class="progress-wrap">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+
+          <div id="finalLinkWrap" class="dd-hid">
+            <p style="margin-bottom:20px;color:#cbd5e1;">Your link is ready:</p>
+            <a href="#" target="_blank" id="finalDownloadLink" class="movie-btn movie-download">
+              &#11015; Get Download Link
+            </a>
+            <div id="downloadStatus"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <aside class="page-sidebar">
+    <div class="sp-slot vertical">
+    <div style="min-height:250px;display:flex;align-items:center;justify-content:center;
+                background:#111827;border:1px dashed #334155;border-radius:8px;
+                color:#64748b;font-size:13px;text-align:center;padding:10px;">
+                 
+
+                  <div>
+        <script type="text/javascript">
+        aclib.runBanner({
+            zoneId: '11836302',
+        });
+        </script>
+         </div>
+               </div>
+
+</div>
+
+    <div class="sp-slot vertical-bottom">
+    <div style="min-height:250px; display:flex;align-items:center;justify-content:center; background: #111827; border: 1px dashed #334155; border-radius:8px; color: #64748b;font-size:13px;text-align:center;padding:10px;">
+     
+        <script>
+  atOptions = {
+    'key' : 'a15f4c85a99b96ddbf10198507ead447',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/a15f4c85a99b96ddbf10198507ead447/invoke.js"></script>
+
+
+
+  
+</div>
+
+  </aside>
+</div>
+
+
+  
+<section class="categories-showcase">
+  
+  <div class="section-heading" style="padding:0 20px;">
+    <h2>Browse by Category</h2>
+    <a href="/categories/index.html">All Categories &rarr;</a>
+  </div>
+  
+
+  
+    <div class="category-grid">
+      
+        
+        <a class="category-card" href="/categories/action/index.html" style="background-image:url('/poster/movies/alpha-men-love-vengeance.jpg');">
+          <div class="category-card-overlay">
+            <h3>Action</h3>
+            <p>232 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/adult/index.html" style="background-image:url('/poster/movies/booking-2026-18.jpg');">
+          <div class="category-card-overlay">
+            <h3>Adult</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/adventure/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Adventure</h3>
+            <p>182 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/animation/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Animation</h3>
+            <p>103 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/anime/index.html" style="background-image:url('/poster/series/attack-on-titan-s04-part-3.jpg');">
+          <div class="category-card-overlay">
+            <h3>anime</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/biography/index.html" style="background-image:url('/poster/series/brazil-70-the-third-star.webp');">
+          <div class="category-card-overlay">
+            <h3>biography</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/bl/index.html" style="background-image:url('/poster/series/boys-be-brave-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>bl</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/cdrama/index.html" style="background-image:url('/poster/series/american-born-chinese-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>cdrama</h3>
+            <p>6 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/coemdy/index.html" style="background-image:url('/poster/series/hal-harper-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>coemdy</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comdey/index.html" style="background-image:url('/poster/series/absolute-value-of-romance-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>comdey</h3>
+            <p>7 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comedy/index.html" style="background-image:url('/poster/movies/72-hours.jpg');">
+          <div class="category-card-overlay">
+            <h3>Comedy</h3>
+            <p>342 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/comedy-drama/index.html" style="background-image:url('/poster/series/crap-happens.webp');">
+          <div class="category-card-overlay">
+            <h3>comedy drama</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/crime/index.html" style="background-image:url('/poster/movies/a-family-of-bastards.jpg');">
+          <div class="category-card-overlay">
+            <h3>Crime</h3>
+            <p>272 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/documentary/index.html" style="background-image:url('/poster/movies/shipwrecked-nightmare-at-sea.jpg');">
+          <div class="category-card-overlay">
+            <h3>Documentary</h3>
+            <p>23 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/drama/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
+          <div class="category-card-overlay">
+            <h3>Drama</h3>
+            <p>819 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/family/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+          <div class="category-card-overlay">
+            <h3>Family</h3>
+            <p>51 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fanatsy/index.html" style="background-image:url('/poster/series/adventure-time-side-quests.webp');">
+          <div class="category-card-overlay">
+            <h3>fanatsy</h3>
+            <p>7 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fantasy/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+          <div class="category-card-overlay">
+            <h3>Fantasy</h3>
+            <p>195 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/fi/index.html" style="background-image:url('/poster/series/alice-in-borderland-s02.jpg');">
+          <div class="category-card-overlay">
+            <h3>fi</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/history/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
+          <div class="category-card-overlay">
+            <h3>History</h3>
+            <p>12 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/horror/index.html" style="background-image:url('/poster/movies/affection.jpg');">
+          <div class="category-card-overlay">
+            <h3>Horror</h3>
+            <p>39 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/jdrama/index.html" style="background-image:url('/poster/series/golden-kamuy-2-the-hunt-of-prisoners-in-hokkaido-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>jdrama</h3>
+            <p>9 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/kdrama/index.html" style="background-image:url('/poster/series/jumong.jpg');">
+          <div class="category-card-overlay">
+            <h3>kdrama</h3>
+            <p>818 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/kids/index.html" style="background-image:url('/poster/series/apple-of-my-eye.jpg');">
+          <div class="category-card-overlay">
+            <h3>kids</h3>
+            <p>9 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/music/index.html" style="background-image:url('/poster/movies/michael.jpg');">
+          <div class="category-card-overlay">
+            <h3>Music</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/mysterr/index.html" style="background-image:url('/poster/series/classroom-of-the-elite-s01.webp');">
+          <div class="category-card-overlay">
+            <h3>mysterr</h3>
+            <p>4 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/mystery/index.html" style="background-image:url('/poster/movies/backrooms.jpg');">
+          <div class="category-card-overlay">
+            <h3>Mystery</h3>
+            <p>178 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/politics/index.html" style="background-image:url('/poster/series/a-spy-among-friends.jpg');">
+          <div class="category-card-overlay">
+            <h3>politics</h3>
+            <p>12 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/reality/index.html" style="background-image:url('/poster/series/a-list-to-playlist-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>reality</h3>
+            <p>45 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/romance/index.html" style="background-image:url('/poster/movies/booking-2026-18.jpg');">
+          <div class="category-card-overlay">
+            <h3>Romance</h3>
+            <p>14 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci/index.html" style="background-image:url('/poster/series/alice-in-borderland-s02.jpg');">
+          <div class="category-card-overlay">
+            <h3>sci</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci-fi/index.html" style="background-image:url('/poster/movies/affection.jpg');">
+          <div class="category-card-overlay">
+            <h3>Sci-Fi</h3>
+            <p>193 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sci-fi-fantasy/index.html" style="background-image:url('/poster/series/invincible-s04.webp');">
+          <div class="category-card-overlay">
+            <h3>sci-fi & fantasy</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/soap/index.html" style="background-image:url('/poster/series/call-it-love-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>soap</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sport/index.html" style="background-image:url('/poster/series/a-beautiful-obsession.webp');">
+          <div class="category-card-overlay">
+            <h3>sport</h3>
+            <p>2 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/sports/index.html" style="background-image:url('/poster/series/all-american-s08.webp');">
+          <div class="category-card-overlay">
+            <h3>sports</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tdrama/index.html" style="background-image:url('/poster/series/coffee-melody.jpg');">
+          <div class="category-card-overlay">
+            <h3>tdrama</h3>
+            <p>3 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/thriller/index.html" style="background-image:url('/poster/movies/black-box-flight-298.jpg');">
+          <div class="category-card-overlay">
+            <h3>Thriller</h3>
+            <p>63 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv/index.html" style="background-image:url('/poster/series/chicago-typewriter.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-movie/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+          <div class="category-card-overlay">
+            <h3>TV Movie</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-romance/index.html" style="background-image:url('/poster/series/chicago-typewriter.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv romance</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/tv-series/index.html" style="background-image:url('/poster/series/jumong.jpg');">
+          <div class="category-card-overlay">
+            <h3>tv-series</h3>
+            <p>1077 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/variety/index.html" style="background-image:url('/poster/series/korea-no-1-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>variety</h3>
+            <p>1 title</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/variety-show/index.html" style="background-image:url('/poster/series/country-life-of-gen-z-s01.jpg');">
+          <div class="category-card-overlay">
+            <h3>variety-show</h3>
+            <p>22 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/war/index.html" style="background-image:url('/poster/movies/killhouse.jpg');">
+          <div class="category-card-overlay">
+            <h3>War</h3>
+            <p>22 titles</p>
+          </div>
+        </a>
+      
+        
+        <a class="category-card" href="/categories/western/index.html" style="background-image:url('/poster/movies/casa-grande.jpg');">
+          <div class="category-card-overlay">
+            <h3>Western</h3>
+            <p>8 titles</p>
+          </div>
+        </a>
+      
+    </div>
+  
+</section>
+
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>© 2026 Ada Movies. All rights reserved.</div>
+    <ul class="site-footer-links">
+      
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+      
+      <li><a href="/terms.html">Terms of Service</a></li>
+      
+      <li><a href="/dmca.html">DMCA</a></li>
+      
+    </ul>
+    <!-- Paste extra footer HTML (social icons, badges, etc.) here -->
+     
+<script type="text/javascript">
+aclib.runVideoSlider({
+    zoneId: '11836318',
+});
+</script>
+
+  </div>
+</footer>
+ 
+<style>
+
+  /* ---- Sticky/floating anchor ad (bottom of viewport, dismissible) ---- */
+  .anchor-ad {
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--bg-alt); border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px var(--shadow);
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    padding:10px 44px 10px 16px;
+    transform:translateY(0); transition:transform .25s ease;
+  }
+  .anchor-ad.collapsed { transform:translateY(100%); }
+  .anchor-ad-content { flex:1; display:flex; justify-content:center; overflow:hidden; }
+  .anchor-ad-close {
+    position:absolute; top:6px; right:8px; background:none; border:none;
+    color:var(--text-faint); font-size:1.1rem; cursor:pointer; line-height:1; padding:6px;
+  }
+  .anchor-ad-close:hover { color:var(--text); }
+  .anchor-ad-reopen {
+    position:fixed; right:16px; bottom:16px; z-index:100; background:var(--brand);
+    color:var(--brand-text-on); border:none; border-radius:24px; padding:10px 16px;
+    font-size:.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 16px var(--shadow);
+    display:none;
+  }
+  .anchor-ad-reopen.show { display:block; }
+  body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:70px; }
+  @media (max-width:600px){
+    .anchor-ad { padding:8px 36px 8px 10px; }
+    body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:60px; }
+  }
+
+  /* ---- Sticky/floating anchor ad (bottom of viewport, dismissible) ---- */
+  .anchor-ad {
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--bg-alt); border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px var(--shadow);
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    padding:10px 44px 10px 16px;
+    transform:translateY(0); transition:transform .25s ease;
+  }
+  .anchor-ad.collapsed { transform:translateY(100%); }
+  .anchor-ad-content { flex:1; display:flex; justify-content:center; overflow:hidden; }
+  .anchor-ad-close {
+    position:absolute; top:6px; right:8px; background:none; border:none;
+    color:var(--text-faint); font-size:1.1rem; cursor:pointer; line-height:1; padding:6px;
+  }
+  .anchor-ad-close:hover { color:var(--text); }
+  .anchor-ad-reopen {
+    position:fixed; right:16px; bottom:16px; z-index:100; background:var(--brand);
+    color:var(--brand-text-on); border:none; border-radius:24px; padding:10px 16px;
+    font-size:.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 16px var(--shadow);
+    display:none;
+  }
+  .anchor-ad-reopen.show { display:block; }
+  body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:70px; }
+  @media (max-width:600px){
+    .anchor-ad { padding:8px 36px 8px 10px; }
+    body.has-anchor-ad .page-layout, body.has-anchor-ad .site-footer { padding-bottom:60px; }
+  }
+
+</style>
+
+<div class="anchor-ad" id="anchorAd" style="background: #111827; border: 1px dashed #334155; justify-content:center; align-items:center !important;">
+
+  <button class="anchor-ad-close" type="button" onclick="xtbCloseAnchorAd()" aria-label="Dismiss ad">&times;</button>
+  <div class="anchor-ad-content">
+    <div class="ad-placeholder" style="min-height:60px;width:100%;max-width:728px;margin:0;">
+
+
+
+<div>
+    <script type="text/javascript">
+        aclib.runBanner({
+            zoneId: '11831162',
+        });
+    </script>
+</div>
+
+    </div>
+
+  </div>
+</div>
+<button class="anchor-ad-reopen" id="anchorAdReopen" type="button" onclick="xtbOpenAnchorAd()">Show ad &uarr;</button>
+
+<script>
+  (function () {
+    var KEY = 'xtb-anchor-ad-dismissed';
+    var bar = document.getElementById('anchorAd');
+    var reopenBtn = document.getElementById('anchorAdReopen');
+    if (!bar) return;
+
+    document.body.classList.add('has-anchor-ad');
+
+    var dismissed = false;
+    try { dismissed = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    if (dismissed) {
+      bar.classList.add('collapsed');
+      reopenBtn.classList.add('show');
+      document.body.classList.remove('has-anchor-ad');
+    }
+
+    window.xtbCloseAnchorAd = function () {
+      bar.classList.add('collapsed');
+      reopenBtn.classList.add('show');
+      document.body.classList.remove('has-anchor-ad');
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    };
+    window.xtbOpenAnchorAd = function () {
+      bar.classList.remove('collapsed');
+      reopenBtn.classList.remove('show');
+      document.body.classList.add('has-anchor-ad');
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
+    };
+  })();
+</script>
+
+ 
+<script src="https://pl30668848.effectivecpmnetwork.com/48/47/7b/48477be255355f192ad40da71d5e819f.js"></script>
+
+<!-- Google IMA SDK. If this fails to load (offline, blocked, etc.) the
+     code below detects that and just plays the video with no ads. -->
+<script src="//imasdk.googleapis.com/js/sdkloader/ima3.js" async></script>
+
+<script>
+  /* =====================================================================
+     VAST / Google IMA ad config. Comes from data/site.yml by default;
+     a single movie can override enabled / demo_mode / tag url in
+     data/movies.yml (ad_enabled / ad_demo_mode / ad_tag_url).
+     ===================================================================== */
+  const AD_CONFIG = {
+    enabled: true,
+    demoMode: true,
+    prodTagUrl: "YOUR_VAST_TAG_URL_HERE",
+    demoTagUrl: "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&cust_params=sample_ct%3Dlinear&ciu_szs=300x250&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
+  };
+
+  (function initAds() {
+    const video = document.getElementById('moviePlayer');
+    const adContainer = document.getElementById('adContainer');
+    const demoBadge = document.getElementById('demoBadge');
+
+    let adsLoader = null;
+    let adDisplayContainer = null;
+    let adsManager = null;
+    let adsRequested = false;
+
+    function sdkAvailable() {
+      return typeof google !== 'undefined' && !!google.ima;
+    }
+
+    function playContentWithoutAds() {
+      adContainer.style.pointerEvents = 'none';
+      video.play().catch(() => {});
+    }
+
+    function getVastTagUrl() {
+      return AD_CONFIG.demoMode ? AD_CONFIG.demoTagUrl : AD_CONFIG.prodTagUrl;
+    }
+
+    function onAdError() {
+      if (adsManager) adsManager.destroy();
+      playContentWithoutAds();
+    }
+
+    function onContentPauseRequested() {
+      video.pause();
+      adContainer.style.pointerEvents = 'auto';
+    }
+
+    function onContentResumeRequested() {
+      adContainer.style.pointerEvents = 'none';
+      video.play().catch(() => {});
+    }
+
+    function onAdsManagerLoaded(adsManagerLoadedEvent) {
+      const settings = new google.ima.AdsRenderingSettings();
+      settings.restoreCustomPlaybackStateOnAdBreakComplete = true;
+
+      adsManager = adsManagerLoadedEvent.getAdsManager(video, settings);
+
+      adsManager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, onAdError);
+      adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED, onContentPauseRequested);
+      adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED, onContentResumeRequested);
+
+      try {
+        const w = video.clientWidth || 640;
+        const h = video.clientHeight || 360;
+        adsManager.init(w, h, google.ima.ViewMode.NORMAL);
+        adsManager.start();
+      } catch (err) {
+        playContentWithoutAds();
+      }
+    }
+
+    function setUpIma() {
+      adDisplayContainer = new google.ima.AdDisplayContainer(adContainer, video);
+      adsLoader = new google.ima.AdsLoader(adDisplayContainer);
+
+      adsLoader.addEventListener(
+        google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
+        onAdsManagerLoaded,
+        false
+      );
+      adsLoader.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, onAdError, false);
+
+      video.addEventListener('ended', () => {
+        if (adsLoader) adsLoader.contentComplete();
+      });
+    }
+
+    function requestAds() {
+      if (adsRequested) return;
+      adsRequested = true;
+
+      if (!AD_CONFIG.enabled || !sdkAvailable()) {
+        playContentWithoutAds();
+        return;
+      }
+
+      if (AD_CONFIG.demoMode) demoBadge.style.display = 'flex';
+
+      setUpIma();
+      adDisplayContainer.initialize();
+
+      const adsRequest = new google.ima.AdsRequest();
+      adsRequest.adTagUrl = getVastTagUrl();
+      adsRequest.linearAdSlotWidth = video.clientWidth || 640;
+      adsRequest.linearAdSlotHeight = video.clientHeight || 360;
+      adsRequest.nonLinearAdSlotWidth = video.clientWidth || 640;
+      adsRequest.nonLinearAdSlotHeight = 150;
+
+      adsLoader.requestAds(adsRequest);
+    }
+
+    video.addEventListener('play', requestAds, { once: true });
+  })();
+</script>
+
+<script>
+  
+  if(document.getElementById("vidSubs").getAttribute('href') === "#"){
+    document.getElementById('vidSubs').style.display = "none";
+  }
+
+  
+
+  /* =====================================================================
+     Download flow: shows a countdown, then reveals the real link.
+
+     IMPORTANT — forced download:
+     A plain <a href="file"> lets the BROWSER decide what to do with the
+     file. If the host server doesn't send a Content-Disposition:
+     attachment header (many simple file hosts don't), the browser will
+     just try to OPEN it instead of downloading it — which breaks for
+     video/archive files on servers that only support inline serving.
+
+     To make it a real *download request* instead of an *open request*,
+     this fetches the file's bytes directly and saves them as a Blob,
+     bypassing the browser's "how do I handle this content-type" logic
+     entirely. This requires the file host to allow cross-origin fetches
+     (CORS) if it's a different origin than this page. If the fetch is
+     blocked (no CORS) or fails, it falls back to a plain anchor with the
+     `download` attribute, which still works for same-origin/permissive
+     hosts, and finally to a normal navigation as a last resort.
+     ===================================================================== */
+  const COUNTDOWN_SECONDS   = 20;
+  const REAL_DOWNLOAD_URL   = "https://downloadwella.com/2j8duwcd3lhx/Hometown.Cha-Cha-Cha.S01E12.(NKIRI.COM).mkv.html";
+  const DOWNLOAD_FILENAME   = "Hometown.Cha-Cha-Cha.S01E12.(NKIRI.COM).mkv.html";
+  const FORCE_DOWNLOAD      = false;
+
+  const downloadBtn    = document.getElementById('movie-download');
+  const ddHid          = document.getElementById('dd-hid');
+  const counterValue   = document.getElementById('counterValue');
+  const counterHeading = document.getElementById('counterHeading');
+  const progressWrap   = document.querySelector('.progress-wrap');
+  const progressBar    = document.getElementById('progressBar');
+  const finalLinkWrap  = document.getElementById('finalLinkWrap');
+  const finalLink      = document.getElementById('finalDownloadLink');
+  const downloadStatus = document.getElementById('downloadStatus');
+
+  let countdownInterval = null;
+  let running = false;
+
+  downloadBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (running) return;
+
+    finalLinkWrap.classList.add('dd-hid');
+    finalLinkWrap.style.display = 'none';
+    counterHeading.style.display = '';
+    progressWrap.style.display = '';
+    progressBar.style.width = '0%';
+    downloadStatus.textContent = '';
+
+    ddHid.classList.remove('dd-hid');
+    ddHid.style.display = 'block';
+    ddHid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    startCountdown(COUNTDOWN_SECONDS);
+  });
+
+  function startCountdown(totalSeconds) {
+    running = true;
+    let remaining = totalSeconds;
+
+    counterValue.textContent = remaining;
+
+    countdownInterval = setInterval(() => {
+      remaining -= 1;
+
+      if (remaining >= 0) {
+        counterValue.textContent = remaining;
+        counterValue.classList.remove('pulse');
+        void counterValue.offsetWidth;
+        counterValue.classList.add('pulse');
+
+        const percent = ((totalSeconds - remaining) / totalSeconds) * 100;
+        progressBar.style.width = percent + '%';
+      }
+
+      if (remaining <= 0) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+        running = false;
+        revealLink();
+      }
+    }, 1000);
+  }
+
+  function revealLink() {
+    counterHeading.style.display = 'none';
+    progressWrap.style.display = 'none';
+
+    // Native fallback: right-click/long-press "save as" and any browser
+    // that doesn't run the click handler's JS still gets a sane default.
+    finalLink.href = REAL_DOWNLOAD_URL;
+    finalLink.setAttribute('download', DOWNLOAD_FILENAME);
+
+    finalLinkWrap.classList.remove('dd-hid');
+    finalLinkWrap.style.display = 'block';
+  }
+
+  finalLink.addEventListener('click', (e) => {
+    if (!FORCE_DOWNLOAD) return; // let the native download="" attribute handle it
+    e.preventDefault();
+    downloadStatus.textContent = 'Preparing your download…';
+    triggerForceDownload(REAL_DOWNLOAD_URL, DOWNLOAD_FILENAME);
+  });
+
+  function triggerForceDownload(url, filename) {
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error('Network error: ' + res.status);
+        return res.blob();
+      })
+      .then((blob) => {
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = filename || '';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        downloadStatus.textContent = 'Download started.';
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 4000);
+      })
+      .catch(() => {
+        // Fetch blocked (often a cross-origin host without CORS) or
+        // failed — fall back to a direct download-attribute anchor.
+        downloadStatus.textContent = 'Starting direct download…';
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename || '';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      });
+  }
+</script>
+
+</body>
+</html>
