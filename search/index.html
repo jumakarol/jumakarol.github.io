@@ -347,12 +347,19 @@
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
     gap:20px;
-    margin-bottom:40px;
+    margin-bottom:20px;
   }
   #searchEmpty { display:none; color:#94a3b8; padding:20px 0; }
+  #loadMoreWrap { text-align:center; margin:10px 0 40px; }
+  #loadMoreBtn {
+    padding:10px 22px; border-radius:8px; background:#1e293b;
+    color:#cbd5e1; font-weight:bold; cursor:pointer; border:1px solid #334155;
+  }
+  #loadMoreBtn:hover { background:#334155; }
+  #loadMoreBtn[hidden] { display:none; }
 </style>
 </head>
-<body class="has-anchor-ad">
+<body>
 <nav class="site-nav">
   <div class="site-nav-inner">
     <a class="site-brand" href="/index.html">Ada movies</a>
@@ -409,9 +416,10 @@
     <input type="text" id="searchInput" placeholder="Search movies &amp; series..." autocomplete="off" aria-label="Search">
     <button type="submit">Search</button>
   </form>
-  <div id="searchMeta"></div>
+  <div id="searchMeta">Loading search&hellip;</div>
   <div id="searchResults"></div>
   <p id="searchEmpty">No results. Try a different search term.</p>
+  <div id="loadMoreWrap"><button id="loadMoreBtn" hidden>Load more</button></div>
 </div>
 
 
@@ -428,10 +436,10 @@
     <div class="category-grid">
       
         
-        <a class="category-card" href="/categories/action/index.html" style="background-image:url('/poster/movies/alpha-men-love-vengeance.jpg');">
+        <a class="category-card" href="/categories/action/index.html" style="background-image:url('/poster/movies/above-below.webp');">
           <div class="category-card-overlay">
             <h3>Action</h3>
-            <p>232 titles</p>
+            <p>263 titles</p>
           </div>
         </a>
       
@@ -447,15 +455,15 @@
         <a class="category-card" href="/categories/adventure/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
           <div class="category-card-overlay">
             <h3>Adventure</h3>
-            <p>182 titles</p>
+            <p>189 titles</p>
           </div>
         </a>
       
         
-        <a class="category-card" href="/categories/animation/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
+        <a class="category-card" href="/categories/animation/index.html" style="background-image:url('https://www.net9ja.tv/wp-content/uploads/2026/07/3sgnSfNT27Bx5O5ukr7B26mhEQq-683x1024.jpg');">
           <div class="category-card-overlay">
             <h3>Animation</h3>
-            <p>103 titles</p>
+            <p>108 titles</p>
           </div>
         </a>
       
@@ -511,7 +519,7 @@
         <a class="category-card" href="/categories/comedy/index.html" style="background-image:url('/poster/movies/72-hours.jpg');">
           <div class="category-card-overlay">
             <h3>Comedy</h3>
-            <p>342 titles</p>
+            <p>358 titles</p>
           </div>
         </a>
       
@@ -527,15 +535,15 @@
         <a class="category-card" href="/categories/crime/index.html" style="background-image:url('/poster/movies/a-family-of-bastards.jpg');">
           <div class="category-card-overlay">
             <h3>Crime</h3>
-            <p>272 titles</p>
+            <p>288 titles</p>
           </div>
         </a>
       
         
-        <a class="category-card" href="/categories/documentary/index.html" style="background-image:url('/poster/movies/shipwrecked-nightmare-at-sea.jpg');">
+        <a class="category-card" href="/categories/documentary/index.html" style="background-image:url('/poster/movies/jackass-best-and-last.jpg');">
           <div class="category-card-overlay">
             <h3>Documentary</h3>
-            <p>23 titles</p>
+            <p>25 titles</p>
           </div>
         </a>
       
@@ -543,15 +551,15 @@
         <a class="category-card" href="/categories/drama/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
           <div class="category-card-overlay">
             <h3>Drama</h3>
-            <p>819 titles</p>
+            <p>831 titles</p>
           </div>
         </a>
       
         
-        <a class="category-card" href="/categories/family/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+        <a class="category-card" href="/categories/family/index.html" style="background-image:url('/poster/movies/clash-of-the-thundermans.jpg');">
           <div class="category-card-overlay">
             <h3>Family</h3>
-            <p>51 titles</p>
+            <p>57 titles</p>
           </div>
         </a>
       
@@ -567,7 +575,7 @@
         <a class="category-card" href="/categories/fantasy/index.html" style="background-image:url('/poster/movies/avatar-aang-the-last-airbender.jpg');">
           <div class="category-card-overlay">
             <h3>Fantasy</h3>
-            <p>195 titles</p>
+            <p>198 titles</p>
           </div>
         </a>
       
@@ -583,15 +591,15 @@
         <a class="category-card" href="/categories/history/index.html" style="background-image:url('/poster/movies/a-great-awakening.jpg');">
           <div class="category-card-overlay">
             <h3>History</h3>
-            <p>12 titles</p>
+            <p>14 titles</p>
           </div>
         </a>
       
         
-        <a class="category-card" href="/categories/horror/index.html" style="background-image:url('/poster/movies/affection.jpg');">
+        <a class="category-card" href="/categories/horror/index.html" style="background-image:url('/poster/movies/above-below.webp');">
           <div class="category-card-overlay">
             <h3>Horror</h3>
-            <p>39 titles</p>
+            <p>55 titles</p>
           </div>
         </a>
       
@@ -639,7 +647,7 @@
         <a class="category-card" href="/categories/mystery/index.html" style="background-image:url('/poster/movies/backrooms.jpg');">
           <div class="category-card-overlay">
             <h3>Mystery</h3>
-            <p>178 titles</p>
+            <p>183 titles</p>
           </div>
         </a>
       
@@ -660,10 +668,10 @@
         </a>
       
         
-        <a class="category-card" href="/categories/romance/index.html" style="background-image:url('/poster/movies/booking-2026-18.jpg');">
+        <a class="category-card" href="/categories/romance/index.html" style="background-image:url('/poster/movies/all-that-we-never-were.jpg');">
           <div class="category-card-overlay">
             <h3>Romance</h3>
-            <p>14 titles</p>
+            <p>19 titles</p>
           </div>
         </a>
       
@@ -679,7 +687,7 @@
         <a class="category-card" href="/categories/sci-fi/index.html" style="background-image:url('/poster/movies/affection.jpg');">
           <div class="category-card-overlay">
             <h3>Sci-Fi</h3>
-            <p>193 titles</p>
+            <p>202 titles</p>
           </div>
         </a>
       
@@ -724,10 +732,10 @@
         </a>
       
         
-        <a class="category-card" href="/categories/thriller/index.html" style="background-image:url('/poster/movies/black-box-flight-298.jpg');">
+        <a class="category-card" href="/categories/thriller/index.html" style="background-image:url('/poster/movies/above-below.webp');">
           <div class="category-card-overlay">
             <h3>Thriller</h3>
-            <p>63 titles</p>
+            <p>96 titles</p>
           </div>
         </a>
       
@@ -740,10 +748,10 @@
         </a>
       
         
-        <a class="category-card" href="/categories/tv-movie/index.html" style="background-image:url('/poster/movies/descendants-wicked-wonderland.jpg');">
+        <a class="category-card" href="/categories/tv-movie/index.html" style="background-image:url('/poster/movies/clash-of-the-thundermans.jpg');">
           <div class="category-card-overlay">
             <h3>TV Movie</h3>
-            <p>1 title</p>
+            <p>2 titles</p>
           </div>
         </a>
       
@@ -783,7 +791,7 @@
         <a class="category-card" href="/categories/war/index.html" style="background-image:url('/poster/movies/killhouse.jpg');">
           <div class="category-card-overlay">
             <h3>War</h3>
-            <p>22 titles</p>
+            <p>27 titles</p>
           </div>
         </a>
       
@@ -791,7 +799,7 @@
         <a class="category-card" href="/categories/western/index.html" style="background-image:url('/poster/movies/casa-grande.jpg');">
           <div class="category-card-overlay">
             <h3>Western</h3>
-            <p>8 titles</p>
+            <p>10 titles</p>
           </div>
         </a>
       
@@ -943,105 +951,126 @@ aclib.runVideoSlider({
 <script src="https://pl30668848.effectivecpmnetwork.com/48/47/7b/48477be255355f192ad40da71d5e819f.js"></script>
 
 
-<script>
-  (function () {
-    const SEARCH_INDEX_URL = "/search-index.json";
-    const input = document.getElementById('searchInput');
-    const form = document.getElementById('searchForm');
-    const results = document.getElementById('searchResults');
-    const meta = document.getElementById('searchMeta');
-    const empty = document.getElementById('searchEmpty');
+<script type="module">
+  const PAGEFIND_URL = "/pagefind/pagefind.js";
+  const PAGE_SIZE = 24;
 
-    let allItems = [];
-    let debounceTimer = null;
+  const input = document.getElementById('searchInput');
+  const form = document.getElementById('searchForm');
+  const resultsEl = document.getElementById('searchResults');
+  const metaEl = document.getElementById('searchMeta');
+  const emptyEl = document.getElementById('searchEmpty');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+  let pagefind = null;
+  let currentResults = []; // cheap handles from pagefind.search() — no data fetched yet
+  let shown = 0;
+  let debounceTimer = null;
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function cardHtml(result) {
+    const filters = result.filters || {};
+    const meta = result.meta || {};
+    const isSeries = (filters.Type || []).includes('Series');
+    const badge = isSeries ? '<span class="card-kind-badge">Series</span>' : '';
+    const cats = filters.Category || [];
+    return '<a class="movie-card" href="' + result.url + '">' +
+      '<img src="' + (meta.image || '') + '" alt="' + escapeHtml(meta.title || '') + '">' +
+      badge +
+      '<div class="info"><h3>' + escapeHtml(meta.title || '') + (meta.year ? ' (' + meta.year + ')' : '') + '</h3>' +
+      '<p>' + escapeHtml(cats.join(', ')) + (meta.quality ? ' &middot; ' + escapeHtml(meta.quality) : '') + '</p></div>' +
+    '</a>';
+  }
+
+  // Only fetches full result data (poster, title, filters...) for the
+  // slice of results about to be shown — not for the whole result set.
+  async function showNextPage() {
+    const slice = currentResults.slice(shown, shown + PAGE_SIZE);
+    const dataList = await Promise.all(slice.map((r) => r.data()));
+    resultsEl.insertAdjacentHTML('beforeend', dataList.map(cardHtml).join(''));
+    shown += slice.length;
+    loadMoreBtn.hidden = shown >= currentResults.length;
+  }
+
+  async function runSearch(term) {
+    if (!pagefind) return;
+
+    if (!term) {
+      resultsEl.innerHTML = '';
+      emptyEl.style.display = 'none';
+      loadMoreBtn.hidden = true;
+      metaEl.textContent = 'Type something to search.';
+      currentResults = [];
+      shown = 0;
+      return;
     }
 
-    function cardHtml(item) {
-      const badge = item.kind === 'series' ? '<span class="card-kind-badge">Series</span>' : '';
-      
-      const cats = (item.categories || []).join(', ');
-      return '<a class="movie-card" href="' + item.url + '">' +
-        '<img src="' + item.poster_url + '" alt="' + escapeHtml(item.title) + '">' +
-        badge +
-        '<div class="info"><h3>' + escapeHtml(item.title) + '</h3>' +
-        '<p>' + escapeHtml(cats) + ' &middot; ' + escapeHtml(item.quality || '') + '</p></div>' +
-      '</a>';
+    const search = await pagefind.search(term);
+    currentResults = search.results; // cheap — just result IDs, nothing downloaded yet
+    shown = 0;
+    resultsEl.innerHTML = '';
+
+    if (currentResults.length === 0) {
+      emptyEl.style.display = 'block';
+      loadMoreBtn.hidden = true;
+      metaEl.textContent = 'No results for "' + term + '".';
+      return;
     }
 
-    function filterItems(items, q) {
-      if (!q) return items;
-      const needle = q.toLowerCase();
-      return items.filter(function (item) {
-        const inTitle = (item.title || '').toLowerCase().includes(needle);
-        const inCats = (item.categories || []).some(function (c) {
-          return c.toLowerCase().includes(needle);
-        });
-        return inTitle || inCats;
-      });
+    emptyEl.style.display = 'none';
+    metaEl.textContent = currentResults.length + ' result' + (currentResults.length === 1 ? '' : 's') + ' for "' + term + '"';
+    await showNextPage();
+  }
+
+  function currentQueryFromUrl() {
+    return (new URLSearchParams(window.location.search).get('q') || '').trim();
+  }
+
+  function updateUrl(term) {
+    const url = new URL(window.location.href);
+    if (term) url.searchParams.set('q', term); else url.searchParams.delete('q');
+    window.history.replaceState({}, '', url);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const term = input.value.trim();
+    updateUrl(term);
+    runSearch(term);
+  });
+
+  input.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const term = input.value.trim();
+      updateUrl(term);
+      runSearch(term);
+    }, 250);
+  });
+
+  loadMoreBtn.addEventListener('click', showNextPage);
+
+  (async function init() {
+    try {
+      pagefind = await import(PAGEFIND_URL);
+      await pagefind.init();
+    } catch (err) {
+      metaEl.textContent = 'Search is unavailable right now.';
+      console.error('Pagefind failed to load:', err);
+      return;
     }
-
-    function render(q) {
-      const matches = filterItems(allItems, q);
-      if (matches.length === 0) {
-        results.innerHTML = '';
-        empty.style.display = 'block';
-      } else {
-        empty.style.display = 'none';
-        results.innerHTML = matches.map(cardHtml).join('');
-      }
-      meta.textContent = q
-        ? matches.length + ' result' + (matches.length === 1 ? '' : 's') + ' for "' + q + '"'
-        : 'Showing all ' + matches.length + ' title' + (matches.length === 1 ? '' : 's');
+    const q = currentQueryFromUrl();
+    input.value = q;
+    if (q) {
+      await runSearch(q);
+    } else {
+      metaEl.textContent = 'Type something to search.';
     }
-
-    function currentQuery() {
-      const params = new URLSearchParams(window.location.search);
-      return (params.get('q') || '').trim();
-    }
-
-    function runSearch(pushState) {
-      const q = input.value.trim();
-      if (pushState) {
-        const url = new URL(window.location.href);
-        if (q) {
-          url.searchParams.set('q', q);
-        } else {
-          url.searchParams.delete('q');
-        }
-        window.history.replaceState({}, '', url);
-      }
-      render(q);
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      runSearch(true);
-    });
-
-    input.addEventListener('input', function () {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () { runSearch(true); }, 250);
-    });
-
-    fetch(SEARCH_INDEX_URL)
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        allItems = data;
-        const q = currentQuery();
-        input.value = q;
-        render(q);
-      })
-      .catch(function () {
-        meta.textContent = 'Could not load the search index.';
-      });
   })();
 </script>
 </body>
