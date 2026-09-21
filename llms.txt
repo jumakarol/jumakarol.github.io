@@ -1,0 +1,113 @@
+# Ada movies
+
+> Watch and download the latest movies
+
+A streaming catalog with 212 movies and 1685 series across 46 categories, organized by category.
+
+## Site sections
+
+- [Home](https://adamovies.xyz/): homepage with featured and by-category sections
+- [All Movies](https://adamovies.xyz/browse/): full movie archive
+- [All Series](https://adamovies.xyz/series/): full series archive
+- [All Categories](https://adamovies.xyz/categories/): every category on the site
+- [Search](https://adamovies.xyz/search/): search movies and series by title or category
+- [Sitemap](https://adamovies.xyz/sitemap_index.xml): full machine-readable page index
+
+## Categories
+
+- [Action](https://adamovies.xyz/categories/action/): 263 titles
+- [Adult](https://adamovies.xyz/categories/adult/): 1 title
+- [Adventure](https://adamovies.xyz/categories/adventure/): 189 titles
+- [Animation](https://adamovies.xyz/categories/animation/): 108 titles
+- [anime](https://adamovies.xyz/categories/anime/): 1 title
+- [biography](https://adamovies.xyz/categories/biography/): 1 title
+- [bl](https://adamovies.xyz/categories/bl/): 2 titles
+- [cdrama](https://adamovies.xyz/categories/cdrama/): 6 titles
+- [coemdy](https://adamovies.xyz/categories/coemdy/): 1 title
+- [comdey](https://adamovies.xyz/categories/comdey/): 7 titles
+- [Comedy](https://adamovies.xyz/categories/comedy/): 358 titles
+- [comedy drama](https://adamovies.xyz/categories/comedy-drama/): 1 title
+- [Crime](https://adamovies.xyz/categories/crime/): 288 titles
+- [Documentary](https://adamovies.xyz/categories/documentary/): 25 titles
+- [Drama](https://adamovies.xyz/categories/drama/): 831 titles
+- [Family](https://adamovies.xyz/categories/family/): 57 titles
+- [fanatsy](https://adamovies.xyz/categories/fanatsy/): 7 titles
+- [Fantasy](https://adamovies.xyz/categories/fantasy/): 198 titles
+- [fi](https://adamovies.xyz/categories/fi/): 2 titles
+- [History](https://adamovies.xyz/categories/history/): 14 titles
+- [Horror](https://adamovies.xyz/categories/horror/): 55 titles
+- [jdrama](https://adamovies.xyz/categories/jdrama/): 9 titles
+- [kdrama](https://adamovies.xyz/categories/kdrama/): 818 titles
+- [kids](https://adamovies.xyz/categories/kids/): 9 titles
+- [Music](https://adamovies.xyz/categories/music/): 3 titles
+- [mysterr](https://adamovies.xyz/categories/mysterr/): 4 titles
+- [Mystery](https://adamovies.xyz/categories/mystery/): 183 titles
+- [politics](https://adamovies.xyz/categories/politics/): 12 titles
+- [reality](https://adamovies.xyz/categories/reality/): 45 titles
+- [Romance](https://adamovies.xyz/categories/romance/): 19 titles
+- [sci](https://adamovies.xyz/categories/sci/): 2 titles
+- [Sci-Fi](https://adamovies.xyz/categories/sci-fi/): 202 titles
+- [sci-fi & fantasy](https://adamovies.xyz/categories/sci-fi-fantasy/): 3 titles
+- [soap](https://adamovies.xyz/categories/soap/): 2 titles
+- [sport](https://adamovies.xyz/categories/sport/): 2 titles
+- [sports](https://adamovies.xyz/categories/sports/): 1 title
+- [tdrama](https://adamovies.xyz/categories/tdrama/): 3 titles
+- [Thriller](https://adamovies.xyz/categories/thriller/): 96 titles
+- [tv](https://adamovies.xyz/categories/tv/): 1 title
+- [TV Movie](https://adamovies.xyz/categories/tv-movie/): 2 titles
+- [tv romance](https://adamovies.xyz/categories/tv-romance/): 1 title
+- [tv-series](https://adamovies.xyz/categories/tv-series/): 1077 titles
+- [variety](https://adamovies.xyz/categories/variety/): 1 title
+- [variety-show](https://adamovies.xyz/categories/variety-show/): 22 titles
+- [War](https://adamovies.xyz/categories/war/): 27 titles
+- [Western](https://adamovies.xyz/categories/western/): 10 titles
+
+## Movies (sample)
+
+- [Furious Attack (2026)](https://adamovies.xyz/movies/furious-attack-2026/): Action, Crime, Thriller
+- [Fight Against Evil 3 (2026)](https://adamovies.xyz/movies/fight-against-evil-3-2026/): Action, Crime, Comedy, Drama
+- [DC (2026)](https://adamovies.xyz/movies/dc-2026/): Romance, Action, Drama
+- [Splash City (2026)](https://adamovies.xyz/movies/splash-city-2026/): Crime, Thriller
+- [The Girl in the River (2026)](https://adamovies.xyz/movies/the-girl-in-the-river-2026/): Crime, Thriller
+- [Mayday (2026)](https://adamovies.xyz/movies/mayday-2026/): Action, Comedy
+- [Dark Hollow (2026)](https://adamovies.xyz/movies/dark-hollow-2026/): Horror, Action, Sci-Fi
+- [Clash of the Thundermans (2026)](https://adamovies.xyz/movies/clash-of-the-thundermans-2026/): Sci-Fi, Action, Comedy, Family, TV Movie
+- [Speed and Battle (2026)](https://adamovies.xyz/movies/speed-and-battle-2026/): Action, Crime
+- [Second Life (2024)](https://adamovies.xyz/movies/second-life-2024/): Action, Comedy
+- [Lost (2025)](https://adamovies.xyz/movies/lost-2025/): Drama, Mystery, Thriller, Crime
+- [LEGO Star Wars: The Mandalorian (2026)](https://adamovies.xyz/movies/lego-star-wars-the-mandalorian-2026/): Animation, Sci-Fi, Adventure, Family, Action, Comedy
+- [Spider Island (2026)](https://adamovies.xyz/movies/spider-island-2026/): Comedy, Horror
+- [The Runner (2026)](https://adamovies.xyz/movies/the-runner-2026/): Action, Thriller
+- [Ananthan Kaadu (2026)](https://adamovies.xyz/movies/ananthan-kaadu-2026/): Action, Thriller
+- [Salmokji: Whispering Water (2026)](https://adamovies.xyz/movies/salmokji-whispering-water-2026/): Horror, Thriller
+- [The Room Below (2026)](https://adamovies.xyz/movies/the-room-below-2026/): Horror, Thriller, Mystery
+- [Rainbow on Mars (2026)](https://adamovies.xyz/movies/rainbow-on-mars-2026/): Adventure, Drama, Family, Sci-Fi
+- [The Brink of War (2026)](https://adamovies.xyz/movies/the-brink-of-war-2026/): Drama, History, Thriller, War
+- [Confinement (2026)](https://adamovies.xyz/movies/confinement-2026/): Thriller, Horror
+
+(212 movies total — see Sitemap or All Movies above for the complete list.)
+
+## Series (sample)
+
+- [He is Psychometric ( )](https://adamovies.xyz/series/he-is-psychometric/): kdrama
+- [Love Me S01 ( )](https://adamovies.xyz/series/love-me-s01/): drama, kdrama
+- [Better Call Saul S06 ( )](https://adamovies.xyz/series/better-call-saul-s06/): tv-series
+- [He's Expecting S01 ( )](https://adamovies.xyz/series/he-s-expecting-s01/): jdrama
+- [Love Next Door S01 ( )](https://adamovies.xyz/series/love-next-door-s01/): comedy, drama, kdrama
+- [Big Mistakes ( )](https://adamovies.xyz/series/big-mistakes/): comedy, crime, tv-series
+- [Diarra from Detroit S02 ( )](https://adamovies.xyz/series/diarra-from-detroit-s02/): comedy, drama, tv-series
+- [Head Over Heels S01 ( )](https://adamovies.xyz/series/head-over-heels-s01/): fantasy, sci-fi, kdrama
+- [Big Mood S01 ( )](https://adamovies.xyz/series/big-mood-s01/): drama, tv-series
+- [Die Hart S03 ( )](https://adamovies.xyz/series/die-hart-s03/): drama, tv-series
+- [Healer ( )](https://adamovies.xyz/series/healer/): kdrama
+- [Love on the Menu S01 ( )](https://adamovies.xyz/series/love-on-the-menu-s01/): drama, family, kdrama
+- [Big Mood S02 ( )](https://adamovies.xyz/series/big-mood-s02/): comedy, drama, tv-series
+- [Heart Stain S01 ( )](https://adamovies.xyz/series/heart-stain-s01/): drama, kdrama
+- [Love Phobia S01 ( )](https://adamovies.xyz/series/love-phobia-s01/): comedy, fantasy, sci-fi, kdrama
+- [Disclaimer S01 ( )](https://adamovies.xyz/series/disclaimer-s01/): drama, mystery, tv-series
+- [Billionaires Bunker S01 ( )](https://adamovies.xyz/series/billionaires-bunker-s01/): drama, fantasy, sci-fi, tv-series
+- [Billy The Kid S02 ( )](https://adamovies.xyz/series/billy-the-kid-s02/): tv-series
+- [Heart Surgeons S01 ( )](https://adamovies.xyz/series/heart-surgeons-s01/): kdrama
+- [Disney Junior Ariel S01 ( )](https://adamovies.xyz/series/disney-junior-ariel-s01/): animation, fantasy, kids, sci-fi, tv-series
+
+(1685 series total — see Sitemap or All Series above for the complete list.)
