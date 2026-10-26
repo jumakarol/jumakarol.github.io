@@ -2,7 +2,7 @@
 
 > Watch and download the latest movies
 
-A streaming catalog with 270 movies and 1913 series across 48 categories, organized by category.
+A streaming catalog with 414 movies and 1913 series across 48 categories, organized by category.
 
 ## Site sections
 
@@ -15,79 +15,79 @@ A streaming catalog with 270 movies and 1913 series across 48 categories, organi
 
 ## Categories
 
-- [Action](https://adamovies.xyz/categories/action/): 325 titles
-- [Adult](https://adamovies.xyz/categories/adult/): 3 titles
-- [Adventure](https://adamovies.xyz/categories/adventure/): 233 titles
-- [Animation](https://adamovies.xyz/categories/animation/): 132 titles
+- [Action](https://adamovies.xyz/categories/action/): 333 titles
+- [Adult](https://adamovies.xyz/categories/adult/): 91 titles
+- [Adventure](https://adamovies.xyz/categories/adventure/): 238 titles
+- [Animation](https://adamovies.xyz/categories/animation/): 134 titles
 - [anime](https://adamovies.xyz/categories/anime/): 1 title
 - [biography](https://adamovies.xyz/categories/biography/): 1 title
 - [bl](https://adamovies.xyz/categories/bl/): 2 titles
 - [cdrama](https://adamovies.xyz/categories/cdrama/): 7 titles
 - [coemdy](https://adamovies.xyz/categories/coemdy/): 1 title
 - [comdey](https://adamovies.xyz/categories/comdey/): 9 titles
-- [Comedy](https://adamovies.xyz/categories/comedy/): 426 titles
+- [Comedy](https://adamovies.xyz/categories/comedy/): 438 titles
 - [comedy drama](https://adamovies.xyz/categories/comedy-drama/): 1 title
-- [Crime](https://adamovies.xyz/categories/crime/): 334 titles
-- [Documentary](https://adamovies.xyz/categories/documentary/): 30 titles
-- [Drama](https://adamovies.xyz/categories/drama/): 959 titles
-- [Family](https://adamovies.xyz/categories/family/): 61 titles
+- [Crime](https://adamovies.xyz/categories/crime/): 339 titles
+- [Documentary](https://adamovies.xyz/categories/documentary/): 36 titles
+- [Drama](https://adamovies.xyz/categories/drama/): 1066 titles
+- [Family](https://adamovies.xyz/categories/family/): 62 titles
 - [fanatsy](https://adamovies.xyz/categories/fanatsy/): 8 titles
-- [Fantasy](https://adamovies.xyz/categories/fantasy/): 240 titles
+- [Fantasy](https://adamovies.xyz/categories/fantasy/): 244 titles
 - [fi](https://adamovies.xyz/categories/fi/): 2 titles
-- [History](https://adamovies.xyz/categories/history/): 15 titles
-- [Horror](https://adamovies.xyz/categories/horror/): 71 titles
+- [History](https://adamovies.xyz/categories/history/): 17 titles
+- [Horror](https://adamovies.xyz/categories/horror/): 78 titles
 - [jdrama](https://adamovies.xyz/categories/jdrama/): 9 titles
 - [kdrama](https://adamovies.xyz/categories/kdrama/): 861 titles
 - [kids](https://adamovies.xyz/categories/kids/): 9 titles
 - [movie](https://adamovies.xyz/categories/movie/): 1 title
-- [Music](https://adamovies.xyz/categories/music/): 3 titles
+- [Music](https://adamovies.xyz/categories/music/): 4 titles
 - [mysterr](https://adamovies.xyz/categories/mysterr/): 4 titles
-- [Mystery](https://adamovies.xyz/categories/mystery/): 215 titles
+- [Mystery](https://adamovies.xyz/categories/mystery/): 216 titles
 - [polictics](https://adamovies.xyz/categories/polictics/): 1 title
 - [politics](https://adamovies.xyz/categories/politics/): 12 titles
 - [reality](https://adamovies.xyz/categories/reality/): 46 titles
 - [sci](https://adamovies.xyz/categories/sci/): 2 titles
-- [Sci-Fi](https://adamovies.xyz/categories/sci-fi/): 251 titles
+- [Sci-Fi](https://adamovies.xyz/categories/sci-fi/): 254 titles
 - [sci-fi & fantasy](https://adamovies.xyz/categories/sci-fi-fantasy/): 5 titles
 - [soap](https://adamovies.xyz/categories/soap/): 2 titles
 - [sport](https://adamovies.xyz/categories/sport/): 4 titles
 - [sports](https://adamovies.xyz/categories/sports/): 1 title
 - [tdrama](https://adamovies.xyz/categories/tdrama/): 3 titles
-- [Thriller](https://adamovies.xyz/categories/thriller/): 121 titles
+- [Thriller](https://adamovies.xyz/categories/thriller/): 137 titles
 - [tv](https://adamovies.xyz/categories/tv/): 1 title
 - [TV Movie](https://adamovies.xyz/categories/tv-movie/): 3 titles
 - [tv romance](https://adamovies.xyz/categories/tv-romance/): 1 title
 - [tv-series](https://adamovies.xyz/categories/tv-series/): 1261 titles
 - [variety](https://adamovies.xyz/categories/variety/): 1 title
 - [variety-show](https://adamovies.xyz/categories/variety-show/): 22 titles
-- [War](https://adamovies.xyz/categories/war/): 33 titles
+- [War](https://adamovies.xyz/categories/war/): 35 titles
 - [Western](https://adamovies.xyz/categories/western/): 12 titles
-- [ Romance](https://adamovies.xyz/categories/romance/): 26 titles
+- [ Romance](https://adamovies.xyz/categories/romance/): 82 titles
 
 ## Movies (sample)
 
-- [Fall 2: Deadpoint (2026)](https://adamovies.xyz/movies/fall-2-deadpoint-2026/): Thriller
-- [Onslaught (2026)](https://adamovies.xyz/movies/onslaught-2026/): Action, Thriller, Horror
-- [Spider-Man: Brand New Day (2026)](https://adamovies.xyz/movies/spider-man-brand-new-day-2026/): Sci-Fi, Action, Adventure
-- [Insidious: Out of the Further (2026)](https://adamovies.xyz/movies/insidious-out-of-the-further-2026/): Horror, Thriller
-- [Vigilante (2026)](https://adamovies.xyz/movies/vigilante-2026/): Action
-- [Stranglehold (2026)](https://adamovies.xyz/movies/stranglehold-2026/): Comedy, Thriller, Crime
-- [Sakamoto Days (2026)](https://adamovies.xyz/movies/sakamoto-days-2026/): Action, Comedy, Crime
-- [Accursed (2026)](https://adamovies.xyz/movies/accursed-2026/): Horror
-- [Jackie the Stripper (2026)](https://adamovies.xyz/movies/jackie-the-stripper-2026/): Comedy
-- [Mononoke the Movie: Chapter III – The Curse of the Serpent (2026)](https://adamovies.xyz/movies/mononoke-the-movie-chapter-iii-the-curse-of-the-serpent-2026/): Animation, Fantasy, Mystery
-- [The Uprising (2026)](https://adamovies.xyz/movies/the-uprising-2026/): Action, History, Drama
-- [The Nice Ones (2026)](https://adamovies.xyz/movies/the-nice-ones-2026/): Horror, Sci-Fi, Fantasy, Drama
-- [Coyote vs. Acme (2026)](https://adamovies.xyz/movies/coyote-vs-acme-2026/): Comedy, Adventure, Family
-- [The Furious: Pertaruhan Maruah (2026)](https://adamovies.xyz/movies/the-furious-pertaruhan-maruah-2026/): Action, Drama
-- [Runner (2026)](https://adamovies.xyz/movies/runner-2026/): Action, Comedy
-- [Lulk (2026)](https://adamovies.xyz/movies/lulk-2026/): Crime, Comedy
-- [Adult: Masahe (2026)](https://adamovies.xyz/movies/adult-masahe-2026/): Documentary
-- [The Snare (2026)](https://adamovies.xyz/movies/the-snare-2026/): Drama, Thriller
-- [Bloody Tennis (2026)](https://adamovies.xyz/movies/bloody-tennis-2026/): Horror, Thriller
-- [The Deputy (2026)](https://adamovies.xyz/movies/the-deputy-2026/): Action, Crime, Thriller, Comedy
+- [Betty’s Revenge (2026)](https://adamovies.xyz/movies/betty-s-revenge-2026/): Horror
+- [Thai Fighters (2026)](https://adamovies.xyz/movies/thai-fighters-2026/): Action, Comedy
+- [Mag Mag (2026)](https://adamovies.xyz/movies/mag-mag-2026/): Horror
+- [Wasteland Cop (2026)](https://adamovies.xyz/movies/wasteland-cop-2026/): Sci-Fi, Fantasy, Action, Adventure, Crime
+- [By Any Means (2026)](https://adamovies.xyz/movies/by-any-means-2026/): History, Crime, Drama
+- [Bad Apples (2026)](https://adamovies.xyz/movies/bad-apples-2026/): Comedy, Thriller
+- [Night Terror (2026)](https://adamovies.xyz/movies/night-terror-2026/): Horror
+- [The Militia (2026)](https://adamovies.xyz/movies/the-militia-2026/): Drama, Thriller
+- [The Odyssey: The Real Story (2026)](https://adamovies.xyz/movies/the-odyssey-the-real-story-2026/): Documentary
+- [Tad and The Magic Lamp (2026)](https://adamovies.xyz/movies/tad-and-the-magic-lamp-2026/): Animation, Comedy, Family
+- [Dementium (2026)](https://adamovies.xyz/movies/dementium-2026/): Thriller, Horror
+- [Rise of the Footsoldier: Retribution (2026)](https://adamovies.xyz/movies/rise-of-the-footsoldier-retribution-2026/): Action, Crime, Thriller
+- [Sky Defenders (2026)](https://adamovies.xyz/movies/sky-defenders-2026/): Documentary, War
+- [Clean Hands (2026)](https://adamovies.xyz/movies/clean-hands-2026/): Crime, Drama
+- [Don’t Move (2026)](https://adamovies.xyz/movies/don-t-move-2026/): Horror, Thriller
+- [Hope (2026)](https://adamovies.xyz/movies/hope-2026/): Sci-Fi, Mystery, Action
+- [Cursed Waters (2026)](https://adamovies.xyz/movies/cursed-waters-2026/): Adventure, Fantasy, Horror
+- [The Florist (2026)](https://adamovies.xyz/movies/the-florist-2026/): Action, Thriller
+- [Animals (2026)](https://adamovies.xyz/movies/animals-2026/): Thriller, Drama, Crime
+- [Matchbox the Movie (2026)](https://adamovies.xyz/movies/matchbox-the-movie-2026/): Action, Comedy, Adventure
 
-(270 movies total — see Sitemap or All Movies above for the complete list.)
+(414 movies total — see Sitemap or All Movies above for the complete list.)
 
 ## Series (sample)
 
