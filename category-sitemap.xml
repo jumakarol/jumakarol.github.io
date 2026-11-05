@@ -85,6 +85,9 @@
     <loc>https://adamovies.xyz/categories/action/page/28/</loc>
   </url>
   <url>
+    <loc>https://adamovies.xyz/categories/action/page/29/</loc>
+  </url>
+  <url>
     <loc>https://adamovies.xyz/categories/adult/</loc>
   </url>
   <url>
@@ -167,6 +170,9 @@
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/adventure/page/20/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/adventure/page/21/</loc>
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/animation/</loc>
@@ -431,6 +437,9 @@
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/documentary/page/3/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/documentary/page/4/</loc>
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/drama/</loc>
@@ -700,6 +709,12 @@
     <loc>https://adamovies.xyz/categories/drama/page/89/</loc>
   </url>
   <url>
+    <loc>https://adamovies.xyz/categories/drama/page/90/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/drama/page/91/</loc>
+  </url>
+  <url>
     <loc>https://adamovies.xyz/categories/family/</loc>
   </url>
   <url>
@@ -812,6 +827,9 @@
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/horror/page/7/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/horror/page/8/</loc>
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/jdrama/</loc>
@@ -1099,6 +1117,9 @@
     <loc>https://adamovies.xyz/categories/mystery/page/18/</loc>
   </url>
   <url>
+    <loc>https://adamovies.xyz/categories/mystery/page/19/</loc>
+  </url>
+  <url>
     <loc>https://adamovies.xyz/categories/polictics/</loc>
   </url>
   <url>
@@ -1115,6 +1136,27 @@
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/reality/page/4/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/romance/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/romance/page/2/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/romance/page/3/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/romance/page/4/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/romance/page/5/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/romance/page/6/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/romance/page/7/</loc>
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/sci/</loc>
@@ -1235,6 +1277,9 @@
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/thriller/page/12/</loc>
+  </url>
+  <url>
+    <loc>https://adamovies.xyz/categories/thriller/page/13/</loc>
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/tv/</loc>
@@ -1583,26 +1628,5 @@
   </url>
   <url>
     <loc>https://adamovies.xyz/categories/western/</loc>
-  </url>
-  <url>
-    <loc>https://adamovies.xyz/categories/romance/</loc>
-  </url>
-  <url>
-    <loc>https://adamovies.xyz/categories/romance/page/2/</loc>
-  </url>
-  <url>
-    <loc>https://adamovies.xyz/categories/romance/page/3/</loc>
-  </url>
-  <url>
-    <loc>https://adamovies.xyz/categories/romance/page/4/</loc>
-  </url>
-  <url>
-    <loc>https://adamovies.xyz/categories/romance/page/5/</loc>
-  </url>
-  <url>
-    <loc>https://adamovies.xyz/categories/romance/page/6/</loc>
-  </url>
-  <url>
-    <loc>https://adamovies.xyz/categories/romance/page/7/</loc>
   </url>
 </urlset>
