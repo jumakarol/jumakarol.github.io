@@ -2,7 +2,7 @@
 
 > Watch and download the latest movies
 
-A streaming catalog with 443 movies and 1918 series across 48 categories, organized by category.
+A streaming catalog with 443 movies and 1919 series across 48 categories, organized by category.
 
 ## Site sections
 
@@ -37,7 +37,7 @@ A streaming catalog with 443 movies and 1918 series across 48 categories, organi
 - [History](https://adamovies.xyz/categories/history/): 18 titles
 - [Horror](https://adamovies.xyz/categories/horror/): 88 titles
 - [jdrama](https://adamovies.xyz/categories/jdrama/): 9 titles
-- [kdrama](https://adamovies.xyz/categories/kdrama/): 863 titles
+- [kdrama](https://adamovies.xyz/categories/kdrama/): 864 titles
 - [kids](https://adamovies.xyz/categories/kids/): 9 titles
 - [movie](https://adamovies.xyz/categories/movie/): 1 title
 - [Music](https://adamovies.xyz/categories/music/): 4 titles
@@ -112,4 +112,4 @@ A streaming catalog with 443 movies and 1918 series across 48 categories, organi
 - [Heart Stain S01 ( )](https://adamovies.xyz/series/heart-stain-s01/): drama, kdrama
 - [Love Phobia S01 ( )](https://adamovies.xyz/series/love-phobia-s01/): comedy, fantasy, sci-fi, kdrama
 
-(1918 series total — see Sitemap or All Series above for the complete list.)
+(1919 series total — see Sitemap or All Series above for the complete list.)
